@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weeza - قريباً في المغرب</title>
+    
+    <!-- Google Fonts: Cairo & Poppins (for brand name) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN SYSTEM & GLOBAL STYLES --- */
+        :root {
+            --primary-yellow: #FFC000; /* Slightly richer yellow */
+            --secondary-green: #00A082; /* Main brand green */
+            --accent-green-dark: #00796B; /* Darker green for gradients */
+            --neutral-dark: #2C3E50; /* Primary text and headings */
+            --paragraph-color: #515A63; /* Lighter text for paragraphs */
+            --background-light: #F8F9FA; /* Light gray background */
+            --background-white: #FFFFFF; /* Pure white elements */
+            --border-light: #E0E0E0; /* Light gray border */
+            --font-family-arabic: 'Cairo', sans-serif;
+            --font-family-brand: 'Poppins', 'Cairo', sans-serif;
+            --border-radius: 12px;
+            --shadow-light: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-medium: 0 8px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 12px 28px rgba(0,0,0,0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-arabic);
+            margin: 0;
+            background-color: var(--background-light);
+            color: var(--neutral-dark);
+            line-height: 1.8;
+            text-align: right; /* Default text alignment for RTL */
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 20px;
+        }
+        
+        /* Spacing for sections - adjust as needed */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            font-weight: 900;
+            margin-top: 0;
+            line-height: 1.4;
+            color: var(--neutral-dark);
+        }
+        h1 { font-size: 3.8rem; text-align: center; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 60px; }
+        h3 { font-size: 1.6rem; }
+        p { color: var(--paragraph-color); }
+        
+        /* --- BRAND NAME STYLE --- */
+        .brand-name {
+            font-family: var(--font-family-brand);
+            font-weight: 900;
+            color: var(--secondary-green);
+            font-size: 1.1em; /* Makes it pop in paragraphs */
+            text-transform: uppercase;
+        }
+        /* Normalize size in headings */
+        h1 .brand-name, h2 .brand-name {
+            font-size: 1em; /* Inherit size from parent heading */
+        }
+
+
+        /* --- UI ELEMENTS & ANIMATIONS --- */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-yellow);
+            color: var(--neutral-dark);
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            z-index: 10;
+        }
+        .cta-button:hover {
+            transform: scale(1.04) translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Generic fade-up and slide-in for sections */
+        .fade-up-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, var(--background-light) 0%, #E8F5E9 100%); /* Soft gradient */
+            text-align: center;
+            padding: 120px 20px 100px;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: var(--border-radius); /* Subtle curve */
+            border-bottom-right-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+        .hero::before, .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(50px);
+            z-index: 0;
+        }
+        .hero::before { /* Bottom-left accent */
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background: var(--primary-yellow);
+        }
+        .hero::after { /* Top-right accent */
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: var(--secondary-green);
+        }
+        .hero h1 {
+            max-width: 900px;
+            margin: 0 auto 25px;
+            z-index: 1;
+            position: relative;
+            font-size: 4.2rem; /* Make it even bigger */
+        }
+        .hero .subtitle {
+            font-size: 1.35rem;
+            max-width: 750px;
+            margin: 0 auto 50px;
+            z-index: 1;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Style for the new launch date announcement */
+        .launch-announcement {
+            background-color: rgba(0, 160, 130, 0.1);
+            color: var(--accent-green-dark);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 20px; /* Space from the subtitle */
+            font-size: 1.2rem;
+            border: 1px solid rgba(0, 160, 130, 0.2);
+        }
+        
+        /* --- KEY BENEFITS --- */
+        .key-benefits {
+            background-color: var(--background-white);
+            padding: 40px 0;
+            box-shadow: var(--shadow-light); /* Soft shadow to lift it */
+            border-radius: var(--border-radius);
+            margin: -80px auto 60px; /* Overlap with hero for visual interest */
+            max-width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+        .benefits-row {
+            display: flex;
+            justify-content: space-around;
+            max-width: 950px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+        .benefit-item {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--neutral-dark);
+            display: flex;
+            align-items: center;
+            text-align: right; /* Ensure consistent text align */
+        }
+        .benefit-item span {
+            color: var(--secondary-green);
+            font-size: 1.8rem; /* Larger checkmark */
+            margin-left: 12px; /* Space between check and text */
+            display: inline-block;
+            line-height: 1; /* Vertically align checkmark */
+        }
+
+        /* --- WHY WEEZA? (Kinetic Mosaic Section) --- */
+        .revamp-b-hf { 
+            padding: 80px 12px; 
+            background: var(--background-light); 
+            direction: rtl; 
+        }
+        .revamp-b-hf .revamp-container { 
+            max-width: 1120px; 
+            margin: 0 auto; 
+        }
+    
+        .revamp-b-hf h2 {
+            font-family: var(--font-family-arabic);
+            font-weight: 900;
+            font-size: 2.8rem;
+            color: var(--neutral-dark);
+            text-align: center;
+            margin-bottom: 60px;
+        }
+    
+        .mosaic {
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 30px;
+          align-items: start;
+          justify-items: center;
+          padding: 28px;
+          direction: rtl;
+        }
+    
+        /* decorative blobs */
+        .blob {
+          position: absolute; 
+          border-radius: 50%; 
+          filter: blur(70px); /* Slightly more blur */
+          opacity: .18; /* Slightly more visible */
+          transform: translateZ(0);
+          z-index: -1;
+        }
+        .blob-1 { 
+            width:380px; 
+            height:380px; 
+            right: 8%; 
+            top: -50px; 
+            background: var(--secondary-green); 
+        }
+        .blob-2 { 
+            width:280px; 
+            height:280px; 
+            left: 8%; 
+            top: 100px; 
+            background: var(--primary-yellow); 
+        }
+    
+        .tile {
+          width: 100%;
+          max-width: 270px; /* Slightly wider tiles */
+          min-height: 220px; /* Slightly taller */
+          padding: 35px;
+          border-radius: var(--border-radius);
+          background: var(--background-white);
+          box-shadow: var(--shadow-light);
+          transition: transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s ease; /* Smoother transition */
+          text-align: center;
+          cursor: default;
+          position: relative;
+        }
+    
+        .mosaic > .tile:nth-of-type(1) { transform: translateY(-8px); } /* Adjusted initial positions */
+        .mosaic > .tile:nth-of-type(2) { transform: translateY(12px); }
+        .mosaic > .tile:nth-of-type(3) { transform: translateY(-6px); }
+        .mosaic > .tile:nth-of-type(4) { transform: translateY(14px); }
+    
+        .tile:focus, .tile:hover { 
+            transform: translateY(-15px) scale(1.03); /* More pronounced hover */
+            box-shadow: var(--shadow-hover); 
+            outline:none; 
+        }
+    
+        .tile .icon { 
+            font-size: 3.8rem; /* Slightly larger icons */
+            margin-bottom: 18px;
+            display: block;
+        }
+    
+        .tile h3 {
+          margin: 0 0 12px;
+          font-family: var(--font-family-arabic);
+          font-size: 1.65rem; /* Slightly larger headings */
+          font-weight: 900;
+          color: var(--neutral-dark);
+        }
+        .tile p {
+          margin: 0;
+          font-family: var(--font-family-arabic);
+          color: var(--paragraph-color);
+          line-height: 1.7; /* Adjusted line height */
+        }
+
+        /* --- HOW IT WORKS --- */
+        #how-it-works { 
+            background-color: var(--background-white); 
+            padding: 100px 0; /* More vertical padding */
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            flex-wrap: wrap;
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px; /* Align with step icons */
+            right: 5%;
+            left: 5%;
+            height: 3px; /* Thinner line */
+            background-color: var(--border-light);
+            z-index: 1;
+            border-radius: 2px;
+        }
+        .timeline-step {
+            flex-basis: 23%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 15px; /* Add some horizontal padding */
+        }
+        .step-icon {
+            width: 90px; /* Larger icon circle */
+            height: 90px;
+            line-height: 90px;
+            border-radius: 50%;
+            background-color: var(--background-white);
+            color: var(--secondary-green);
+            font-size: 3rem; /* Larger icon */
+            margin: 0 auto 25px;
+            border: 5px solid var(--secondary-green); /* Thicker border */
+            box-shadow: var(--shadow-light); /* Soft shadow */
+        }
+        .timeline-step h3 {
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+        .timeline-step p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .vision-section {
+            text-align: center; 
+            margin-top: 80px; /* More space above */
+            max-width: 850px; 
+            margin-left: auto; 
+            margin-right: auto;
+            background-color: rgba(0, 160, 130, 0.05); /* Light green background */
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+        .vision-section h3 {
+            font-size: 2rem; 
+            margin-bottom: 20px;
+            color: var(--secondary-green); /* Green heading */
+        }
+        .vision-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* --- Styles from original file continue... --- */
+        /* --- PIONEER OFFER --- */
+        .pioneer-offer {
+            background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius);
+            padding: 70px 30px; /* More padding */
+            box-shadow: var(--shadow-medium); /* Stronger shadow */
+        }
+        .pioneer-offer h2, .pioneer-offer h3 { 
+            color: white; 
+            font-size: 3rem;
+            margin-bottom: 25px;
+        }
+        .pioneer-offer p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .pioneer-counter {
+            font-size: 1.6rem; /* Larger counter */
+            font-weight: 700;
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+            padding: 12px 25px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 25px 0 40px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .pioneer-benefits {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 50px;
+            display: inline-block;
+            text-align: right;
+        }
+        .pioneer-benefits li { 
+            margin-bottom: 15px; 
+            font-size: 1.15rem; 
+            display: flex; /* For better alignment of checkmark */
+            align-items: center;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        .pioneer-benefits li::before { 
+            content: '✓'; 
+            color: var(--primary-yellow); 
+            margin-left: 15px; 
+            font-weight: 900; 
+            font-size: 1.5rem;
+            line-height: 1;
+            transform: translateY(2px); /* Slight vertical adjustment */
+        }
+        
+        /* --- FAQ --- */
+        #faq { background-color: var(--background-light); }
+        .faq-accordion { max-width: 850px; margin: 0 auto; }
+        .faq-item {
+            background: var(--background-white);
+            border-radius: var(--border-radius);
+            margin-bottom: 18px; /* More space between items */
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            border: 1px solid var(--border-light); /* Subtle border */
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 30px; /* More padding */
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--neutral-dark);
+            transition: background-color 0.2s ease;
+        }
+        .faq-question:hover {
+            background-color: #FDFDFD;
+        }
+        .faq-question .toggle-icon {
+            font-size: 1.8rem; /* Larger icon */
+            color: var(--primary-yellow); /* Yellow icon */
+            transition: transform 0.3s ease;
+            margin-right: 10px; /* Space from text */
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Smoother transition */
+            padding: 0 30px; /* Consistent padding */
+        }
+        .faq-answer p { 
+            margin: 0; 
+            padding-bottom: 25px; /* More padding at bottom */
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        .faq-item.active .faq-answer { 
+            max-height: 500px; /* Sufficient height for content */
+            padding-top: 10px;
+        }
+        .faq-item.active .toggle-icon { 
+            transform: rotate(135deg); 
+            color: var(--secondary-green); /* Green when active */
+        }
+
+        /* --- SIGNUP FORM --- */
+        #signup { background-color: var(--background-white); padding-bottom: 100px; }
+        .form-container { 
+            max-width: 650px; 
+            margin: 0 auto; 
+            text-align: center; 
+            padding: 50px;
+            background: var(--background-light); /* Light background for the form block */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+        .form-container h2 {
+            margin-bottom: 25px;
+        }
+        .form-container p {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        .form-group { position: relative; margin-bottom: 35px; text-align: right; } /* Align labels correctly */
+        .form-input {
+            width: 100%;
+            padding: 16px 18px; /* More padding */
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius);
+            font-size: 1.05rem;
+            font-family: var(--font-family-arabic);
+            background: var(--background-white);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--secondary-green);
+            box-shadow: 0 0 0 3px rgba(0, 160, 130, 0.1);
+        }
+        .form-label {
+            position: absolute;
+            top: 18px; /* Adjusted to match new padding */
+            right: 18px;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            background-color: var(--background-light); /* Match form-container background */
+            padding: 0 7px;
+            font-size: 1.05rem;
+            z-index: 5;
+        }
+        .form-input:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label {
+            top: -12px;
+            font-size: 0.9rem;
+            color: var(--secondary-green);
+            background-color: var(--background-light); /* Ensure background is visible when label moves */
+        }
+        #form-wrapper { transition: opacity 0.5s ease, transform 0.5s ease; }
+        #form-thank-you {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 40px;
+            background-color: var(--background-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+        #form-thank-you h3 {
+            color: var(--secondary-green);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        #form-thank-you p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.95rem;
+            text-align: right;
+            margin-top: 8px;
+            display: none;
+            padding-right: 5px;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background-color: var(--neutral-dark);
+            color: white;
+            text-align: center;
+            padding: 50px 20px; /* More padding */
+            border-top-left-radius: var(--border-radius); /* Subtle curve */
+            border-top-right-radius: var(--border-radius);
+            margin-top: 60px;
+        }
+        .footer .slogan { 
+            font-size: 1.3rem; 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            color: var(--primary-yellow); /* Yellow slogan */
+        }
+        .footer-links a {
+            color: white;
+            margin: 0 18px; /* More space */
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s ease, color 0.2s ease;
+            font-size: 1rem;
+        }
+        .footer-links a:hover { 
+            opacity: 1; 
+            color: var(--primary-yellow); /* Yellow on hover */
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 960px) {
+            h1 { font-size: 3.2rem; }
+            h2 { font-size: 2.4rem; }
+            .hero h1 { font-size: 3.5rem; }
+            .hero .subtitle { font-size: 1.2rem; }
+            .container { padding: 60px 20px; }
+            .benefits-row { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 25px;
+            }
+            .benefit-item { justify-content: center; } /* Center items in column */
+            .benefit-item span { margin-right: 8px; margin-left: 0; } /* Adjust checkmark position */
+            
+            .mosaic { grid-template-columns: repeat(2, 1fr); gap: 25px; padding: 18px; }
+            .blob { display: none; }
+            .mosaic > .tile { transform: none !important; }
+
+            .timeline { flex-direction: column; gap: 50px; padding-top: 0; }
+            .timeline::before { display: none; }
+            .timeline-step { flex-basis: 100%; }
+            .step-icon { margin-bottom: 20px; }
+            .vision-section { margin-top: 60px; padding: 30px; }
+
+            .pioneer-offer { padding: 50px 25px; }
+            .pioneer-offer h2 { font-size: 2.5rem; }
+            .pioneer-offer p { font-size: 1.1rem; }
+            .pioneer-benefits li { justify-content: flex-end; } /* Align benefits right */
+            .pioneer-benefits li::before { margin-left: 10px; }
+
+            .faq-question { padding: 18px 25px; font-size: 1.1rem; }
+            .faq-answer { padding: 0 25px; }
+
+            .form-container { padding: 30px; }
+        }
+
+        @media (max-width: 520px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; margin-bottom: 40px; }
+            .hero h1 { font-size: 3rem; }
+            .hero .subtitle { font-size: 1.1rem; margin-bottom: 30px; }
+            .cta-button { padding: 15px 30px; font-size: 1rem; }
+            
+            .key-benefits { margin-top: -60px; padding: 30px 0; }
+            .benefit-item { font-size: 1rem; }
+
+            .mosaic { grid-template-columns: 1fr; }
+            .tile { max-width: 100%; width: auto; } /* Allow tiles to stretch */
+
+            .timeline-step h3 { font-size: 1.5rem; }
+            .step-icon { width: 70px; height: 70px; line-height: 70px; font-size: 2.5rem; }
+            .vision-section h3 { font-size: 1.7rem; }
+            .vision-section p { font-size: 1rem; }
+
+            .pioneer-offer h2 { font-size: 2rem; }
+            .pioneer-counter { font-size: 1.4rem; }
+            .pioneer-benefits li { font-size: 1rem; }
+            
+            .faq-question { font-size: 1rem; }
+            .faq-answer p { font-size: 0.95rem; }
+
+            .footer .slogan { font-size: 1.1rem; }
+            .footer-links a { margin: 0 10px; font-size: 0.9rem; }
+        }
+
+        /* accessibility: reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+          .tile, .mosaic, .blob, .cta-button, .faq-answer, .faq-question .toggle-icon,
+          .form-input, .form-label, #form-wrapper, #form-thank-you, .fade-up-section { 
+            transition: none !important; 
+            transform: none !important; 
+            animation: none !important;
+          }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <!-- CHANGE: Added "Coming Soon" to the main heading -->
+        <h1>ترقبوا انطلاقة <span class="brand-name">Weeza</span> قريباً!</h1>
+        <p class="subtitle">
+            أول منصة للشراء التعاوني في المغرب<br>
+            نطلب معًا، نتفاوض بشكل أفضل، والجميع يوفّر.<br>
+            نُعيد إحياء الوزيعة التقليدية، الآن بطريقة عصرية من خلال تطبيق Weeza.
+        </p>
+        <!-- CHANGE: CTA button text is now focused on pre-registration -->
+        <a href="#signup" class="cta-button">انضم لقائمة الرواد وكن أول من يعلم بالانطلاق!</a>
+        <!-- NEW: Added a styled div to announce the launch date clearly -->
+        <div class="launch-announcement">
+            🚀 أول توصيل يوم الخميس 30 أكتوبر 2025
+        </div>
+    </header>
+
+    <main>
+        <!-- KEY BENEFITS -->
+        <section class="key-benefits fade-up-section">
+            <div class="benefits-row">
+                <div class="benefit-item"><span>✓</span>وفر حتى 30% على مشترياتك</div>
+                <div class="benefit-item"><span>✓</span>استمتع بنضارة لا تضاهى</div>
+                <div class="benefit-item"><span>✓</span>اطلب بسهولة من هاتفك</div>
+            </div>
+        </section>
+
+        <!-- WHY WEEZA? (Kinetic Mosaic Section) -->
+        <section class="revamp revamp-b-hf fade-up-section" aria-labelledby="why-weeza-b-hf">
+          <div class="revamp-container">
+            <h2 id="why-weeza-b-hf">لماذا ستُحب <span class="brand-name">Weeza</span>؟</h2>
+        
+            <div class="mosaic" id="mosaic-hf" aria-hidden="false">
+              <!-- decorative organic blobs -->
+              <div class="blob blob-1" aria-hidden="true"></div>
+              <div class="blob blob-2" aria-hidden="true"></div>
+        
+              <!-- Tiles -->
+              <article class="tile" data-tilt tabindex="0" aria-label=" توفير حقيقي">
+                <div class="icon">💰</div>
+                <h3>توفير حقيقي</h3>
+                <p>أسعار جملة بفضل قوة الشراء الجماعي .</p>
+              </article>
+        
+              <article class="tile" data-tilt tabindex="0" aria-label="جودة استثنائية">
+                <div class="icon">🌿</div>
+                <h3>جودة استثنائية</h3>
+                <p>منتجات طازجة ومباشرة من المصدر — نضارة وشفافية في الأصل.</p>
+              </article>
+        
+              <article class="tile" data-tilt tabindex="0" aria-label="راحة مطلقة">
+                 <div class="icon">📱</div>
+                <h3>راحة مطلقة</h3>
+                <p>اطلب من هاتفك في دقائق، وتتبع وصول طلبك طازجًا إلى الباب.</p>
+              </article>
+        
+              <article class="tile" data-tilt tabindex="0" aria-label="قوة المجتمع">
+                <div class="icon">🤝</div>
+                <h3>قوة المجتمع</h3>
+                <p>كل طلب يقوّي المجموعة ويجلب صفقات أفضل للجميع.</p>
+              </article>
+            </div>
+          </div>
+        
+          <script>
+            // pointer->parallax tilt (disabled on touch devices)
+            (function() {
+              const mosaic = document.getElementById('mosaic-hf');
+              if (!mosaic) return;
+              const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+              if (isTouch) return;
+        
+              mosaic.addEventListener('mousemove', (e) => {
+                const rect = mosaic.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
+                const dx = (e.clientX - cx) / rect.width;
+                const dy = (e.clientY - cy) / rect.height;
+        
+                const tiles = mosaic.querySelectorAll('[data-tilt]');
+                tiles.forEach((t, i) => {
+                  const initialY = Number(t.style.getPropertyValue("--initial-y")) || 0;
+                  const rx = dx * 6 * (i % 2 === 0 ? -1 : 1);
+                  const ry = dy * 6 * (i % 3 === 0 ? 1 : -1);
+                  t.style.transform = `translateY(calc(${initialY}px + ${ry*2}px)) rotate(${(rx).toFixed(2)}deg) scale(1.01)`;
+                });
+              });
+        
+              mosaic.addEventListener('mouseleave', () => {
+                 const tiles = mosaic.querySelectorAll('[data-tilt]');
+                 tiles.forEach(t => {
+                    const initialY = t.style.getPropertyValue("--initial-y");
+                    t.style.transform = `translateY(${initialY})`;
+                 });
+              });
+              
+              // Set initial staggered positions via CSS variable
+              const tiles = mosaic.querySelectorAll('[data-tilt]');
+              tiles.forEach(t => {
+                  const transform = window.getComputedStyle(t).transform;
+                  if (transform !== 'none') {
+                      const matrix = new DOMMatrix(transform);
+                      t.style.setProperty('--initial-y', `${matrix.m42}px`);
+                  }
+              });
+
+            })();
+          </script>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="how-it-works" class="fade-up-section">
+            <div class="container">
+                <h2>كيف ستعمل التجربة عند الانطلاق</h2>
+                <div class="timeline">
+                    <div class="timeline-step">
+                        <div class="step-icon">🛒</div>
+                        <h3>اطلب احتياجاتك</h3>
+                        <!-- CHANGE: Updated to reflect the first order date -->
+                        <p>تتُفتح الطلبات أسبوعيًا كل يوم أربعاء — اطلب واختَر ما تحتاجه.</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon">👥</div>
+                        <h3>نجمع الطلبات</h3>
+                        <p>نجمع طلبات الجميع في المجموعة في طلب واحد كبير لتحقيق أفضل الصفقات.</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon">🚚</div>
+                        <h3>نشتري بالجملة</h3>
+                        <p>نتفاوض مع أفضل الموردين وتجار الجملة لنضمن لكم جودة عالية وأسعار لا تقبل المنافسة.</p>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon">🏠</div>
+                        <h3>المنتجات تصل طازجة إلى بابك</h3>
+                        <!-- CHANGE: Updated to reflect the first delivery date -->
+                        <p>طلبك يصل بعد 24 ساعة يوم الخميس، جاهز للاستمتاع به.</p>
+                    </div>
+                </div>
+                <div class="vision-section">
+                    <h3>رحلة تبدأ معكم</h3>
+                    <p>نبدأ رحلتنا معكم بتوفير الفواكه والخضروات الطازجة. ومع نمو مجتمعنا، سنضيف تدريجيًا تشكيلات جديدة تشمل الأسماك الطازجة، الدواجن والبيض، التوابل، ومنتجات موسمية رائعة مثل التمور، الفواكه الجافة، ومستلزمات رمضان. هدفنا الأسمى هو الانتقال من الشراء عبر كبار الموردين إلى التعامل مباشرة مع المزارعين والمنتجين المحليين. كلما كبر مجتمع <span class="brand-name">Weeza</span>، زادت قوتنا لتحقيق ذلك معًا.</p>
+                </div>
+            </div>
+        </section>
+
+<!-- END OF PART 1 -->
+<!-- PIONEER OFFER -->
+        <section id="offer" class="container fade-up-section">
+            <div class="pioneer-offer">
+                <!-- CHANGE: Heading is now focused on the pre-launch phase -->
+                <h2>كن من الرواد المؤسسين</h2>
+                <p>
+                    سجل اهتمامك اليوم لتكون ضمن أول 100 عضو مؤسس عند انطلاق
+                    <span class="brand-name" style="color:#fff;">Weeza</span>.
+                    شارك في بناء التجربة واحصل على مزايا حصرية.
+                </p>
+                <!-- CHANGE: The counter is now a clear statement about the pioneer list -->
+                <div class="pioneer-counter" id="pioneer-counter-display">
+                    🎯 انضم لقائمة الـ 100 الأوائل!
+                </div>
+                <ul class="pioneer-benefits">
+                    <li>مكان مميز ضمن الدائرة الأولى للمجتمع.</li>
+                    <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
+                    <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
+                </ul>
+                 <!-- CHANGE: CTA button text updated for pre-registration -->
+                <a href="#signup" class="cta-button">أريد أن أكون من الرواد!</a>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="container fade-up-section">
+            <h2>أسئلة شائعة</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">ماذا يعني "الشراء التعاوني"؟<span class="toggle-icon">+</span></div>
+                    <div class="faq-answer">
+                        <p>يعني أننا نجمع قوتنا الشرائية معًا. بدلاً من أن يشتري كل شخص بمفرده، نجمع مئات الطلبات للشراء بالجملة مباشرة من المنتجين. هذا يمنحنا قوة تفاوضية هائلة للحصول على أفضل الأسعار والجودة، وسنمرر هذا التوفير إليك مباشرة عند الانطلاق.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">هل ستكون هناك رسوم عضوية؟<span class="toggle-icon">+</span></div>
+                    <div class="faq-answer">
+                        <!-- CHANGE: Answer is more direct about the launch offer -->
+                        <p>الانضمام سيكون مجانيًا تمامًا للرواد المؤسسين الـ 100 الأوائل الذين يسجلون قبل الإطلاق، مع مزايا حصرية مدى الحياة. هدفنا حاليًا هو بناء مجتمع قوي. أي نماذج تسعير مستقبلية ستكون شفافة ومصممة لمصلحة المجتمع أولاً.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">من أين ستأتي المنتجات؟<span class="toggle-icon">+</span></div>
+                    <div class="faq-answer">
+                        <!-- CHANGE: Wording adjusted to future tense -->
+                        <p>سنبدأ بتوفير الفواكه والخضروات الطازجة من خلال التعامل مع أفضل تجار الجملة الموثوقين في السوق لضمان جودة ممتازة وأسعار تنافسية منذ اليوم الأول. رؤيتنا المستقبلية هي بناء علاقات مباشرة مع المزارعين والمنتجين المحليين مع نمو مجتمع <span class="brand-name">Weeza</span>. انضمامك لنا يقرّبنا خطوة من تحقيق هذا الهدف.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIGNUP FORM -->
+        <section id="signup" class="container fade-up-section">
+            <div class="form-container">
+                <div id="form-wrapper">
+                    <!-- CHANGE: Heading and text updated for pre-registration -->
+                    <h2>هل أنت مستعد لتكون من الأوائل؟</h2>
+                    <p>املأ النموذج أدناه لتنضم إلى قائمة الرواد المؤسسين. سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
+                    <form id="pioneer-form" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="name" class="form-input" placeholder=" " required>
+                            <label for="name" class="form-label">الاسم الكامل</label>
+                            <div class="error-message">الرجاء إدخال اسمك.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-input" placeholder=" " required>
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" class="form-input" placeholder=" " required>
+                            <label for="phone" class="form-label">رقم الهاتف</label>
+                            <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
+                        </div>
+                         <!-- CHANGE: Button text is clearer about the action -->
+                        <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
+                    </form>
+                </div>
+                <div id="form-thank-you">
+                    <!-- CHANGE: Thank you message is adapted for pre-registration -->
+                    <h3>✅ تهانينا! تم تسجيل اهتمامك بنجاح.</h3>
+                    <p>أنت الآن رسميًا في قائمة رواد <span class="brand-name">Weeza</span> الأوائل. مرحبًا بك في المجتمع! سنتواصل معك قريبًا قبل الإطلاق الرسمي بالخطوات التالية.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="slogan"><span class="brand-name">Weeza</span> - القوة الشرائية، معًا.</p>
+        <div class="footer-links">
+            <a href="#">الشروط والأحكام</a>
+            <a href="#">سياسة الخصوصية</a>
+            <a href="#">اتصل بنا</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- FADE-UP ANIMATION ON SCROLL ---
+            const sections = document.querySelectorAll('.fade-up-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            // --- FAQ ACCORDION ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    // Close all other open items
+                    faqItems.forEach(i => {
+                        if (i !== item) {
+                            i.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    if (!isActive) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- REMOVED: Dynamic pioneer counter logic is no longer needed for a pre-launch page ---
+
+            // --- SIGNUP FORM HANDLING ---
+            const form = document.getElementById('pioneer-form');
+            const formWrapper = document.getElementById('form-wrapper');
+            const thankYouMessage = document.getElementById('form-thank-you');
+
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function showError(input, message) {
+                const formGroup = input.parentElement;
+                const error = formGroup.querySelector('.error-message');
+                error.textContent = message;
+                error.style.display = 'block';
+                input.style.borderColor = '#e74c3c'; // Highlight input with error
+            }
+
+            function hideError(input) {
+                const formGroup = input.parentElement;
+                const error = formGroup.querySelector('.error-message');
+                error.style.display = 'none';
+                input.style.borderColor = 'var(--border-light)'; // Reset border color
+            }
+            
+            // Add real-time validation for a better UX
+            nameInput.addEventListener('input', () => {
+                if (nameInput.value.trim() !== '') hideError(nameInput);
+            });
+            emailInput.addEventListener('input', () => {
+                if (validateEmail(emailInput.value)) hideError(emailInput);
+            });
+            phoneInput.addEventListener('input', () => {
+                if (phoneInput.value.trim() !== '') hideError(phoneInput);
+            });
+
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true;
+                
+                // Clear previous errors and reset borders
+                hideError(nameInput);
+                hideError(emailInput);
+                hideError(phoneInput);
+
+                // Validation
+                if (nameInput.value.trim() === '') {
+                    showError(nameInput, 'الرجاء إدخال اسمك.');
+                    isValid = false;
+                }
+                if (!validateEmail(emailInput.value)) {
+                    showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.');
+                    isValid = false;
+                }
+                if (phoneInput.value.trim() === '') {
+                    showError(phoneInput, 'الرجاء إدخال رقم هاتفك.');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    return; // Stop if validation fails
+                }
+                
+                // If form is valid, proceed
+                // CHANGE: Removed counter logic. The form now just shows the thank you message.
+                // In a real application, you would send the data to a server here.
+                
+                formWrapper.style.opacity = '0';
+                formWrapper.style.transform = 'scale(0.95)';
+
+                setTimeout(() => {
+                    formWrapper.style.display = 'none';
+                    thankYouMessage.style.display = 'block';
+                    setTimeout(() => {
+                        thankYouMessage.style.opacity = '1';
+                        // Reset form fields after successful submission
+                        form.reset(); 
+                    }, 20);
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
