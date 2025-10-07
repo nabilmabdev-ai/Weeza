@@ -12,6 +12,58 @@
 
     <style>
         /* --- DESIGN SYSTEM & GLOBAL STYLES --- */
+
+        .cta-button.secondary {
+            background-color: var(--background-white);
+            color: var(--neutral-dark);
+            border: 2px solid var(--border-light);
+            box-shadow: var(--shadow-light);
+        }
+        .cta-button.secondary:hover {
+            background-color: var(--background-light);
+            border-color: #ccc;
+            transform: scale(1.04) translateY(-2px);
+        }
+        .cta-button.green {
+            background-color: var(--secondary-green);
+            color: var(--background-white);
+        }
+        .cta-button.green:hover {
+            background-color: var(--accent-green-dark);
+        }
+        .concept-section {
+            background-color: var(--background-light);
+            padding: 50px;
+            text-align: center;
+            border-radius: var(--border-radius);
+        }
+        .concept-section p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--neutral-dark);
+        }
+        .concept-section .cta-container {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .concept-section .cta-container .secondary {
+            margin-right: 10px;
+        }
+        .concept-section .microcopy {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .trust-badge {
+            display: inline-block;
+            background-color: rgba(0, 160, 130, 0.1);
+            color: var(--accent-green-dark);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+
         :root {
             --primary-yellow: #FFC000; /* Slightly richer yellow */
             --secondary-green: #00A082; /* Main brand green */
@@ -168,17 +220,18 @@
 
         .hero-v3-text h1 {
             text-align: right;
-            font-size: 3rem; /* Adjusted font-size */
-            color: var(--neutral-dark);
-            margin-bottom: 28px; /* Adjusted margin */
-            line-height: 1.3; /* Adjusted line-height */
+            font-size: 3.8rem; /* Increased font-size */
+            font-weight: 900; /* Bold font */
+            color: #1A202C; /* Darker color */
+            margin-bottom: 20px;
+            line-height: 1.3;
         }
 
         .hero-v3-text .subtitle {
-            font-size: 1.1rem; /* Adjusted font-size */
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            margin-bottom: 40px; /* Increased margin */
             line-height: 1.8;
-            color: #606972; /* Added color for better readability */
+            color: #606972;
         }
 
         .hero-v3-text .trust-bar {
@@ -216,7 +269,7 @@
 
         .grocery-image {
             width: 100%;
-            max-width: 420px; /* Adjusted max-width */
+            max-width: 315px; /* Reduced max-width by 25% */
             height: auto;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-medium); /* Adjusted shadow */
@@ -267,7 +320,7 @@
           }
           .mobile-headline-section h1 {
               text-align: center;
-              font-size: 2.4rem;
+              font-size: 1.5rem; /* Balanced font size for mobile */
               color: var(--neutral-dark);
               margin-bottom: 0;
               line-height: 1.3;
@@ -780,9 +833,10 @@
             /* [RECOMMENDATION APPLIED] Make CTA full-width and more thumb-friendly on mobile */
             .cta-button {
                 width: 100%;
-                max-width: 340px;
+                max-width: 320px; /* Made slightly narrower */
                 padding: 16px 20px;
                 font-size: 1.05rem;
+                border-radius: 999px; /* Added rounded corners */
             }
             
             .key-benefits { margin-top: -60px; padding: 30px 0; }
@@ -794,7 +848,7 @@
             .timeline-step h3 { font-size: 1.5rem; }
             .step-icon { width: 70px; height: 70px; line-height: 70px; font-size: 2.5rem; }
             .vision-section h3 { font-size: 1.7rem; }
-            .vision-section p { font-size: 1rem; }
+            .vision-section p { font-size: 1rem; padding: 0 15px; } /* Added padding */
 
             .pioneer-offer h2 { font-size: 2rem; }
             .pioneer-counter { font-size: 1.4rem; }
@@ -935,16 +989,11 @@
         <div class="hero-v3-content">
             <!-- Right Column: Text Content -->
             <div class="hero-v3-text">
-                <p class="benefit-line">وفّر أكثر مع الشراء الجماعي.</p>
-                <h1>ووفّر حتى 30% على مشترياتك: انضم إلى نظام الوزيعة العصري</h1>
+                <h1>وفّر حتى 30% على طلباتك!</h1>
                 <p class="subtitle">
-                    أول منصة للشراء التعاوني في المغرب.<br>
-                    نطلب معًا، نتفاوض بشكل أفضل، والجميع يوفّر.
+                    انضم للوزيعة العصرية — نطلب جماعياً، نتفاوض أحسن، والجميع يربح.
                 </p>
-                <p class="trust-bar">
-                    ✅ انضم إلينا، أكثر من 50 مشترك سجلوا بالفعل!
-                </p>
-                <a href="#signup" class="cta-button" id="primary-cta">قم بتسجيل الآن!</a>
+                <a href="#signup" class="cta-button green" id="primary-cta">انضم الآن 🚀</a>
                 <!-- OLD LAUNCH ANNOUNCEMENT REMOVED AS PER INSTRUCTIONS -->
             </div>
             <!-- Left Column: Image -->
@@ -1183,28 +1232,16 @@
             </div>
         </section>
 <!-- END OF PART 1 -->
-<!-- PIONEER OFFER -->
+<!-- CONCEPT SECTION -->
         <section id="offer" class="container fade-up-section">
-            <div class="pioneer-offer">
-                <!-- CHANGE: Heading is now focused on the pre-launch phase -->
-               <h2>كن من أوائل المئة مشترك</h2>
-<p>
-    سجل اهتمامك اليوم لتكون ضمن أول مئة عضو مؤسس عند انطلاق
-    <span class="brand-name" style="color:#fff;">Weeza</span>.
-    شارك في بناء التجربة واحصل على مزايا حصرية.
-</p>
-<!-- The counter is now a clear statement about the pioneer list -->
-<div class="pioneer-counter" id="pioneer-counter-display">
-    🎯 انضم لقائمة المئة الأوائل!
-</div>
-<ul class="pioneer-benefits">
-    <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
-    <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
-    <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
-</ul>
-<!-- CTA button text updated for pre-registration -->
-<a href="#signup" class="cta-button">أريد أن أكون من الرواد!</a>
-
+            <div class="concept-section">
+                <p>أول منصة للشراء التعاوني في المغرب</p>
+                <div class="trust-badge">✅ أكثر من 50 مشترك سجلوا بالفعل</div>
+                <div class="cta-container">
+                    <a href="#signup" class="cta-button">انضم الآن!</a>
+                    <a href="#how-it-works" class="cta-button secondary">اكتشف كيف نعمل</a>
+                </div>
+                <p class="microcopy">التسجيل مجاني وسهل 👌</p>
             </div>
         </section>
 
