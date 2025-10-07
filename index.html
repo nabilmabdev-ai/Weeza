@@ -127,6 +127,12 @@
             height: auto;
         }
 
+        /* --- NEW: MOBILE-ONLY HEADLINE SECTION --- */
+        .mobile-headline-section {
+            display: none; /* Hidden by default on desktop */
+        }
+
+
 /* --- NEW HERO V3 STYLES [RECOMMENDATIONS APPLIED] --- */
         .hero-v3 {
             background-color: var(--background-light);
@@ -247,6 +253,38 @@
 
         /* [RECOMMENDATION APPLIED] New intermediate breakpoint for tablets */
         @media (max-width: 768px) {
+          /* --- START: MOBILE-ONLY HEADER UPDATE --- */
+          .mobile-headline-section {
+              display: block; /* Show the new section on mobile */
+              text-align: center;
+              padding: 20px 20px 0;
+          }
+          .mobile-headline-section .benefit-line {
+              font-weight: 700;
+              color: var(--secondary-green);
+              margin-bottom: 10px;
+              font-size: 1.05rem;
+          }
+          .mobile-headline-section h1 {
+              text-align: center;
+              font-size: 2.4rem;
+              color: var(--neutral-dark);
+              margin-bottom: 0;
+              line-height: 1.3;
+          }
+
+          /* Hide the original headlines inside the hero section on mobile */
+          .hero-v3-text .benefit-line, .hero-v3-text h1 {
+              display: none;
+          }
+          
+          /* Adjust hero padding to avoid extra space */
+          .hero-v3 {
+              padding-top: 30px; 
+          }
+          /* --- END: MOBILE-ONLY HEADER UPDATE --- */
+
+
           .hero-v3-content {
             flex-direction: column-reverse;
             align-items: center;
@@ -260,16 +298,17 @@
             transform: rotate(0deg);
             margin-bottom: 30px;
           }
-          .hero-v3-text h1 {
+          /* This h1 rule is now handled by the .mobile-headline-section h1 rule above */
+          /* .hero-v3-text h1 {
             font-size: 2.4rem;
-          }
+          } */
         }
 
         @media (max-width: 520px) {
             /* [RECOMMENDATION APPLIED] Adjust hero padding to reduce vertical scroll */
-            .hero-v3 { padding: 50px 15px 60px; }
+            .hero-v3 { padding: 20px 15px 60px; }
 
-            .hero-v3-text h1 {
+            .mobile-headline-section h1 {
                 font-size: 2.5rem;
             }
         }
@@ -883,6 +922,12 @@
     <!-- TOP LOGO SECTION -->
     <div class="top-logo-section">
         <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1759841106/weeza_logo_knvurw.svg" alt="Weeza Logo" class="weeza-logo">
+    </div>
+
+    <!-- NEW: MOBILE-ONLY HEADLINE SECTION -->
+    <div class="mobile-headline-section">
+        <p class="benefit-line">وفّر أكثر مع الشراء الجماعي.</p>
+        <h1>وفّر حتى 30% على طلباتك: انضم للوزيعة العصرية.</h1>
     </div>
 
     <!-- HERO SECTION (NEW ASYMMETRIC LAYOUT) -->
