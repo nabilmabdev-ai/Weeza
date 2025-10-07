@@ -676,21 +676,87 @@
           }
         }
     </style>
+    <!-- ===== ADDED: Small CSS tweaks to improve above-the-fold CTA and mobile sticky CTA ===== -->
+    <style>
+      /* Hero spacing tweak so CTA is more likely above the fold */
+      .hero { padding: 80px 20px 60px; }
+
+      /* Small benefit line above the H1 (complementary only) */
+      .hero .benefit-line {
+        font-weight:700;
+        color:var(--secondary-green);
+        margin-bottom:10px;
+        font-size:1.05rem;
+      }
+
+      /* Sticky CTA for mobile */
+      @media (max-width:768px) {
+        .sticky-cta {
+          position: fixed;
+          bottom: 14px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 9999;
+          width: calc(100% - 40px);
+          max-width:420px;
+          border-radius: 999px;
+          padding: 12px 18px;
+          text-align:center;
+          box-shadow: var(--shadow-medium);
+          display: inline-block;
+        }
+      }
+      @media (min-width:769px) {
+        .sticky-cta { display: none; } /* hide on desktop */
+      }
+
+      /* Trust bar above the form */
+      .trust-bar {
+        text-align:center;
+        margin-bottom:14px;
+        font-weight:700;
+        color:var(--secondary-green);
+        font-size:0.98rem;
+      }
+
+      /* Slight CTA hover brightening (micro UX) */
+      .cta-button:hover {
+        background-color: #FFD84D;
+        transform: scale(1.04);
+      }
+
+      /* Hide honeypot visually but keep it for bots */
+      .hp-field {
+        position:absolute !important;
+        left:-9999px !important;
+        top:auto !important;
+        width:1px !important;
+        height:1px !important;
+        overflow:hidden !important;
+      }
+    </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (REORDERED: CTA moved directly under H1; benefit line added ABOVE H1) -->
     <header class="hero">
-        <!-- CHANGE: Added "Coming Soon" to the main heading -->
+        <!-- Benefit line (complementary only; DOES NOT change the original offer text) -->
+        <p class="benefit-line">Save more with collective buying — perfect for families.</p>
+
+        <!-- original H1 (offer text preserved elsewhere unchanged) -->
         <h1>ترقبوا انطلاقة <span class="brand-name">Weeza</span> قريباً!</h1>
+
+        <!-- PRIMARY CTA immediately after H1 (offer text preserved) -->
+        <a href="#signup" class="cta-button" id="primary-cta">انضم لقائمة الرواد وكن أول من يعلم بالانطلاق!</a>
+
+        <!-- subtitle moved below CTA (same text preserved) -->
         <p class="subtitle">
             أول منصة للشراء التعاوني في المغرب<br>
             نطلب معًا، نتفاوض بشكل أفضل، والجميع يوفّر.<br>
             نُعيد إحياء الوزيعة التقليدية، الآن بطريقة عصرية من خلال تطبيق Weeza.
         </p>
-        <!-- CHANGE: CTA button text is now focused on pre-registration -->
-        <a href="#signup" class="cta-button">انضم لقائمة الرواد وكن أول من يعلم بالانطلاق!</a>
-        <!-- NEW: Added a styled div to announce the launch date clearly -->
+
+        <!-- Launch announcement remains unchanged -->
         <div class="launch-announcement">
             🚀 أول توصيل يوم الخميس 30 أكتوبر 2025
         </div>
@@ -876,35 +942,51 @@
             </div>
         </section>
 
-        <!-- SIGNUP FORM -->
+        <!-- SIGNUP FORM (UPDATED: trust bar + honeypot + autocomplete + privacy microcopy) -->
         <section id="signup" class="container fade-up-section">
             <div class="form-container">
+
+                <!-- Trust bar: reassurance above the form -->
+                <div class="trust-bar">🎯 A growing group of early supporters — join the pioneers today.</div>
+
                 <div id="form-wrapper">
-                    <!-- CHANGE: Heading and text updated for pre-registration -->
                     <h2>هل أنت مستعد لتكون من الأوائل؟</h2>
                     <p>املأ النموذج أدناه لتنضم إلى قائمة الرواد المؤسسين. سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
+
                     <form id="pioneer-form" novalidate>
+                        <!-- Honeypot (bot-trap) -->
+                        <label class="hp-field" for="hp">Leave this empty</label>
+                        <input type="text" id="hp" name="hp" class="hp-field" autocomplete="off" tabindex="-1" />
+
                         <div class="form-group">
-                            <input type="text" id="name" class="form-input" placeholder=" " required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder=" " autocomplete="name" required>
                             <label for="name" class="form-label">الاسم الكامل</label>
                             <div class="error-message">الرجاء إدخال اسمك.</div>
                         </div>
+
                         <div class="form-group">
-                            <input type="email" id="email" class="form-input" placeholder=" " required>
+                            <input type="email" id="email" name="email" class="form-input" placeholder=" " autocomplete="email" required>
                             <label for="email" class="form-label">البريد الإلكتروني</label>
                             <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
                         </div>
+
                         <div class="form-group">
-                            <input type="tel" id="phone" class="form-input" placeholder=" " required>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder=" " autocomplete="tel" required>
                             <label for="phone" class="form-label">رقم الهاتف</label>
                             <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
                         </div>
-                         <!-- CHANGE: Button text is clearer about the action -->
+
+                        <!-- Submit button text preserved -->
                         <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
+
+                        <!-- privacy microcopy -->
+                        <p style="font-size:0.9rem; color:#666; margin-top:10px;">
+                            We respect your privacy — we will only send launch-related updates.
+                        </p>
                     </form>
                 </div>
-                <div id="form-thank-you">
-                    <!-- CHANGE: Thank you message is adapted for pre-registration -->
+
+                <div id="form-thank-you" aria-hidden="true" style="display:none; opacity:0;">
                     <h3>✅ تهانينا! تم تسجيل اهتمامك بنجاح.</h3>
                     <p>أنت الآن رسميًا في قائمة رواد <span class="brand-name">Weeza</span> الأوائل. مرحبًا بك في المجتمع! سنتواصل معك قريبًا قبل الإطلاق الرسمي بالخطوات التالية.</p>
                 </div>
@@ -921,6 +1003,9 @@
             <a href="#">اتصل بنا</a>
         </div>
     </footer>
+
+    <!-- ===== Sticky CTA (mobile) ===== -->
+    <a href="#signup" class="cta-button sticky-cta" aria-label="Join the pioneers list">🚀 انضم لقائمة الرواد الآن</a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
