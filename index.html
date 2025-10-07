@@ -31,6 +31,8 @@
 
         html {
             scroll-behavior: smooth;
+            /* FIX: Prevent horizontal scroll/overflow issues on mobile */
+            overflow-x: hidden;
         }
 
         body {
@@ -40,7 +42,8 @@
             color: var(--neutral-dark);
             line-height: 1.8;
             text-align: right; /* Default text alignment for RTL */
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+            /* FIX: Ensure body also prevents overflow, working with the html tag */
+            overflow-x: hidden;
         }
 
         .container {
@@ -132,23 +135,6 @@
             overflow: hidden; 
             text-align: right;
         }
-
-        /* Giant background logo [RECOMMENDATION APPLIED: REMOVED] */
-        /* .hero-v3::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-65%, -50%); 
-            width: 1000px;
-            height: 333px;
-            background-image: url('https://res.cloudinary.com/ddrvpufix/image/upload/v1759841106/weeza_logo_knvurw.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            z-index: 0;
-            pointer-events: none;
-        } */
 
         .hero-v3-content {
             max-width: 1100px;
@@ -785,7 +771,8 @@
         /* accessibility: reduce motion */
         @media (prefers-reduced-motion: reduce) {
           .tile, .mosaic, .blob, .cta-button, .faq-answer, .faq-question .toggle-icon,
-          .form-input, .form-label, #form-wrapper, #form-thank-you, .fade-up-section, .hero-image img { 
+          .form-input, .form-label, #form-wrapper, #form-thank-you, .fade-up-section, .hero-image img,
+          .ticker-track { /* Added ticker track to this rule */
             transition: none !important; 
             transform: none !important; 
             animation: none !important;
@@ -879,31 +866,14 @@
             to { transform: translateX(-50%); } /* Scroll by half the width (the original content) */
         }
 
-        /* Mobile styles for the ticker */
+        /* FIX: Re-styled mobile ticker to enable scrolling animation */
         @media (max-width: 768px) {
             .announcement-bar-ticker {
                 margin-top: -20px;
-                padding: 15px 20px;
+                padding: 15px 0; /* Use zero horizontal padding to allow text to scroll off-screen */
             }
-            .ticker-track {
-                animation: none; /* Stop scrolling */
-                justify-content: center;
-                width: 100%;
-            }
-            .ticker-content {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                white-space: normal;
-                width: 100%;
-            }
-            .ticker-content span {
-                padding: 5px 0;
-                font-size: 1rem;
-            }
-            /* Hide duplicated content on mobile */
-            .ticker-content span:nth-child(n+3) {
-                display: none;
+             .ticker-content span {
+                font-size: 1rem; /* Adjust font size for smaller screens */
             }
         }
     </style>
@@ -1158,7 +1128,7 @@
                         <div class="step-icon">🏠</div>
                         <h3>المنتجات تصل طازجة إلى بابك</h3>
                         <!-- CHANGE: Updated to reflect the first delivery date -->
-                        <p>طلبك يصل بعد 24 ساعة يوم الخميس، جاهز للاستمتاع به.</p>
+                        <p>طلبك يصل بعد 24 ساعة يوم الخميس، جاهز للاستممتاع به.</p>
                     </div>
                 </div>
                 <div class="vision-section">
