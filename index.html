@@ -1,111 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weeza - قريباً في المغرب</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weeza — انضم لقائمة الرواد</title>
+  <meta name="description" content="وفّر حتى 30% على مشترياتك الأسبوعية — انضم إلى أول منصة شراء تعاوني في المغرب." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+
+  <!-- Core styles -->
+  <style>
+    :root{
+      --primary-yellow:#FFC000;
+      --secondary-green:#00A082;
+      --accent-green-dark:#00796B;
+      --neutral-dark:#2C3E50;
+      --paragraph:#515A63;
+      --bg:#F8F9FA;
+      --card-bg:#FFFFFF;
+      --border-light:#E6E9EE;
+      --radius:16px;
+      --shadow-light: 0 6px 18px rgba(16,24,40,0.06);
+      --shadow-medium: 0 12px 36px rgba(16,24,40,0.10);
+      --max-width:1140px;
+      --brand-font: 'Cairo', sans-serif;
+      --brand-head: 'Poppins', 'Cairo', sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior: smooth;}
+    body{margin:0;background:var(--bg);font-family:var(--brand-font);color:var(--neutral-dark);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+    /* Top bar */
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+    .logo img{height:48px; display: block;}
+    .nav-cta{display:flex;gap:12px;align-items:center}
+
+    /* Announcement Bar */
+    .announcement {
+      background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
+      color: white; padding: 12px 0; border-radius: var(--radius);
+      margin: 16px auto 28px; box-shadow: var(--shadow-medium);
+      overflow: hidden; position: relative; width: 100%;
+    }
+    .ticker-track {
+      display: inline-flex; white-space: nowrap;
+      animation: ticker-scroll 25s linear infinite;
+    }
+    .ticker-track span { padding: 0 50px; font-weight: 700; font-size: 1.05rem; }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Hero */
+    .hero{display:flex;gap:48px;align-items:center;padding:48px 0;flex-wrap:wrap}
+    .hero-left{flex:1;min-width:320px}
+    .kicker{display:inline-block;background:rgba(0,160,130,0.08);color:var(--secondary-green);padding:8px 16px;border-radius:999px;font-weight:700;margin-bottom:16px}
+    h1{font-family:var(--brand-head);font-size:3.2rem;margin:8px 0 14px;line-height:1.15;color:#1A2533;}
+    .subtitle{color:var(--paragraph);font-size:1.1rem;margin-bottom:24px;max-width:520px;}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 30px;border-radius:999px;border:none;font-weight:800;cursor:pointer;box-shadow:var(--shadow-medium);transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-medium);}
+    .btn-primary{background:var(--primary-yellow);color:var(--neutral-dark)}
+    .btn-ghost{background:transparent;border:2px solid var(--border-light);color:var(--neutral-dark)}
+
+    .hero-right{flex:1;display:flex;justify-content:center;min-width:300px}
+    .hero-img{max-width:500px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-medium)}
+    .hero-img img{display:block;width:100%;height:auto;transform:rotate(1deg)}
     
-    <!-- Google Fonts: Cairo & Poppins (for brand name) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
+    .trust-bar{font-weight:800;color:var(--secondary-green);margin-top:16px;}
 
-    <style>
-        /* --- DESIGN SYSTEM & GLOBAL STYLES --- */
-        :root {
-            --primary-yellow: #FFC000; /* Slightly richer yellow */
-            --secondary-green: #00A082; /* Main brand green */
-            --accent-green-dark: #00796B; /* Darker green for gradients */
-            --neutral-dark: #2C3E50; /* Primary text and headings */
-            --paragraph-color: #515A63; /* Lighter text for paragraphs */
-            --background-light: #F8F9FA; /* Light gray background */
-            --background-white: #FFFFFF; /* Pure white elements */
-            --border-light: #E0E0E0; /* Light gray border */
-            --font-family-arabic: 'Cairo', sans-serif;
-            --font-family-brand: 'Poppins', 'Cairo', sans-serif;
-            --border-radius: 12px;
-            --shadow-light: 0 4px 12px rgba(0,0,0,0.06);
-            --shadow-medium: 0 8px 20px rgba(0,0,0,0.1);
-            --shadow-hover: 0 12px 28px rgba(0,0,0,0.15);
-        }
+     h2 { 
+      font-size: 2.8rem; text-align: center; 
+      margin-bottom: 40px; font-weight: 900;
+    }
+    .brand-name {
+        font-family: var(--brand-head); font-weight: 900;
+        color: var(--secondary-green); font-size: 1em;
+    }
 
-        html {
-            scroll-behavior: smooth;
-            /* FIX: Prevent horizontal scroll/overflow issues on mobile */
-            overflow-x: hidden;
-        }
+    /* 'WHY WEEZA' SECTION */
+    .mosaic-section { padding: 80px 0; }
+    .mosaic-container { max-width: 1120px; margin: 0 auto; padding: 0 24px;}
+    .mosaic {
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        gap: 0; align-items: center; position: relative;
+    }
+    .tile {
+        background-size: cover; background-position: center; position: relative;
+        color: #fff; display: flex; flex-direction: column; justify-content: flex-end;
+        text-align: center; min-height: 350px; padding: 25px;
+        border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        overflow: hidden; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease;
+    }
+    .tile::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.85) 100%);
+        border-radius: inherit;
+    }
+    .tile:hover {
+        transform: translateY(-15px) scale(1.05) !important;
+        box-shadow: 0 20px 45px rgba(0,0,0,0.25); z-index: 10 !important;
+    }
+    .tile h3, .tile p { position: relative; z-index: 1; }
+    .tile h3 {
+        color: #fff; font-weight: 900; font-size: 2rem; margin-bottom: 12px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); line-height: 1.3;
+    }
+    .tile p {
+        color: rgba(255, 255, 255, 0.95); font-size: 1rem; line-height: 1.7;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7); max-width: 95%; margin: 0 auto;
+    }
+    .mosaic > .tile:nth-of-type(1) { transform: translateY(-10px) rotate(-3deg); z-index: 1; }
+    .mosaic > .tile:nth-of-type(2) { transform: translateY(20px) rotate(2deg); margin-right: -70px; z-index: 2; }
+    .mosaic > .tile:nth-of-type(3) { transform: translateY(-20px) rotate(-2deg); margin-right: -70px; z-index: 3; }
+    .mosaic > .tile:nth-of-type(4) { transform: translateY(10px) rotate(3deg); margin-right: -70px; z-index: 2; }
+    
+    /* UX/UI FIX: Pagination dots for mobile slider */
+    .slider-pagination { display: none; }
 
-        body {
-            font-family: var(--font-family-arabic);
-            margin: 0;
-            background-color: var(--background-light);
-            color: var(--neutral-dark);
-            line-height: 1.8;
-            text-align: right; /* Default text alignment for RTL */
-            /* FIX: Ensure body also prevents overflow, working with the html tag */
-            overflow-x: hidden;
+    /* --- RESPONSIVE OPTIMIZATIONS --- */
+    @media (max-width: 960px) {
+        /* Convert mosaic to a horizontal slider */
+        .mosaic-container { padding: 0; }
+        .mosaic {
+            display: flex; overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            /* Peek-a-boo effect for next card */
+            scroll-padding: 0 10%; 
+            padding: 20px 10%;
+            gap: 16px;
+            -ms-overflow-style: none; scrollbar-width: none;
         }
+        .mosaic::-webkit-scrollbar { display: none; }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 90px 20px;
+        .mosaic > .tile {
+            flex: 0 0 80%; /* Each card takes ~80% of screen */
+            scroll-snap-align: center;
+            transform: none !important; margin-right: 0 !important; z-index: 1 !important;
         }
-        
-        /* Spacing for sections - adjust as needed */
-        section {
-            padding: 80px 0;
-            position: relative;
-        }
+        .tile:hover { transform: translateY(-10px) scale(1.03) !important; }
 
-        h1, h2, h3 {
-            font-weight: 900;
-            margin-top: 0;
-            line-height: 1.4;
-            color: var(--neutral-dark);
+        /* Show and style pagination dots */
+        .slider-pagination {
+            display: flex; justify-content: center;
+            gap: 10px; margin-top: 25px;
         }
-        h1 { font-size: 3.8rem; text-align: center; }
-        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 60px; }
-        h3 { font-size: 1.6rem; }
-        p { color: var(--paragraph-color); }
-        
-        /* --- BRAND NAME STYLE --- */
-        .brand-name {
-            font-family: var(--font-family-brand);
-            font-weight: 900;
-            color: var(--secondary-green);
-            font-size: 1.1em; /* Makes it pop in paragraphs */
-            text-transform: uppercase;
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%; background-color: #ccc;
+            transition: background-color 0.3s, transform 0.3s;
         }
-        /* Normalize size in headings */
-        h1 .brand-name, h2 .brand-name {
-            font-size: 1em; /* Inherit size from parent heading */
+        .dot.active {
+            background-color: var(--secondary-green);
+            transform: scale(1.2);
         }
+    }
 
+    @media (max-width: 768px){
+      .hero{flex-direction:column-reverse}
+      .nav-cta .btn-ghost{display:none;}
+      h1 { font-size: 2.6rem; }
+    }
 
-        /* --- UI ELEMENTS & ANIMATIONS --- */
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-yellow);
-            color: var(--neutral-dark);
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.15rem;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow-medium);
-            position: relative;
-            z-index: 10;
-        }
-        .cta-button:hover {
-            transform: scale(1.04) translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
+    @media (max-width: 480px) {
+        h1 { font-size: 2.2rem; }
+        .subtitle { font-size: 1rem; }
+        h2 { font-size: 2.2rem; }
+    }
 
-        /* Generic fade-up and slide-in for sections */
+    @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- TOP BAR -->
+    <header class="topbar" role="banner" aria-label="رأس الصفحة">
+      <div class="logo">
+        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1759841106/weeza_logo_knvurw.svg" alt="Weeza Logo">
+      </div>
+      <nav class="nav-cta" aria-label="روابط سريعة">
+        <a class="btn btn-ghost" href="#how">كيف تعمل</a>
+        <a class="btn btn-primary" href="#signup">انضم للرواد</a>
+      </nav>
+    </header>
+
+    <!-- ANNOUNCEMENT / TICKER -->
+    <div class="announcement" role="region" aria-label="إشعار الإطلاق">
+      <div class="ticker-track">
+        <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+        <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+        <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+        <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-left">
+          <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
+          <h1 id="hero-title">وفّر حتى 30٪ على مشترياتك الأسبوعية — قبل الجميع</h1>
+          <p class="subtitle">انضم إلى أول منصة شراء تعاوني في المغرب. نطلب معًا، نتفاوض بشكل أفضل، والجميع يوفّر.</p>
+          <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
+            <a class="btn btn-primary" href="#signup" id="primary-cta">سجّل اهتمامك الآن 🚀</a>
+            <a class="btn btn-ghost" href="#how">أخبرني كيف يعمل</a>
+          </div>
+          <div class="trust-bar" aria-live="polite">✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-img" role="img" aria-label="صندوق من الفواكه والخضروات الطازجة">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1280&q=80" alt="صندوق مليء بالخضروات والفواكه الطازجة">
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY WEEZA? (Kinetic Mosaic Section) -->
+      <section class="mosaic-section" aria-labelledby="why-weeza-title">
+        <div class="mosaic-container">
+          <h2 id="why-weeza-title">لماذا ستُحب <span class="brand-name">Weeza</span>؟</h2>
+        </div>
+        <div class="mosaic" id="card-slider">
+            <article class="tile" tabindex="0" style="background-image: url('https://www.lodj.ma/photo/art/grande/62044827-45087906.jpg?v=1643807061');">
+              <h3>توفير حقيقي</h3>
+              <p>أسعار جملة بفضل قوة الشراء الجماعي — توفير واضح في فاتورة التسوّق الأسبوعية.</p>
+            </article>
+            <!-- FIX: Added missing text -->
+            <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/04/veggies.jpg');">
+              <h3>جودة استثنائية</h3>
+              <p>منتجات طازجة ومباشرة من السوق والمزارع — نتحكّم في الاختيار والتعبئة.</p>
+            </article>
+            <article class="tile" tabindex="0" style="background-image: url('https://media.istockphoto.com/id/1401406310/photo/close-up-of-happy-young-woman-accepting-box-with-groceries-from-delivery-man-at-home.jpg?s=612x612&w=0&k=20&c=Eop8LW-LoOqJl_KDMygODi1ALQTtYDWcbeCtQ8LaElY=');">
+              <h3>تجربة توصيل سهلة وسريعة</h3>
+              <p>اطلب عبر الهاتف أو الويب وتتبع طلبك حتى باب المنزل — توصيل يومي بعد التجميع.</p>
+            </article>
+            <article class="tile" tabindex="0" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjuGmlB20g0OFqIzQXlC6teuomLqDAQryFSA&s');">
+              <h3>مجتمع قوي، صفقات أفضل</h3>
+              <p>كل عضو يقوّي قدرتنا على التفاوض — مصلحة المجتمع أولًا.</p>
+            </article>
+        </div>
+        <!-- Pagination dots container -->
+        <div class="slider-pagination" id="slider-pagination"></div>
+      </section>
+<!-- STYLES for Block 2 -->
+      <style>
+        /* General styles needed for these sections */
         .fade-up-section {
             opacity: 0;
             transform: translateY(30px);
@@ -115,345 +261,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* --- TOP LOGO SECTION [RECOMMENDATION APPLIED] --- */
-        .top-logo-section {
-            background-color: var(--background-light);
-            padding: 20px 20px 10px; /* Keeps logo large but doesn’t push content too far down. */
-            text-align: center;
-        }
-        .top-logo-section .weeza-logo {
-            max-width: 260px; /* Increased size for more visual dominance */
-            height: auto;
-        }
-
-        /* --- NEW: MOBILE-ONLY HEADLINE SECTION --- */
-        .mobile-headline-section {
-            display: none; /* Hidden by default on desktop */
-        }
-
-
-/* --- NEW HERO V3 STYLES [RECOMMENDATIONS APPLIED] --- */
-        .hero-v3 {
-            background-color: var(--background-light);
-            padding: 70px 20px 80px; /* Reduced top padding */
-            position: relative;
-            overflow: hidden; 
-            text-align: right;
-        }
-
-        .hero-v3-content {
+        .container {
             max-width: 1100px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap; /* allows wrapping gracefully */
-            gap: 60px; /* Adjusted gap */
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-v3-text {
-            flex: 1 1 520px; /* Adjusted flex properties */
-            max-width: 550px; /* Adjusted max-width */
-        }
-
-        .hero-v3-text .benefit-line {
-            font-weight: 700;
-            color: var(--secondary-green);
-            margin-bottom: 10px;
-            font-size: 1.05rem;
-        }
-
-        .hero-v3-text h1 {
-            text-align: right;
-            font-size: 3rem; /* Adjusted font-size */
-            color: var(--neutral-dark);
-            margin-bottom: 28px; /* Adjusted margin */
-            line-height: 1.3; /* Adjusted line-height */
-        }
-
-        .hero-v3-text .subtitle {
-            font-size: 1.1rem; /* Adjusted font-size */
-            margin-bottom: 30px;
-            line-height: 1.8;
-            color: #606972; /* Added color for better readability */
-        }
-
-        .hero-v3-text .trust-bar {
-            margin-bottom: 25px; /* Adjusted margin */
-            font-weight: 700;
-            font-size: 0.95rem; /* Adjusted font-size */
-            color: var(--secondary-green); /* Ensured color consistency */
-        }
-        
-        /* New style for Hero CTA Button */
-        .hero-v3-text .cta-button {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            padding: 18px 48px;
-        }
-
-        .hero-v3-text .launch-announcement {
-            margin-top: 30px;
-            display: inline-block;
-            background-color: rgba(0, 160, 130, 0.1);
-            color: var(--accent-green-dark);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            border: 1px solid rgba(0, 160, 130, 0.2);
-        }
-
-        .hero-v3-image-wrapper {
-            flex: 1 1 420px; /* Adjusted flex properties */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .grocery-image {
-            width: 100%;
-            max-width: 420px; /* Adjusted max-width */
-            height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium); /* Adjusted shadow */
-            transform: rotate(2deg); /* Adjusted rotation */
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-        }
-
-        .grocery-image:hover {
-            transform: rotate(1deg) scale(1.03);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-        }
-
-        /* Responsive Styles for the new Hero */
-        @media (max-width: 960px) {
-            .hero-v3 {
-                padding: 60px 20px;
-            }
-            .hero-v3-content {
-                flex-direction: column-reverse; /* Puts image on top */
-                text-align: center;
-            }
-            .hero-v3-text {
-                flex-basis: auto;
-                max-width: 600px; /* Allow text to be a bit wider */
-            }
-            .hero-v3-text h1, .hero-v3-text .subtitle, .hero-v3-text .trust-bar {
-                text-align: center;
-            }
-            .grocery-image {
-                transform: rotate(-2deg); /* Reduce rotation on tablet */
-                margin-bottom: 40px;
-            }
-        }
-
-        /* [RECOMMENDATION APPLIED] New intermediate breakpoint for tablets */
-        @media (max-width: 768px) {
-          /* --- START: MOBILE-ONLY HEADER UPDATE --- */
-          .mobile-headline-section {
-              display: block; /* Show the new section on mobile */
-              text-align: center;
-              padding: 20px 20px 0;
-          }
-          .mobile-headline-section .benefit-line {
-              font-weight: 700;
-              color: var(--secondary-green);
-              margin-bottom: 10px;
-              font-size: 1.05rem;
-          }
-          .mobile-headline-section h1 {
-              text-align: center;
-              font-size: 2.4rem;
-              color: var(--neutral-dark);
-              margin-bottom: 0;
-              line-height: 1.3;
-          }
-
-          /* Hide the original headlines inside the hero section on mobile */
-          .hero-v3-text .benefit-line, .hero-v3-text h1 {
-              display: none;
-          }
-          
-          /* Adjust hero padding to avoid extra space */
-          .hero-v3 {
-              padding-top: 30px; 
-          }
-          /* --- END: MOBILE-ONLY HEADER UPDATE --- */
-
-
-          .hero-v3-content {
-            flex-direction: column-reverse;
-            align-items: center;
-            text-align: center;
-          }
-          .hero-v3-text {
-            max-width: 600px;
-          }
-          .grocery-image {
-            max-width: 380px;
-            transform: rotate(0deg);
-            margin-bottom: 30px;
-          }
-          /* This h1 rule is now handled by the .mobile-headline-section h1 rule above */
-          /* .hero-v3-text h1 {
-            font-size: 2.4rem;
-          } */
-        }
-
-        @media (max-width: 520px) {
-            /* [RECOMMENDATION APPLIED] Adjust hero padding to reduce vertical scroll */
-            .hero-v3 { padding: 20px 15px 60px; }
-
-            .mobile-headline-section h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        /* --- KEY BENEFITS --- */
-        .key-benefits {
-            background-color: var(--background-white);
-            padding: 40px 0;
-            box-shadow: var(--shadow-light); /* Soft shadow to lift it */
-            border-radius: var(--border-radius);
-            margin: -80px auto 60px; /* Overlap with hero for visual interest */
-            max-width: 90%;
-            position: relative;
-            z-index: 1;
-        }
-        .benefits-row {
-            display: flex;
-            justify-content: space-around;
-            max-width: 950px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 0 20px;
-        }
-        .benefit-item {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--neutral-dark);
-            display: flex;
-            align-items: center;
-            text-align: right; /* Ensure consistent text align */
-        }
-        .benefit-item span {
-            color: var(--secondary-green);
-            font-size: 1.8rem; /* Larger checkmark */
-            margin-left: 12px; /* Space between check and text */
-            display: inline-block;
-            line-height: 1; /* Vertically align checkmark */
-        }
-
-        /* --- WHY WEEZA? (Kinetic Mosaic Section) --- */
-        .revamp-b-hf { 
-            padding: 80px 12px; 
-            background: var(--background-light); 
-            direction: rtl; 
-        }
-        .revamp-b-hf .revamp-container { 
-            max-width: 1120px; 
-            margin: 0 auto; 
-        }
-    
-        .revamp-b-hf h2 {
-            font-family: var(--font-family-arabic);
-            font-weight: 900;
-            font-size: 2.8rem;
-            color: var(--neutral-dark);
-            text-align: center;
-            margin-bottom: 60px;
-        }
-    
-        .mosaic {
-          position: relative;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 30px;
-          align-items: start;
-          justify-items: center;
-          padding: 28px;
-          direction: rtl;
-        }
-    
-        /* decorative blobs */
-        .blob {
-          position: absolute; 
-          border-radius: 50%; 
-          filter: blur(70px); /* Slightly more blur */
-          opacity: .18; /* Slightly more visible */
-          transform: translateZ(0);
-          z-index: -1;
-        }
-        .blob-1 { 
-            width:380px; 
-            height:380px; 
-            right: 8%; 
-            top: -50px; 
-            background: var(--secondary-green); 
-        }
-        .blob-2 { 
-            width:280px; 
-            height:280px; 
-            left: 8%; 
-            top: 100px; 
-            background: var(--primary-yellow); 
-        }
-    
-        .tile {
-          width: 100%;
-          max-width: 270px; /* Slightly wider tiles */
-          min-height: 220px; /* Slightly taller */
-          padding: 35px;
-          border-radius: var(--border-radius);
-          background: var(--background-white);
-          box-shadow: var(--shadow-light);
-          transition: transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s ease; /* Smoother transition */
-          text-align: center;
-          cursor: default;
-          position: relative;
-        }
-    
-        .mosaic > .tile:nth-of-type(1) { transform: translateY(-8px); } /* Adjusted initial positions */
-        .mosaic > .tile:nth-of-type(2) { transform: translateY(12px); }
-        .mosaic > .tile:nth-of-type(3) { transform: translateY(-6px); }
-        .mosaic > .tile:nth-of-type(4) { transform: translateY(14px); }
-    
-        .tile:focus, .tile:hover { 
-            transform: translateY(-15px) scale(1.03); /* More pronounced hover */
-            box-shadow: var(--shadow-hover); 
-            outline:none; 
-        }
-    
-        .tile .icon { 
-            font-size: 3.8rem; /* Slightly larger icons */
-            margin-bottom: 18px;
-            display: block;
-        }
-    
-        .tile h3 {
-          margin: 0 0 12px;
-          font-family: var(--font-family-arabic);
-          font-size: 1.65rem; /* Slightly larger headings */
-          font-weight: 900;
-          color: var(--neutral-dark);
-        }
-        .tile p {
-          margin: 0;
-          font-family: var(--font-family-arabic);
-          color: var(--paragraph-color);
-          line-height: 1.7; /* Adjusted line height */
+            padding: 80px 20px;
         }
 
         /* --- HOW IT WORKS --- */
-        #how-it-works { 
-            background-color: var(--background-white); 
-            padding: 100px 0; /* More vertical padding */
-        }
+        #how { background-color: var(--card-bg); padding: 100px 0; }
         .timeline {
             display: flex;
             justify-content: space-between;
@@ -461,78 +276,67 @@
             flex-wrap: wrap;
             padding-top: 20px;
             margin-top: 40px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .timeline::before {
             content: '';
             position: absolute;
-            top: 50px; /* Align with step icons */
+            top: 50px;
             right: 5%;
             left: 5%;
-            height: 3px; /* Thinner line */
+            height: 3px;
             background-color: var(--border-light);
             z-index: 1;
-            border-radius: 2px;
         }
         .timeline-step {
             flex-basis: 23%;
             text-align: center;
             position: relative;
             z-index: 2;
-            padding: 0 15px; /* Add some horizontal padding */
+            padding: 0 15px;
         }
         .step-icon {
-            width: 90px; /* Larger icon circle */
+            width: 90px;
             height: 90px;
             line-height: 90px;
             border-radius: 50%;
-            background-color: var(--background-white);
+            background-color: var(--card-bg);
             color: var(--secondary-green);
-            font-size: 3rem; /* Larger icon */
+            font-size: 3rem;
             margin: 0 auto 25px;
-            border: 5px solid var(--secondary-green); /* Thicker border */
-            box-shadow: var(--shadow-light); /* Soft shadow */
-        }
-        .timeline-step h3 {
-            font-size: 1.7rem;
-            margin-bottom: 10px;
-        }
-        .timeline-step p {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        .vision-section {
-            text-align: center; 
-            margin-top: 80px; /* More space above */
-            max-width: 850px; 
-            margin-left: auto; 
-            margin-right: auto;
-            background-color: rgba(0, 160, 130, 0.05); /* Light green background */
-            padding: 40px;
-            border-radius: var(--border-radius);
+            border: 5px solid var(--secondary-green);
             box-shadow: var(--shadow-light);
         }
-        .vision-section h3 {
-            font-size: 2rem; 
-            margin-bottom: 20px;
-            color: var(--secondary-green); /* Green heading */
+        .timeline-step h3 { font-size: 1.7rem; margin-bottom: 10px; font-weight: 900;}
+        .timeline-step p { font-size: 1rem; line-height: 1.6; }
+        .vision-section {
+            text-align: center;
+            margin-top: 80px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: rgba(0, 160, 130, 0.05);
+            padding: 40px;
+            border-radius: var(--radius);
         }
-        .vision-section p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-        
-        /* --- Styles from original file continue... --- */
+        .vision-section h3 { font-size: 2rem; margin-bottom: 20px; color: var(--secondary-green); font-weight: 900;}
+        .vision-section p { font-size: 1.1rem; line-height: 1.7; }
+
+
         /* --- PIONEER OFFER --- */
+        #offer { padding: 80px 20px; }
         .pioneer-offer {
             background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
             color: white;
             text-align: center;
-            border-radius: var(--border-radius);
-            padding: 70px 30px; /* More padding */
-            box-shadow: var(--shadow-medium); /* Stronger shadow */
+            border-radius: var(--radius);
+            padding: 70px 30px;
+            box-shadow: var(--shadow-medium);
         }
-        .pioneer-offer h2, .pioneer-offer h3 { 
-            color: white; 
+        .pioneer-offer h2 {
+            color: white;
             font-size: 3rem;
             margin-bottom: 25px;
         }
@@ -543,14 +347,13 @@
             margin: 0 auto 30px;
         }
         .pioneer-counter {
-            font-size: 1.6rem; /* Larger counter */
+            font-size: 1.6rem;
             font-weight: 700;
-            background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+            background-color: rgba(255, 255, 255, 0.15);
             padding: 12px 25px;
             border-radius: 50px;
             display: inline-block;
             margin: 25px 0 40px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .pioneer-benefits {
             list-style: none;
@@ -559,102 +362,97 @@
             display: inline-block;
             text-align: right;
         }
-        .pioneer-benefits li { 
-            margin-bottom: 15px; 
-            font-size: 1.15rem; 
-            display: flex; /* For better alignment of checkmark */
+        .pioneer-benefits li {
+            margin-bottom: 15px;
+            font-size: 1.15rem;
+            display: flex;
             align-items: center;
             color: rgba(255, 255, 255, 0.95);
         }
-        .pioneer-benefits li::before { 
-            content: '✓'; 
-            color: var(--primary-yellow); 
-            margin-left: 15px; 
-            font-weight: 900; 
+        .pioneer-benefits li::before {
+            content: '✓';
+            color: var(--primary-yellow);
+            margin-left: 15px;
+            font-weight: 900;
             font-size: 1.5rem;
             line-height: 1;
-            transform: translateY(2px); /* Slight vertical adjustment */
         }
-        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-yellow);
+            color: var(--neutral-dark);
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+        }
+        .cta-button:hover {
+            transform: scale(1.04) translateY(-4px);
+            box-shadow: var(--shadow-hover, 0 12px 28px rgba(0,0,0,0.15));
+        }
+
         /* --- FAQ --- */
-        #faq { background-color: var(--background-light); }
+        #faq { background-color: var(--bg); }
         .faq-accordion { max-width: 850px; margin: 0 auto; }
         .faq-item {
-            background: var(--background-white);
-            border-radius: var(--border-radius);
-            margin-bottom: 18px; /* More space between items */
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            margin-bottom: 18px;
             box-shadow: var(--shadow-light);
             overflow: hidden;
-            border: 1px solid var(--border-light); /* Subtle border */
+            border: 1px solid var(--border-light);
         }
         .faq-question {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 22px 30px; /* More padding */
+            padding: 22px 30px;
             cursor: pointer;
             font-weight: 700;
             font-size: 1.15rem;
-            color: var(--neutral-dark);
-            transition: background-color 0.2s ease;
-        }
-        .faq-question:hover {
-            background-color: #FDFDFD;
         }
         .faq-question .toggle-icon {
-            font-size: 1.8rem; /* Larger icon */
-            color: var(--primary-yellow); /* Yellow icon */
+            font-size: 1.8rem;
+            color: var(--primary-yellow);
             transition: transform 0.3s ease;
-            margin-right: 10px; /* Space from text */
         }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Smoother transition */
-            padding: 0 30px; /* Consistent padding */
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 30px;
         }
-        .faq-answer p { 
-            margin: 0; 
-            padding-bottom: 25px; /* More padding at bottom */
-            line-height: 1.7;
-            font-size: 1rem;
-        }
-        .faq-item.active .faq-answer { 
-            max-height: 500px; /* Sufficient height for content */
-            padding-top: 10px;
-        }
-        .faq-item.active .toggle-icon { 
-            transform: rotate(135deg); 
-            color: var(--secondary-green); /* Green when active */
-        }
+        .faq-answer p { margin: 0; padding-bottom: 25px; line-height: 1.7; font-size: 1rem; }
+        .faq-item.active .faq-answer { max-height: 500px; padding-top: 10px; }
+        .faq-item.active .toggle-icon { transform: rotate(135deg); color: var(--secondary-green); }
 
         /* --- SIGNUP FORM --- */
-        #signup { background-color: var(--background-white); padding-bottom: 100px; }
-        .form-container { 
-            max-width: 650px; 
-            margin: 0 auto; 
-            text-align: center; 
+        #signup { background-color: var(--card-bg); padding-bottom: 100px; }
+        .form-container {
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
             padding: 50px;
-            background: var(--background-light); /* Light background for the form block */
-            border-radius: var(--border-radius);
+            background: var(--bg);
+            border-radius: var(--radius);
             box-shadow: var(--shadow-light);
         }
-        .form-container h2 {
-            margin-bottom: 25px;
-        }
-        .form-container p {
-            margin-bottom: 40px;
-            font-size: 1.1rem;
-        }
-        .form-group { position: relative; margin-bottom: 35px; text-align: right; } /* Align labels correctly */
+        .form-container h2 { margin-bottom: 25px; }
+        .form-container p { margin-bottom: 40px; font-size: 1.1rem; }
+        .form-group { position: relative; margin-bottom: 35px; text-align: right; }
         .form-input {
             width: 100%;
-            padding: 16px 18px; /* More padding */
+            padding: 16px 18px;
             border: 1px solid var(--border-light);
-            border-radius: var(--border-radius);
+            border-radius: var(--radius);
             font-size: 1.05rem;
-            font-family: var(--font-family-arabic);
-            background: var(--background-white);
+            font-family: var(--brand-font);
+            background: var(--card-bg);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .form-input:focus {
@@ -664,49 +462,33 @@
         }
         .form-label {
             position: absolute;
-            top: 18px; /* Adjusted to match new padding */
+            top: 18px;
             right: 18px;
             color: #999;
             pointer-events: none;
             transition: all 0.3s ease;
-            background-color: var(--background-light); /* Match form-container background */
+            background-color: var(--bg);
             padding: 0 7px;
             font-size: 1.05rem;
-            z-index: 5;
         }
         .form-input:focus ~ .form-label,
         .form-input:not(:placeholder-shown) ~ .form-label {
             top: -12px;
             font-size: 0.9rem;
             color: var(--secondary-green);
-            background-color: var(--background-light); /* Ensure background is visible when label moves */
         }
-        #form-wrapper { transition: opacity 0.5s ease, transform 0.5s ease; }
         #form-thank-you {
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease;
             padding: 40px;
-            background-color: var(--background-white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
         }
-        #form-thank-you h3 {
-            color: var(--secondary-green);
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        #form-thank-you p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-        }
+        #form-thank-you h3 { color: var(--secondary-green); font-size: 2rem; margin-bottom: 20px; }
         .error-message {
             color: #e74c3c;
             font-size: 0.95rem;
             text-align: right;
             margin-top: 8px;
             display: none;
-            padding-right: 5px;
         }
 
         /* --- FOOTER --- */
@@ -714,577 +496,147 @@
             background-color: var(--neutral-dark);
             color: white;
             text-align: center;
-            padding: 50px 20px; /* More padding */
-            border-top-left-radius: var(--border-radius); /* Subtle curve */
-            border-top-right-radius: var(--border-radius);
+            padding: 50px 20px;
+            border-top-left-radius: var(--radius);
+            border-top-right-radius: var(--radius);
             margin-top: 60px;
         }
-        .footer .slogan { 
-            font-size: 1.3rem; 
-            font-weight: 700; 
-            margin-bottom: 25px; 
-            color: var(--primary-yellow); /* Yellow slogan */
-        }
+        .footer .slogan { font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--primary-yellow); }
         .footer-links a {
             color: white;
-            margin: 0 18px; /* More space */
+            margin: 0 18px;
             text-decoration: none;
             opacity: 0.8;
-            transition: opacity 0.2s ease, color 0.2s ease;
-            font-size: 1rem;
+            transition: opacity 0.2s ease;
         }
-        .footer-links a:hover { 
-            opacity: 1; 
-            color: var(--primary-yellow); /* Yellow on hover */
-        }
+        .footer-links a:hover { opacity: 1; }
 
-        /* --- RESPONSIVE DESIGN --- */
+        /* Responsive */
+        .sticky-cta { display: none; }
         @media (max-width: 960px) {
-            h1 { font-size: 3.2rem; }
-            h2 { font-size: 2.4rem; }
-            .container { padding: 60px 20px; }
-            .benefits-row { 
-                flex-direction: column; 
-                text-align: center; 
-                gap: 25px;
-            }
-            .benefit-item { justify-content: center; } /* Center items in column */
-            .benefit-item span { margin-right: 8px; margin-left: 0; } /* Adjust checkmark position */
-            
-            .mosaic { grid-template-columns: repeat(2, 1fr); gap: 25px; padding: 18px; }
-            .blob { display: none; }
-            .mosaic > .tile { transform: none !important; }
-
             .timeline { flex-direction: column; gap: 50px; padding-top: 0; }
             .timeline::before { display: none; }
-            .timeline-step { flex-basis: 100%; }
-            .step-icon { margin-bottom: 20px; }
-            .vision-section { margin-top: 60px; padding: 30px; }
-
             .pioneer-offer { padding: 50px 25px; }
             .pioneer-offer h2 { font-size: 2.5rem; }
-            .pioneer-offer p { font-size: 1.1rem; }
-            .pioneer-benefits li { justify-content: flex-end; } /* Align benefits right */
-            .pioneer-benefits li::before { margin-left: 10px; }
-
-            .faq-question { padding: 18px 25px; font-size: 1.1rem; }
-            .faq-answer { padding: 0 25px; }
-
-            .form-container { padding: 30px; }
         }
-
-        @media (max-width: 520px) {
-            h1 { font-size: 2.8rem; }
-            h2 { font-size: 2rem; margin-bottom: 40px; }
-            
-            /* [RECOMMENDATION APPLIED] Make CTA full-width and more thumb-friendly on mobile */
-            .cta-button {
-                width: 100%;
-                max-width: 340px;
-                padding: 16px 20px;
-                font-size: 1.05rem;
-            }
-            
-            .key-benefits { margin-top: -60px; padding: 30px 0; }
-            .benefit-item { font-size: 1rem; }
-
-            .mosaic { grid-template-columns: 1fr; }
-            .tile { max-width: 100%; width: auto; } /* Allow tiles to stretch */
-
-            .timeline-step h3 { font-size: 1.5rem; }
-            .step-icon { width: 70px; height: 70px; line-height: 70px; font-size: 2.5rem; }
-            .vision-section h3 { font-size: 1.7rem; }
-            .vision-section p { font-size: 1rem; }
-
-            .pioneer-offer h2 { font-size: 2rem; }
-            .pioneer-counter { font-size: 1.4rem; }
-            .pioneer-benefits li { font-size: 1rem; }
-            
-            .faq-question { font-size: 1rem; }
-            .faq-answer p { font-size: 0.95rem; }
-
-            .footer .slogan { font-size: 1.1rem; }
-            .footer-links a { margin: 0 10px; font-size: 0.9rem; }
-        }
-
-        /* accessibility: reduce motion */
-        @media (prefers-reduced-motion: reduce) {
-          .tile, .mosaic, .blob, .cta-button, .faq-answer, .faq-question .toggle-icon,
-          .form-input, .form-label, #form-wrapper, #form-thank-you, .fade-up-section, .hero-image img,
-          .ticker-track { /* Added ticker track to this rule */
-            transition: none !important; 
-            transform: none !important; 
-            animation: none !important;
-          }
-        }
-    </style>
-    <!-- ===== ADDED: Small CSS tweaks to improve above-the-fold CTA and mobile sticky CTA ===== -->
-    <style>
-      /* Sticky CTA for mobile */
-      @media (max-width:768px) {
-        .sticky-cta {
-          position: fixed;
-          bottom: 14px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 9999;
-          width: calc(100% - 40px);
-          max-width:420px;
-          border-radius: 999px;
-          padding: 12px 18px;
-          text-align:center;
-          box-shadow: var(--shadow-medium);
-          display: inline-block;
-        }
-      }
-      @media (min-width:769px) {
-        .sticky-cta { display: none; } /* hide on desktop */
-      }
-
-      /* Trust bar above the form */
-      .trust-bar {
-        text-align:center;
-        margin-bottom:14px;
-        font-weight:700;
-        color:var(--secondary-green);
-        font-size:0.98rem;
-      }
-
-      /* Slight CTA hover brightening (micro UX) */
-      .cta-button:hover {
-        background-color: #FFD84D;
-        transform: scale(1.04);
-      }
-
-      /* Hide honeypot visually but keep it for bots */
-      .hp-field {
-        position:absolute !important;
-        left:-9999px !important;
-        top:auto !important;
-        width:1px !important;
-        height:1px !important;
-        overflow:hidden !important;
-      }
-    </style>
-    <!-- ===== NEW: Styles for the Announcement Ticker ===== -->
-    <style>
-        .announcement-bar-ticker {
-            background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
-            color: white;
-            padding: 18px 0;
-            margin-top: -30px; /* Overlap with hero */
-            position: relative;
-            z-index: 5;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-medium);
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: hidden; /* Crucial for ticker effect */
-            font-family: var(--font-family-arabic);
-        }
-        .ticker-track {
-            display: flex;
-            width: fit-content; /* Allow content to define width for animation */
-            animation: scroll-rtl 25s linear infinite;
-        }
-        .ticker-content {
-            display: flex;
-            white-space: nowrap; /* Prevent line breaks during scroll */
-        }
-        .ticker-content span {
-            font-size: 1.1rem;
-            font-weight: 700;
-            padding: 0 40px; /* Space between items */
-            display: flex;
-            align-items: center;
-        }
-
-        @keyframes scroll-rtl {
-            from { transform: translateX(0%); }
-            to { transform: translateX(-50%); } /* Scroll by half the width (the original content) */
-        }
-
-        /* FIX: Re-styled mobile ticker to enable scrolling animation */
         @media (max-width: 768px) {
-            .announcement-bar-ticker {
-                margin-top: -20px;
-                padding: 15px 0; /* Use zero horizontal padding to allow text to scroll off-screen */
-            }
-             .ticker-content span {
-                font-size: 1rem; /* Adjust font size for smaller screens */
+             .sticky-cta {
+                display: block; position: fixed; bottom: 14px; left: 50%;
+                transform: translateX(-50%); z-index: 9999;
+                width: calc(100% - 40px); max-width:420px; text-align:center;
             }
         }
-    </style>
-</head>
-<body>
-
-    <!-- TOP LOGO SECTION -->
-    <div class="top-logo-section">
-        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1759841106/weeza_logo_knvurw.svg" alt="Weeza Logo" class="weeza-logo">
-    </div>
-
-    <!-- NEW: MOBILE-ONLY HEADLINE SECTION -->
-    <div class="mobile-headline-section">
-        <p class="benefit-line">وفّر أكثر مع الشراء الجماعي.</p>
-        <h1>وفّر حتى 30% على مشترياتك: انضم إلى نظام الوزيعة العصري.</h1>
-    </div>
-
-    <!-- HERO SECTION (NEW ASYMMETRIC LAYOUT) -->
-    <header class="hero-v3">
-        <div class="hero-v3-content">
-            <!-- Right Column: Text Content -->
-            <div class="hero-v3-text">
-                <p class="benefit-line">وفّر أكثر مع الشراء الجماعي.</p>
-                <h1>ووفّر حتى 30% على مشترياتك: انضم إلى نظام الوزيعة العصري</h1>
-                <p class="subtitle">
-                    أول منصة للشراء التعاوني في المغرب.<br>
-                    نطلب معًا، نتفاوض بشكل أفضل، والجميع يوفّر.
-                </p>
-                <p class="trust-bar">
-                    ✅ انضم إلينا، أكثر من 50 مشترك سجلوا بالفعل!
-                </p>
-                <a href="#signup" class="cta-button" id="primary-cta">قم بتسجيل الآن!</a>
-                <!-- OLD LAUNCH ANNOUNCEMENT REMOVED AS PER INSTRUCTIONS -->
-            </div>
-            <!-- Left Column: Image -->
-            <div class="hero-v3-image-wrapper">
-                <!-- [RECOMMENDATION APPLIED] Optimize images with srcset -->
-                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto-format&fit=crop&w=1287&q=80" 
-                     srcset="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=480&q=80 480w, https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=768&q=80 768w, https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1280&q=80 1280w"
-                     sizes="(max-width: 520px) 100vw, (max-width: 960px) 50vw, 420px"
-                     alt="صندوق مليء بالخضروات والفواكه الطازجة" 
-                     class="grocery-image">
-            </div>
-        </div>
-    </header>
-
-    <!-- NEW ANNOUNCEMENT BAR ADDED AS PER INSTRUCTIONS -->
-    <section class="announcement-bar-ticker">
-        <div class="ticker-track">
-            <div class="ticker-content">
-                <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-                <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-                <!-- Duplicate for seamless scroll -->
-                <span aria-hidden="true">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-                <span aria-hidden="true">تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-            </div>
-        </div>
-    </section>
-
-    <main>
-        <!-- KEY BENEFITS -->
-      <!-- WHY WEEZA? (Kinetic Mosaic Section) - ENHANCED VERSION -->
-<style>
-    /* --- ENHANCED 'WHY WEEZA' SECTION STYLES --- */
-
-    /* Adjust the mosaic container to allow for overlap and center it */
-    .mosaic-container {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    .mosaic {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0; /* Remove gap to control spacing with margins */
-      padding: 28px 50px; /* Add padding to contain the overlapping cards */
-      align-items: center; /* Vertically align items */
-    }
-
-    /* Base style for the cards */
-    .tile {
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        min-height: 320px; /* Give cards more height */
-        padding: 25px;
-        border-radius: 16px; /* Slightly larger radius like the reference */
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        overflow: hidden; /* Important for the overlay's border-radius */
-        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease;
-    }
-
-    /* Create a more subtle, gradient overlay for readability */
-    .tile::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        /* Gradient is light at the top, darker at the bottom for text contrast */
-        background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.65) 100%);
-        border-radius: inherit; /* Inherit border radius */
-        z-index: -1;
-        transition: opacity 0.4s ease;
-    }
-
-    /* Enhanced hover effect */
-    .tile:hover {
-        transform: translateY(-15px) scale(1.05) !important; /* Use !important to override inline styles */
-        box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-        z-index: 10 !important; /* Bring hovered card to the front */
-    }
-    
-    .tile:hover::before {
-        opacity: 0.8; /* Slightly lighten the overlay on hover */
-    }
-
-    /* Hide the original emoji icon */
-    .tile .icon {
-        display: none;
-    }
-
-    /* Enhanced typography for better contrast and style */
-    .tile h3 {
-        color: #fff;
-        font-weight: 900; /* Bolder font */
-        font-size: 2.2rem; /* Larger heading */
-        margin-bottom: 12px;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); /* Stronger shadow */
-        line-height: 1.3;
-    }
-
-    .tile p {
-        color: rgba(255, 255, 255, 0.95); /* Bright white for paragraph */
-        font-size: 1rem;
-        line-height: 1.7;
-        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7); /* Add shadow for readability */
-        max-width: 95%;
-        margin: 0 auto;
-    }
-
-    /* Create the overlapping and staggered effect */
-    .mosaic > .tile:nth-of-type(1) {
-        transform: translateY(-10px) rotate(-3deg);
-        z-index: 1;
-    }
-    .mosaic > .tile:nth-of-type(2) {
-        transform: translateY(20px) rotate(2deg);
-        margin-right: -70px; /* Overlap previous card (RTL) */
-        z-index: 2;
-    }
-    .mosaic > .tile:nth-of-type(3) {
-        transform: translateY(-20px) rotate(-2deg);
-        margin-right: -70px; /* Overlap previous card (RTL) */
-        z-index: 3;
-    }
-    .mosaic > .tile:nth-of-type(4) {
-        transform: translateY(10px) rotate(3deg);
-        margin-right: -70px; /* Overlap previous card (RTL) */
-        z-index: 2;
-    }
-    
-    /* Responsive adjustments for the mosaic */
-    @media (max-width: 960px) {
-        .mosaic {
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            padding: 20px;
+        @media (max-width: 520px) {
+            .cta-button { width: 100%; max-width: 340px; }
+            .pioneer-offer h2 { font-size: 2rem; }
         }
-        /* Reset complex transforms on tablet */
-        .mosaic > .tile {
-            transform: none !important;
-            margin-right: 0 !important;
-            z-index: 1 !important;
-        }
-         .tile:hover {
-            transform: translateY(-10px) scale(1.03) !important;
-        }
-    }
-     @media (max-width: 520px) {
-        .mosaic {
-            grid-template-columns: 1fr;
-        }
-        .tile h3 {
-            font-size: 1.8rem;
-        }
-    }
-</style>
+      </style>
 
-<section class="revamp revamp-b-hf fade-up-section" aria-labelledby="why-weeza-b-hf">
-  <div class="mosaic-container">
-    <h2 id="why-weeza-b-hf">لماذا ستُحب <span class="brand-name">Weeza</span>؟</h2>
+      <!-- HOW IT WORKS -->
+      <section id="how" class="fade-up-section">
+          <div class="container">
+              <h2>كيف ستعمل التجربة عند الانطلاق</h2>
+              <div class="timeline">
+                  <div class="timeline-step">
+                      <div class="step-icon">🛒</div>
+                      <h3>اطلب احتياجاتك</h3>
+                      <p>تتُفتح الطلبات أسبوعيًا كل يوم أربعاء — اطلب واختَر ما تحتاجه.</p>
+                  </div>
+                  <div class="timeline-step">
+                      <div class="step-icon">👥</div>
+                      <h3>نجمع الطلبات</h3>
+                      <p>نجمع طلبات الجميع في المجموعة في طلب واحد كبير لتحقيق أفضل الصفقات.</p>
+                  </div>
+                  <div class="timeline-step">
+                      <div class="step-icon">🚚</div>
+                      <h3>نشتري بالجملة</h3>
+                      <p>نتفاوض مع أفضل الموردين وتجار الجملة لنضمن لكم جودة عالية وأسعار لا تقبل المنافسة.</p>
+                  </div>
+                  <div class="timeline-step">
+                      <div class="step-icon">🏠</div>
+                      <h3>المنتجات تصل طازجة إلى بابك</h3>
+                      <p>طلبك يصل بعد 24 ساعة يوم الخميس، جاهز للاستممتاع به.</p>
+                  </div>
+              </div>
+              <div class="vision-section">
+                  <h3>رحلة تبدأ معكم</h3>
+                  <p>نبدأ رحلتنا معكم بتوفير أجود الفواكه والخضروات الطازجة، ومع توسع مجتمعنا، سنضيف تدريجيًا تشكيلات متنوعة تشمل الأسماك الطازجة، الدواجن والبيض، التوابل، ومنتجات موسمية رائعة. هدفنا الأسمى هو التعامل المباشر مع المزارعين والمنتجين المحليين.</p>
+              </div>
+          </div>
+      </section>
 
-    <div class="mosaic" id="mosaic-hf" aria-hidden="false">
-      <!-- decorative organic blobs -->
-      <div class="blob blob-1" aria-hidden="true"></div>
-      <div class="blob blob-2" aria-hidden="true"></div>
-
-      <!-- Tiles -->
-      <article class="tile" tabindex="0" aria-label="توفير حقيقي" style="background-image: url('https://www.lodj.ma/photo/art/grande/62044827-45087906.jpg?v=1643807061');">
-        <div class="icon">💰</div>
-        <h3>توفير حقيقي</h3>
-        <p>أسعار جملة بفضل قوة الشراء الجماعي.</p>
-      </article>
-
-      <article class="tile" tabindex="0" aria-label="جودة استثنائية" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/04/veggies.jpg');">
-        <div class="icon">🌿</div>
-        <h3>جودة استثنائية</h3>
-        <p>منتجات طازجة ومباشرة من المصدر — نضارة وشفافية في الأصل.</p>
-      </article>
-
-      <article class="tile" tabindex="0" aria-label="تجربة توصيل سهلة وسريعة" style="background-image: url('https://media.istockphoto.com/id/1401406310/photo/close-up-of-happy-young-woman-accepting-box-with-groceries-from-delivery-man-at-home.jpg?s=612x612&w=0&k=20&c=Eop8LW-LoOqJl_KDMygODi1ALQTtYDWcbeCtQ8LaElY=');">
-         <div class="icon">📱</div>
-        <h3>تجربة توصيل سهلة وسريعة</h3>
-        <p>اطلب من هاتفك في دقائق، وتتبع وصول طلبك طازجًا إلى الباب.</p>
-      </article>
-
-      <article class="tile" tabindex="0" aria-label="مجتمع قوي، صفقات أفضل" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjuGmlB20g0OFqIzQXlC6teuomLqDAQryFSA&s');">
-        <div class="icon">🤝</div>
-        <h3>مجتمع قوي، صفقات أفضل</h3>
-        <p>كل طلب يقوّي المجموعة ويجلب صفقات أفضل للجميع.</p>
-      </article>
-    </div>
-  </div>
-
-  <!-- The original tilt script is removed as it conflicts with the new CSS transforms -->
-  <!-- 
-  <script>
-    // pointer->parallax tilt (disabled)
-  </script> 
-  -->
-</section>
-        <!-- HOW IT WORKS -->
-        <section id="how-it-works" class="fade-up-section">
-            <div class="container">
-                <h2>كيف ستعمل التجربة عند الانطلاق</h2>
-                <div class="timeline">
-                    <div class="timeline-step">
-                        <div class="step-icon">🛒</div>
-                        <h3>اطلب احتياجاتك</h3>
-                        <!-- CHANGE: Updated to reflect the first order date -->
-                        <p>تتُفتح الطلبات أسبوعيًا كل يوم أربعاء — اطلب واختَر ما تحتاجه.</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-icon">👥</div>
-                        <h3>نجمع الطلبات</h3>
-                        <p>نجمع طلبات الجميع في المجموعة في طلب واحد كبير لتحقيق أفضل الصفقات.</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-icon">🚚</div>
-                        <h3>نشتري بالجملة</h3>
-                        <p>نتفاوض مع أفضل الموردين وتجار الجملة لنضمن لكم جودة عالية وأسعار لا تقبل المنافسة.</p>
-                    </div>
-                    <div class="timeline-step">
-                        <div class="step-icon">🏠</div>
-                        <h3>المنتجات تصل طازجة إلى بابك</h3>
-                        <!-- CHANGE: Updated to reflect the first delivery date -->
-                        <p>طلبك يصل بعد 24 ساعة يوم الخميس، جاهز للاستممتاع به.</p>
-                    </div>
-                </div>
-                <div class="vision-section">
-                    <h3>رحلة تبدأ معكم</h3>
-                    <p>نبدأ رحلتنا معكم بتوفير أجود الفواكه والخضروات الطازجة، ومع توسع مجتمعنا، سنضيف تدريجيًا تشكيلات متنوعة تشمل الأسماك الطازجة، الدواجن والبيض، التوابل، ومنتجات موسمية رائعة مثل التمور، المكسرات، زيت الزيتون، والفواكه الجافة، وغيرها من المنتجات الموسمية. هدفنا الأسمى هو الانتقال من الشراء عبر كبار الموردين إلى التعامل المباشر مع المزارعين والمنتجين المحليين. وكلما نما مجتمعنا ازدادت قوتنا لتحقيق هذا الهدف معًا.<span class="brand-name"></span></p>
-                </div>
-            </div>
-        </section>
-<!-- END OF PART 1 -->
-<!-- PIONEER OFFER -->
-        <section id="offer" class="container fade-up-section">
+      <!-- PIONEER OFFER -->
+      <section id="offer" class="container fade-up-section">
             <div class="pioneer-offer">
-                <!-- CHANGE: Heading is now focused on the pre-launch phase -->
                <h2>كن من أوائل المئة مشترك</h2>
-<p>
-    سجل اهتمامك اليوم لتكون ضمن أول مئة عضو مؤسس عند انطلاق
-    <span class="brand-name" style="color:#fff;">Weeza</span>.
-    شارك في بناء التجربة واحصل على مزايا حصرية.
-</p>
-<!-- The counter is now a clear statement about the pioneer list -->
-<div class="pioneer-counter" id="pioneer-counter-display">
-    🎯 انضم لقائمة المئة الأوائل!
-</div>
-<ul class="pioneer-benefits">
-    <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
-    <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
-    <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
-</ul>
-<!-- CTA button text updated for pre-registration -->
-<a href="#signup" class="cta-button">أريد أن أكون من الرواد!</a>
-
+                <p>سجل اهتمامك اليوم لتكون ضمن أول مئة عضو مؤسس عند انطلاق <span class="brand-name" style="color:#fff;">Weeza</span>. شارك في بناء التجربة واحصل على مزايا حصرية.</p>
+                <div class="pioneer-counter">🎯 انضم لقائمة المئة الأوائل!</div>
+                <ul class="pioneer-benefits">
+                    <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
+                    <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
+                    <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
+                </ul>
+                <a href="#signup" class="cta-button">أريد أن أكون من الرواد!</a>
             </div>
-        </section>
+      </section>
 
-        <!-- FAQ SECTION -->
-        <section id="faq" class="container fade-up-section">
+      <!-- FAQ SECTION -->
+      <section id="faq" class="container fade-up-section">
             <h2>أسئلة شائعة</h2>
             <div class="faq-accordion">
                 <div class="faq-item">
                     <div class="faq-question">ماذا يعني "الشراء التعاوني"؟<span class="toggle-icon">+</span></div>
                     <div class="faq-answer">
-                        <p>يعني أننا نجمع قوتنا الشرائية معًا. بدلاً من أن يشتري كل شخص بمفرده، نجمع مئات الطلبات للشراء بالجملة مباشرة من المنتجين. هذا يمنحنا قوة تفاوضية هائلة للحصول على أفضل الأسعار والجودة، وسنمرر هذا التوفير إليك مباشرة عند الانطلاق.</p>
+                        <p>يعني أننا نجمع قوتنا الشرائية معًا. بدلاً من أن يشتري كل شخص بمفرده، نجمع مئات الطلبات للشراء بالجملة مباشرة من المنتجين. هذا يمنحنا قوة تفاوضية هائلة للحصول على أفضل الأسعار والجودة.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">هل ستكون هناك رسوم عضوية؟<span class="toggle-icon">+</span></div>
                     <div class="faq-answer">
-                        <!-- CHANGE: Answer is more direct about the launch offer -->
-                        <p>الانضمام سيكون مجانيًا تمامًا للرواد المؤسسين الـ 100 الأوائل الذين يسجلون قبل الإطلاق، مع مزايا حصرية مدى الحياة. هدفنا حاليًا هو بناء مجتمع قوي. أي نماذج تسعير مستقبلية ستكون شفافة ومصممة لمصلحة المجتمع أولاً.</p>
+                        <p>الانضمام سيكون مجانيًا تمامًا للرواد المؤسسين الـ 100 الأوائل الذين يسجلون قبل الإطلاق، مع مزايا حصرية. أي نماذج تسعير مستقبلية ستكون شفافة ومصممة لمصلحة المجتمع أولاً.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">من أين ستأتي المنتجات؟<span class="toggle-icon">+</span></div>
                     <div class="faq-answer">
-                        <!-- CHANGE: Wording adjusted to future tense -->
-                        <p>سنبدأ بتوفير الفواكه والخضروات الطازجة من خلال التعامل مع أفضل تجار الجملة الموثوقين في السوق لضمان جودة ممتازة وأسعار تنافسية منذ اليوم الأول. رؤيتنا المستقبلية هي بناء علاقات مباشرة مع المزارعين والمنتجين المحليين مع نمو مجتمع <span class="brand-name">Weeza</span>. انضمامك لنا يقرّبنا خطوة من تحقيق هذا الهدف.</p>
+                        <p>سنبدأ بتوفير الفواكه والخضروات الطازجة من خلال التعامل مع أفضل تجار الجملة الموثوقين. رؤيتنا المستقبلية هي بناء علاقات مباشرة مع المزارعين والمنتجين المحليين مع نمو مجتمعنا.</p>
                     </div>
                 </div>
             </div>
-        </section>
+      </section>
 
-        <!-- SIGNUP FORM (UPDATED: trust bar + honeypot + autocomplete + privacy microcopy) -->
-        <section id="signup" class="container fade-up-section">
+      <!-- SIGNUP FORM -->
+      <section id="signup" class="container fade-up-section">
             <div class="form-container">
-
-                <!-- Trust bar: reassurance above the form -->
-                <div class="trust-bar">مجموعة لا تتوقف عن النمو — انضم إلينا اليوم.</div>
-
                 <div id="form-wrapper">
                     <h2>هل أنت مستعد لتكون من الأوائل؟</h2>
                     <p>املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل. سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
 
                     <form id="pioneer-form" novalidate>
-                        <!-- Honeypot (bot-trap) -->
-                        <label class="hp-field" for="hp">Leave this empty</label>
-                        <input type="text" id="hp" name="hp" class="hp-field" autocomplete="off" tabindex="-1" />
-
                         <div class="form-group">
                             <input type="text" id="name" name="name" class="form-input" placeholder=" " autocomplete="name" required>
                             <label for="name" class="form-label">الاسم الكامل</label>
                             <div class="error-message">الرجاء إدخال اسمك.</div>
                         </div>
-
                         <div class="form-group">
                             <input type="email" id="email" name="email" class="form-input" placeholder=" " autocomplete="email" required>
                             <label for="email" class="form-label">البريد الإلكتروني</label>
                             <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
                         </div>
-
                         <div class="form-group">
                             <input type="tel" id="phone" name="phone" class="form-input" placeholder=" " autocomplete="tel" required>
                             <label for="phone" class="form-label">رقم الهاتف</label>
                             <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
                         </div>
-
-                        <!-- Submit button text preserved -->
                         <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
-
-                        <!-- privacy microcopy -->
-                        <p style="font-size:0.9rem; color:#666; margin-top:10px;">
-                            We respect your privacy — we will only send launch-related updates.
-                        </p>
                     </form>
                 </div>
-
-                <div id="form-thank-you" aria-hidden="true" style="display:none; opacity:0;">
+                <div id="form-thank-you">
                     <h3>✅ تهانينا! تم تسجيل اهتمامك بنجاح.</h3>
-                    <p>أنت الآن رسميًا في قائملتنضم إلى قائمة المشتركين <span class="brand-name">Weeza</span> الأوائل. مرحبًا بك في المجتمع! سنتواصل معك قريبًا قبل الإطلاق الرسمي بالخطوات التالية.</p>
+                    <p>أنت الآن رسميًا في قائمة <span class="brand-name">Weeza</span> للمشتركين الأوائل. سنتواصل معك قريبًا قبل الإطلاق الرسمي.</p>
                 </div>
             </div>
-        </section>
+      </section>
     </main>
 
     <!-- FOOTER -->
@@ -1293,137 +645,113 @@
         <div class="footer-links">
             <a href="#">الشروط والأحكام</a>
             <a href="#">سياسة الخصوصية</a>
-            <a href="#">اتصل بنا</a>
         </div>
     </footer>
 
-    <!-- ===== Sticky CTA (mobile) ===== -->
-    <a href="#signup" class="cta-button sticky-cta" aria-label="Join the pioneers list">🚀 انضم لقائمة الرواد الآن</a>
+    <!-- MOBILE STICKY CTA -->
+    <a class="btn btn-primary sticky-cta" href="#signup" aria-label="انضم للرواد">🚀 انضم لقائمة الرواد الآن</a>
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // --- FADE-UP ANIMATION ON SCROLL ---
-            const sections = document.querySelectorAll('.fade-up-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            sections.forEach(section => observer.observe(section));
-
-            // --- FAQ ACCORDION ---
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    // Close all other open items
-                    faqItems.forEach(i => {
-                        if (i !== item) {
-                            i.classList.remove('active');
-                        }
-                    });
-                    // Toggle current item
-                    if (!isActive) {
-                        item.classList.add('active');
-                    } else {
-                        item.classList.remove('active');
-                    }
-                });
-            });
-
-            // --- REMOVED: Dynamic pioneer counter logic is no longer needed for a pre-launch page ---
-
-            // --- SIGNUP FORM HANDLING ---
-            const form = document.getElementById('pioneer-form');
-            const formWrapper = document.getElementById('form-wrapper');
-            const thankYouMessage = document.getElementById('form-thank-you');
-
-            const nameInput = document.getElementById('name');
-            const emailInput = document.getElementById('email');
-            const phoneInput = document.getElementById('phone');
-
-            function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(String(email).toLowerCase());
-            }
-
-            function showError(input, message) {
-                const formGroup = input.parentElement;
-                const error = formGroup.querySelector('.error-message');
-                error.textContent = message;
-                error.style.display = 'block';
-                input.style.borderColor = '#e74c3c'; // Highlight input with error
-            }
-
-            function hideError(input) {
-                const formGroup = input.parentElement;
-                const error = formGroup.querySelector('.error-message');
-                error.style.display = 'none';
-                input.style.borderColor = 'var(--border-light)'; // Reset border color
-            }
-            
-            // Add real-time validation for a better UX
-            nameInput.addEventListener('input', () => {
-                if (nameInput.value.trim() !== '') hideError(nameInput);
-            });
-            emailInput.addEventListener('input', () => {
-                if (validateEmail(emailInput.value)) hideError(emailInput);
-            });
-            phoneInput.addEventListener('input', () => {
-                if (phoneInput.value.trim() !== '') hideError(phoneInput);
-            });
-
-
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                let isValid = true;
-                
-                // Clear previous errors and reset borders
-                hideError(nameInput);
-                hideError(emailInput);
-                hideError(phoneInput);
-
-                // Validation
-                if (nameInput.value.trim() === '') {
-                    showError(nameInput, 'الرجاء إدخال اسمك.');
-                    isValid = false;
+  <!-- SCRIPTS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- FADE-UP ANIMATION ON SCROLL ---
+        const sections = document.querySelectorAll('.fade-up-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
-                if (!validateEmail(emailInput.value)) {
-                    showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.');
-                    isValid = false;
-                }
-                if (phoneInput.value.trim() === '') {
-                    showError(phoneInput, 'الرجاء إدخال رقم هاتفك.');
-                    isValid = false;
-                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
 
-                if (!isValid) {
-                    return; // Stop if validation fails
-                }
-                
-                // If form is valid, proceed
-                // CHANGE: Removed counter logic. The form now just shows the thank you message.
-                // In a real application, you would send the data to a server here.
-                
-                formWrapper.style.opacity = '0';
-                formWrapper.style.transform = 'scale(0.95)';
-
-                setTimeout(() => {
-                    formWrapper.style.display = 'none';
-                    thankYouMessage.style.display = 'block';
-                    setTimeout(() => {
-                        thankYouMessage.style.opacity = '1';
-                        // Reset form fields after successful submission
-                        form.reset(); 
-                    }, 20);
-                }, 500);
+        // --- FAQ ACCORDION ---
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
             });
         });
-    </script>
+
+        // --- FORM HANDLING ---
+        const form = document.getElementById('pioneer-form');
+        const formWrapper = document.getElementById('form-wrapper');
+        const thankYouMessage = document.getElementById('form-thank-you');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+
+        function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).toLowerCase()); }
+        function showError(input, message) {
+            const error = input.parentElement.querySelector('.error-message');
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+        function hideError(input) { input.parentElement.querySelector('.error-message').style.display = 'none'; }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+            [nameInput, emailInput, phoneInput].forEach(hideError);
+
+            if (nameInput.value.trim() === '') { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
+            if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
+            if (phoneInput.value.trim() === '') { showError(phoneInput, 'الرجاء إدخال رقم هاتفك.'); isValid = false; }
+
+            if (!isValid) return;
+
+            formWrapper.style.opacity = '0';
+            setTimeout(() => {
+                formWrapper.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+                setTimeout(() => { thankYouMessage.style.opacity = '1'; }, 20);
+            }, 500);
+        });
+
+        // --- MOBILE CARD SLIDER & PAGINATION ---
+        const slider = document.getElementById('card-slider');
+        const pagination = document.getElementById('slider-pagination');
+        const cards = slider.querySelectorAll('.tile');
+
+        if (cards.length > 0 && pagination) {
+            // Create dots
+            cards.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                pagination.appendChild(dot);
+            });
+
+            // Function to update dots
+            const updateDots = () => {
+                const dots = pagination.querySelectorAll('.dot');
+                // Calculate which card is most centered
+                let closestCardIndex = 0;
+                let minDistance = Infinity;
+                const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
+
+                cards.forEach((card, index) => {
+                    const cardCenter = card.offsetLeft + card.clientWidth / 2;
+                    const distance = Math.abs(sliderCenter - cardCenter);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestCardIndex = index;
+                    }
+                });
+
+                // Update active class
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === closestCardIndex);
+                });
+            };
+
+            // Listen for scroll events on the slider
+            slider.addEventListener('scroll', updateDots);
+            // Initial check
+            updateDots();
+        }
+    });
+  </script>
 </body>
 </html>
