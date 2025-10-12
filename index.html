@@ -640,29 +640,27 @@
                     <h2>هل أنت مستعد لتكون من الأوائل؟</h2>
                     <p>املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل. سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
 
-                  <!-- PASTE THIS NEW BLOCK IN ITS PLACE -->
-<form id="pioneer-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfORVDofJgMwLiBp71S_z7G4hz7_K7mIJ1iH-6YVNCVDmRayw/formResponse" method="post" target="hidden_iframe" novalidate>
-    <div class="form-group">
-        <input type="text" id="name" name="entry.132911139" class="form-input" placeholder=" " autocomplete="name" required>
-        <label for="name" class="form-label">الاسم الكامل</label>
-        <div class="error-message">الرجاء إدخال اسمك.</div>
-    </div>
-    <div class="form-group">
-        <input type="email" id="email" name="entry.1325134327" class="form-input" placeholder=" " autocomplete="email" required>
-        <label for="email" class="form-label">البريد الإلكتروني</label>
-        <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
-    </div>
-    <div class="form-group">
-        <input type="tel" id="phone" name="entry.1922765545" class="form-input" placeholder=" " autocomplete="tel" required>
-        <label for="phone" class="form-label">رقم الهاتف</label>
-        <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
-    </div>
-    <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
-</form>
+                    <!-- UPDATED AND SIMPLIFIED FORM TAG -->
+                    <form id="pioneer-form" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="name" name="entry.132911139" class="form-input" placeholder=" " autocomplete="name" required>
+                            <label for="name" class="form-label">الاسم الكامل</label>
+                            <div class="error-message">الرجاء إدخال اسمك.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="entry.1325134327" class="form-input" placeholder=" " autocomplete="email" required>
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="entry.1922765545" class="form-input" placeholder=" " autocomplete="tel" required>
+                            <label for="phone" class="form-label">رقم الهاتف</label>
+                            <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
+                        </div>
+                        <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
+                    </form>
+                    <!-- THE UNNECESSARY IFRAME HAS BEEN REMOVED -->
 
-<!-- This iframe handles the form submission without redirecting the user -->
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-<!-- END OF NEW BLOCK -->
                 </div>
                 <div id="form-thank-you">
                     <h3>✅ تهانينا! تم تسجيل اهتمامك بنجاح.</h3>
@@ -685,7 +683,6 @@
     <a class="btn btn-primary sticky-cta" href="#signup" aria-label="انضم للرواد">🚀 انضم لقائمة الرواد الآن</a>
   </div>
 
-  <!-- SCRIPTS -->
   <script>
     // General page scripts (animations, form, etc.)
     document.addEventListener('DOMContentLoaded', function() {
@@ -706,6 +703,7 @@
             });
         });
 
+        // --- UPDATED FORM SUBMISSION LOGIC ---
         const form = document.getElementById('pioneer-form');
         const formWrapper = document.getElementById('form-wrapper');
         const thankYouMessage = document.getElementById('form-thank-you');
@@ -720,37 +718,43 @@
             error.style.display = 'block';
         }
         function hideError(input) { input.parentElement.querySelector('.error-message').style.display = 'none'; }
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the form from submitting the traditional way
 
-        // PASTE THIS NEW BLOCK IN ITS PLACE
-form.addEventListener('submit', function(event) {
-    // Prevent the default form submission behavior initially
-    event.preventDefault();
-    let isValid = true;
-    [nameInput, emailInput, phoneInput].forEach(hideError);
+            // --- 1. VALIDATION ---
+            let isValid = true;
+            [nameInput, emailInput, phoneInput].forEach(hideError);
 
-    // Perform validation as before
-    if (nameInput.value.trim() === '') { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
-    if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
-    if (phoneInput.value.trim() === '') { showError(phoneInput, 'الرجاء إدخال رقم هاتفك.'); isValid = false; }
+            if (nameInput.value.trim() === '') { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
+            if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
+            if (phoneInput.value.trim() === '') { showError(phoneInput, 'الرجاء إدخال رقم هاتفك.'); isValid = false; }
 
-    // If the form is not valid, stop here
-    if (!isValid) return;
+            if (!isValid) return; // If validation fails, do nothing more.
 
-    // If validation is successful, submit the form to the hidden iframe
-    form.submit();
+            // --- 2. SUBMIT DATA WITH FETCH ---
+            const formData = new FormData(form);
+            const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfORVDofJgMwLiBp71S_z7G4hz7_K7mIJ1iH-6YVNCVDmRayw/formResponse';
 
-    // Hide the form and show the thank you message immediately, assuming submission success
-    formWrapper.style.transition = 'opacity 0.5s ease';
-    formWrapper.style.opacity = '0';
-    
-    setTimeout(() => {
-        formWrapper.style.display = 'none';
-        thankYouMessage.style.display = 'block';
-        // Fade in the thank you message
-        setTimeout(() => { thankYouMessage.style.opacity = '1'; }, 20); 
-    }, 500); // Wait for the fade-out transition to complete
-});
-// END OF NEW BLOCK
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Important: This prevents a CORS error from Google's server
+            }).catch(error => console.error('Error!', error.message));
+
+
+            // --- 3. SHOW "THANK YOU" MESSAGE ---
+            // This part runs immediately after sending the data, giving instant feedback.
+            formWrapper.style.transition = 'opacity 0.5s ease';
+            formWrapper.style.opacity = '0';
+            
+            setTimeout(() => {
+                formWrapper.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+                setTimeout(() => { thankYouMessage.style.opacity = '1'; }, 20); 
+            }, 500); // Wait for the fade-out transition to complete
+        });
+        // --- END OF UPDATED FORM SUBMISSION LOGIC ---
 
         const slider = document.getElementById('card-slider');
         const pagination = document.getElementById('slider-pagination');
