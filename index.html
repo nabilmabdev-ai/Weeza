@@ -40,23 +40,49 @@
     .logo img{height:48px; display: block;}
     .nav-cta{display:flex;gap:12px;align-items:center}
 
-    /* Announcement Bar */
+    /* --- Announcement / Ticker (CORRECTED CSS IMPLEMENTATION) --- */
     .announcement {
       background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
-      color: white; padding: 12px 0; border-radius: var(--radius);
-      margin: 16px auto 28px; box-shadow: var(--shadow-medium);
-      overflow: hidden; position: relative; width: 100%;
+      color: #fff;
+      border-radius: var(--radius);
+      margin: 16px auto 28px;
+      box-shadow: var(--shadow-medium);
+      overflow: hidden;
+      position: relative;
+      height: 56px;
+      display: flex;
+      align-items: center;
     }
-    .ticker-track {
-      display: inline-flex; white-space: nowrap;
-      animation: ticker-scroll 25s linear infinite;
+    .ticker { 
+      width:100%; 
+      overflow:hidden; 
+      position:relative; 
     }
-    .ticker-track span { padding: 0 50px; font-weight: 700; font-size: 1.05rem; }
-    @keyframes ticker-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .marquee-inner {
+      display: inline-flex;
+      white-space: nowrap;
+      gap: 48px;
+      animation: scrollLTR 40s linear infinite;
+      direction: ltr; /* Keeps animation leftward regardless of parent dir="rtl" */
+      will-change: transform;
     }
-
+    .marquee-inner span {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 0 24px;
+    }
+    /* More robust animation based on full element width */
+    @keyframes scrollLTR {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    /* Pause on hover or focus */
+    .announcement:hover .marquee-inner,
+    .announcement:focus-within .marquee-inner {
+      animation-play-state: paused;
+    }
+    
     /* Hero */
     .hero{display:flex;gap:48px;align-items:center;padding:48px 0;flex-wrap:wrap}
     .hero-left{flex:1;min-width:320px}
@@ -133,7 +159,6 @@
         .mosaic {
             display: flex; overflow-x: auto;
             scroll-snap-type: x mandatory;
-            /* Peek-a-boo effect for next card */
             scroll-padding: 0 10%; 
             padding: 20px 10%;
             gap: 16px;
@@ -142,13 +167,12 @@
         .mosaic::-webkit-scrollbar { display: none; }
 
         .mosaic > .tile {
-            flex: 0 0 80%; /* Each card takes ~80% of screen */
+            flex: 0 0 80%;
             scroll-snap-align: center;
             transform: none !important; margin-right: 0 !important; z-index: 1 !important;
         }
         .tile:hover { transform: translateY(-10px) scale(1.03) !important; }
 
-        /* Show and style pagination dots */
         .slider-pagination {
             display: flex; justify-content: center;
             gap: 10px; margin-top: 25px;
@@ -175,8 +199,6 @@
         .subtitle { font-size: 1rem; }
         h2 { font-size: 2.2rem; }
     }
-
-    @media (prefers-reduced-motion: reduce){.ticker-track{animation:none}}
   </style>
 </head>
 <body>
@@ -194,11 +216,17 @@
 
     <!-- ANNOUNCEMENT / TICKER -->
     <div class="announcement" role="region" aria-label="إشعار الإطلاق">
-      <div class="ticker-track">
-        <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-        <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-        <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-        <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+      <div class="ticker">
+        <div class="marquee-inner">
+          <!-- Content is duplicated to ensure a seamless loop -->
+          <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+          <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+          <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
+          <!-- Duplicate set -->
+          <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+          <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+          <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
+        </div>
       </div>
     </div>
 
@@ -232,7 +260,6 @@
               <h3>توفير حقيقي</h3>
               <p>أسعار جملة بفضل قوة الشراء الجماعي — توفير واضح في فاتورة التسوّق الأسبوعية.</p>
             </article>
-            <!-- FIX: Added missing text -->
             <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/04/veggies.jpg');">
               <h3>جودة استثنائية</h3>
               <p>منتجات طازجة ومباشرة من السوق والمزارع — نتحكّم في الاختيار والتعبئة.</p>
@@ -261,14 +288,15 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .container {
+        /* Using a class for section containers to avoid style conflicts */
+        .container-section {
             max-width: 1100px;
             margin: 0 auto;
             padding: 80px 20px;
         }
 
         /* --- HOW IT WORKS --- */
-        #how { background-color: var(--card-bg); padding: 100px 0; }
+        #how { background-color: var(--card-bg); padding-top: 100px; padding-bottom: 100px; }
         .timeline {
             display: flex;
             justify-content: space-between;
@@ -326,7 +354,7 @@
 
 
         /* --- PIONEER OFFER --- */
-        #offer { padding: 80px 20px; }
+        #offer { padding-top: 80px; padding-bottom: 80px; }
         .pioneer-offer {
             background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
             color: white;
@@ -534,7 +562,7 @@
 
       <!-- HOW IT WORKS -->
       <section id="how" class="fade-up-section">
-          <div class="container">
+          <div class="container-section">
               <h2>كيف ستعمل التجربة عند الانطلاق</h2>
               <div class="timeline">
                   <div class="timeline-step">
@@ -566,7 +594,7 @@
       </section>
 
       <!-- PIONEER OFFER -->
-      <section id="offer" class="container fade-up-section">
+      <section id="offer" class="container-section fade-up-section">
             <div class="pioneer-offer">
                <h2>كن من أوائل المئة مشترك</h2>
                 <p>سجل اهتمامك اليوم لتكون ضمن أول مئة عضو مؤسس عند انطلاق <span class="brand-name" style="color:#fff;">Weeza</span>. شارك في بناء التجربة واحصل على مزايا حصرية.</p>
@@ -581,7 +609,7 @@
       </section>
 
       <!-- FAQ SECTION -->
-      <section id="faq" class="container fade-up-section">
+      <section id="faq" class="container-section fade-up-section">
             <h2>أسئلة شائعة</h2>
             <div class="faq-accordion">
                 <div class="faq-item">
@@ -606,7 +634,7 @@
       </section>
 
       <!-- SIGNUP FORM -->
-      <section id="signup" class="container fade-up-section">
+      <section id="signup" class="container-section fade-up-section">
             <div class="form-container">
                 <div id="form-wrapper">
                     <h2>هل أنت مستعد لتكون من الأوائل؟</h2>
@@ -654,8 +682,8 @@
 
   <!-- SCRIPTS -->
   <script>
+    // General page scripts (animations, form, etc.)
     document.addEventListener('DOMContentLoaded', function() {
-        // --- FADE-UP ANIMATION ON SCROLL ---
         const sections = document.querySelectorAll('.fade-up-section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -667,14 +695,12 @@
         }, { threshold: 0.1 });
         sections.forEach(section => observer.observe(section));
 
-        // --- FAQ ACCORDION ---
         document.querySelectorAll('.faq-item').forEach(item => {
             item.querySelector('.faq-question').addEventListener('click', () => {
                 item.classList.toggle('active');
             });
         });
 
-        // --- FORM HANDLING ---
         const form = document.getElementById('pioneer-form');
         const formWrapper = document.getElementById('form-wrapper');
         const thankYouMessage = document.getElementById('form-thank-you');
@@ -709,13 +735,11 @@
             }, 500);
         });
 
-        // --- MOBILE CARD SLIDER & PAGINATION ---
         const slider = document.getElementById('card-slider');
         const pagination = document.getElementById('slider-pagination');
         const cards = slider.querySelectorAll('.tile');
 
         if (cards.length > 0 && pagination) {
-            // Create dots
             cards.forEach((_, i) => {
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
@@ -723,14 +747,11 @@
                 pagination.appendChild(dot);
             });
 
-            // Function to update dots
             const updateDots = () => {
                 const dots = pagination.querySelectorAll('.dot');
-                // Calculate which card is most centered
                 let closestCardIndex = 0;
                 let minDistance = Infinity;
                 const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
-
                 cards.forEach((card, index) => {
                     const cardCenter = card.offsetLeft + card.clientWidth / 2;
                     const distance = Math.abs(sliderCenter - cardCenter);
@@ -739,19 +760,17 @@
                         closestCardIndex = index;
                     }
                 });
-
-                // Update active class
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === closestCardIndex);
                 });
             };
-
-            // Listen for scroll events on the slider
             slider.addEventListener('scroll', updateDots);
-            // Initial check
             updateDots();
         }
     });
   </script>
+  
+  <!-- NOTE: The old marquee/ticker JavaScript has been removed as it is now handled by the corrected and more reliable CSS. -->
+
 </body>
 </html>
