@@ -15,7 +15,8 @@
   <style>
     :root{
       --primary-yellow:#FFC000;
-      --secondary-green:#00A082;
+      --secondary-green:#00A082; /* This is an assumption, the logo green is closer to #00C48C */
+      --brand-green: #00C48C;
       --accent-green-dark:#00796B;
       --neutral-dark:#2C3E50;
       --paragraph:#515A63;
@@ -35,129 +36,131 @@
     html{scroll-behavior: smooth;}
     body{margin:0;background:var(--bg);font-family:var(--brand-font);color:var(--neutral-dark);-webkit-font-smoothing:antialiased}
     .container{max-width:var(--max-width);margin:0 auto;padding:24px}
-
-    /* Top bar -- MODIFIED */
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
-    .logo-area { text-align: right; }
-    .logo img{height:48px; display: block;}
-    .tagline {
-        display: block;
-        font-weight: 600;
-        font-size: 0.95rem;
-        color: var(--paragraph);
-        margin-top: -2px;
-    }
     
     /* =================================== */
-    /* === HERO SECTION STYLES START === */
+    /* === HERO SECTION V9 STYLES START === */
     /* =================================== */
+    .hero-logo-container {
+        text-align: center;
+        padding: 40px 0 20px;
+    }
+    .hero-logo-container img {
+        max-width: 550px;
+        width: 100%;
+        height: auto;
+    }
+
     .hero {
       display: flex;
-      gap: 24px;
+      gap: 30px;
       align-items: center;
-      padding: 48px 0 72px; /* Increased bottom padding */
+      padding: 24px 0 60px;
       flex-wrap: wrap;
-      position: relative;
-      overflow: hidden;
     }
-    .hero-left { flex: 1; min-width: 320px; z-index: 2; }
-    .kicker { display: inline-block; background: rgba(0,160,130,0.08); color: var(--secondary-green); padding: 8px 16px; border-radius: 999px; font-weight: 700; margin-bottom: 20px; } /* Increased margin */
+    .hero-content {
+        flex: 1;
+        min-width: 320px;
+        padding-right: 5%; /* Add some padding for alignment */
+    }
+    .hero-image {
+        flex: 1;
+        min-width: 320px;
+        text-align: center;
+    }
+    .hero-image img {
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .tagline {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--paragraph);
+        margin-bottom: 12px;
+    }
+    .kicker {
+        display: inline-block;
+        background: rgba(0, 196, 140, 0.1);
+        color: var(--brand-green);
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
     h1 {
       font-family: var(--brand-head);
-      font-size: 3.2rem;
-      margin: 0 0 20px; /* Adjusted margin */
-      line-height: 1.25; /* Improved line height */
+      font-size: 2.8rem;
+      margin: 0 0 16px;
+      line-height: 1.3;
       color: #1A2533;
+      font-weight: 900;
     }
     .subtitle {
       color: var(--paragraph);
-      font-size: 1.2rem; /* Increased size for clarity */
-      margin-bottom: 32px; /* Increased spacing */
+      font-size: 1.1rem;
+      margin-bottom: 28px;
       max-width: 520px;
       font-weight: 600;
     }
-    /* CTA Buttons & Actions -- MODIFIED */
-    .hero-ctas { display: flex; justify-content: flex-start; margin-top: 16px; z-index: 2; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:16px 36px; border-radius:999px; border:none; font-weight:800; font-size: 1.1rem; cursor:pointer; box-shadow:var(--shadow-medium); transition:transform 0.2s, box-shadow 0.2s; }
+    
+    .hero-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .btn {
+        display:inline-flex; align-items:center; justify-content:center;
+        gap:10px; padding:14px 32px;
+        border-radius:999px; border:none;
+        font-weight:800; font-size: 1rem;
+        cursor:pointer;
+        box-shadow:var(--shadow-medium);
+        transition:transform 0.2s, box-shadow 0.2s;
+        text-decoration: none;
+    }
     .btn:hover{ transform:translateY(-3px); box-shadow:var(--shadow-hover); }
     .btn-primary{ background:var(--primary-yellow); color:var(--neutral-dark) }
-    
-    .secondary-actions {
-        margin-top: 30px;
-        z-index: 2;
-        position: relative;
-        text-align: right;
-    }
+
     .learn-more {
         color: var(--neutral-dark);
         text-decoration: none;
         font-weight: 700;
+        font-size: 0.95rem;
         transition: color 0.2s;
     }
-    .learn-more:hover { color: var(--secondary-green); }
-    .scroll-indicator {
-        position: absolute;
-        bottom: -90px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 2.5rem;
-        color: var(--secondary-green);
-        animation: bounce 2.5s ease-in-out infinite;
-    }
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-        40% { transform: translate(-50%, -20px); }
-        60% { transform: translate(-50%, -10px); }
-    }
+    .learn-more:hover { color: var(--brand-green); }
 
-    /* JS Enhancement: Styles for Text Entrance Animation */
-    .hero-left > * {
-        opacity: 0;
-        transform: translateY(25px);
-        transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-    }
-    .hero-left.is-visible > * { opacity: 1; transform: translateY(0); }
-    /* Stagger the animation */
-    .hero-left.is-visible .kicker { transition-delay: 0.1s; }
-    .hero-left.is-visible h1 { transition-delay: 0.2s; }
-    .hero-left.is-visible .subtitle { transition-delay: 0.3s; }
-    .hero-left.is-visible .hero-ctas { transition-delay: 0.4s; }
-    .hero-left.is-visible .secondary-actions { transition-delay: 0.5s; }
-
-
-    /* Desktop Styles (screens wider than 768px) */
-    .hero-right {
-      flex: 1; display: flex; justify-content: center;
-      min-width: 300px; min-height: 450px;
-      background-image: url('https://res.cloudinary.com/ddrvpufix/image/upload/v1760438307/produce_bag_with_hands_cxpxxy.png');
-      background-size: contain; background-repeat: no-repeat; background-position: center;
-    }
-
-    /* Mobile Styles (screens 768px and narrower) -- MODIFIED */
+    /* Mobile Styles */
     @media (max-width: 768px) {
-      .hero {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png');
-        background-size: cover; background-position: center;
-        border-radius: var(--radius); padding: 60px 24px; text-align: center;
-        min-height: 85vh; flex-direction: column; justify-content: center;
-        background-attachment: fixed;
-      }
-      .hero-right { display: none; }
-      .hero-left { width: 100%; }
-      h1, .subtitle, .trust-bar { color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
-      .kicker { background: rgba(255, 192, 0, 0.95); color: var(--neutral-dark); }
-      .hero-ctas { margin-top: 30px; justify-content: center; } /* Center CTA on mobile */
-      h1 { font-size: 2.6rem; }
-      .secondary-actions { text-align: center; }
-      .learn-more { color: #fff; opacity: 0.9; }
-      .scroll-indicator { display: none; } /* Hide scroll on mobile hero */
+        .hero {
+            flex-direction: column-reverse; /* Stack image on top of content */
+        }
+        .hero-content {
+            text-align: center;
+            padding-right: 0;
+        }
+        h1 { font-size: 2.2rem; }
+        .hero-ctas {
+            align-items: center;
+            width: 100%;
+        }
+        .btn-primary { width: 100%; max-width: 300px; }
+        .hero-logo-container img { max-width: 300px; }
     }
     /* =================================== */
-    /* === HERO SECTION STYLES END === */
+    /* === HERO SECTION V9 STYLES END === */
     /* =================================== */
 
     /* --- Announcement / Ticker --- */
-    .announcement { background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark)); color: #fff; border-radius: var(--radius); margin: 40px auto 28px; box-shadow: var(--shadow-medium); overflow: hidden; position: relative; height: 56px; display: flex; align-items: center; }
+    .announcement {
+        background: var(--brand-green);
+        color: #fff;
+        border-radius: var(--radius);
+        margin: 20px auto 28px;
+        box-shadow: var(--shadow-medium);
+        overflow: hidden;
+        position: relative;
+        height: 56px;
+        display: flex;
+        align-items: center;
+    }
     .ticker { width:100%; overflow:hidden; position:relative; }
     .marquee-inner { display: inline-flex; white-space: nowrap; gap: 48px; animation: scrollLTR 40s linear infinite; direction: ltr; will-change: transform; }
     .marquee-inner span { display: inline-block; font-weight: 700; font-size: 1.05rem; padding: 0 24px; }
@@ -165,7 +168,7 @@
     .announcement:hover .marquee-inner { animation-play-state: paused; }
 
     h2 { font-size: 2.8rem; text-align: center; margin-bottom: 40px; font-weight: 900; }
-    .brand-name { font-family: var(--brand-head); font-weight: 900; color: var(--secondary-green); font-size: 1em; }
+    .brand-name { font-family: var(--brand-head); font-weight: 900; color: var(--brand-green); font-size: 1em; }
     
     /* 'WHY WEEZA' SECTION */
     .mosaic-section { padding: 80px 0; }
@@ -190,40 +193,36 @@
         .tile:hover { transform: translateY(-10px) scale(1.03) !important; }
         .slider-pagination { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
         .dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; transition: background-color 0.3s, transform 0.3s; }
-        .dot.active { background-color: var(--secondary-green); transform: scale(1.2); }
+        .dot.active { background-color: var(--brand-green); transform: scale(1.2); }
     }
-    @media (max-width: 480px) { h1 { font-size: 2.2rem; } .subtitle { font-size: 1rem; } h2 { font-size: 2.2rem; } }
+    @media (max-width: 480px) { h2 { font-size: 2.2rem; } }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- TOP BAR -- UPDATED -->
-    <header class="topbar" role="banner" aria-label="رأس الصفحة">
-      <div class="logo-area">
-        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437067/weeza_logo_transparent_jklxvx.png" alt="Weeza Logo" class="logo">
-        <span class="tagline">معاً، نوفّر أكثر.</span>
-      </div>
-    </header>
-
+    
     <!-- MAIN CONTENT -->
     <main>
       <!-- HERO SECTION -- UPDATED -->
+      <section class="hero-logo-container">
+        <!-- Using a placeholder for the logo SVG -->
+        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760460391/weeza_logo_full_v2_lf1hf6.svg" alt="Weeza Logo">
+      </section>
+
       <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-left">
+          <div class="hero-content">
+              <p class="tagline">معاً، نوفّر أكثر.</p>
               <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
               <h1 id="hero-title">اشتري جماعياً ووفّر حتى 30٪ على مشترياتك الأسبوعية</h1>
               <p class="subtitle">🛒 كن من الأوائل! أكثر من 50 شخصاً بدأوا التوفير معنا.</p>
               <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
                   <a class="btn btn-primary" href="#signup">انضم الآن مجاناً</a>
-              </div>
-              <div class="secondary-actions">
                   <a href="#how" class="learn-more">كيف يعمل الشراء الجماعي؟</a>
               </div>
           </div>
-          <div class="hero-right">
-              <!-- This div holds the desktop image via CSS background -->
+          <div class="hero-image">
+              <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760438307/produce_bag_with_hands_cxpxxy.png" alt="حقيبة تسوق مليئة بالخضروات الطازجة">
           </div>
-          <div class="scroll-indicator" aria-hidden="true">↓</div>
       </section>
 
       <!-- ANNOUNCEMENT / TICKER -->
@@ -252,7 +251,7 @@
               <h3>توفير حقيقي</h3>
               <p>أسعار جملة بفضل قوة الشراء الجماعي — توفير واضح في فاتورة التسوّق الأسبوعية.</p>
             </article>
-            <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/04/veggies.jpg');">
+            <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/4/veggies.jpg');">
               <h3>جودة استثنائية</h3>
               <p>منتجات طازجة ومباشرة من السوق والمزارع — نتحكّم في الاختيار والتعبئة.</p>
             </article>
@@ -323,10 +322,10 @@
             line-height: 90px;
             border-radius: 50%;
             background-color: var(--card-bg);
-            color: var(--secondary-green);
+            color: var(--brand-green);
             font-size: 3rem;
             margin: 0 auto 25px;
-            border: 5px solid var(--secondary-green);
+            border: 5px solid var(--brand-green);
             box-shadow: var(--shadow-light);
         }
         .timeline-step h3 { font-size: 1.7rem; margin-bottom: 10px; font-weight: 900;}
@@ -337,18 +336,18 @@
             max-width: 850px;
             margin-left: auto;
             margin-right: auto;
-            background-color: rgba(0, 160, 130, 0.05);
+            background-color: rgba(0, 196, 140, 0.05);
             padding: 40px;
             border-radius: var(--radius);
         }
-        .vision-section h3 { font-size: 2rem; margin-bottom: 20px; color: var(--secondary-green); font-weight: 900;}
+        .vision-section h3 { font-size: 2rem; margin-bottom: 20px; color: var(--brand-green); font-weight: 900;}
         .vision-section p { font-size: 1.1rem; line-height: 1.7; }
 
 
         /* --- PIONEER OFFER --- */
         #offer { padding-top: 80px; padding-bottom: 80px; }
         .pioneer-offer {
-            background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
+            background: linear-gradient(135deg, var(--brand-green), var(--accent-green-dark));
             color: white;
             text-align: center;
             border-radius: var(--radius);
@@ -365,21 +364,6 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 30px;
-        }
-        .pioneer-counter {
-            font-size: 2rem;
-            font-weight: 900;
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 14px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            margin: 0 0 20px;
-        }
-        .pioneer-trust {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.95);
-            margin: 0 auto 35px;
         }
         .pioneer-benefits {
             list-style: none;
@@ -455,7 +439,7 @@
         }
         .faq-answer p { margin: 0; padding-bottom: 25px; line-height: 1.7; font-size: 1rem; }
         .faq-item.active .faq-answer { max-height: 500px; padding-top: 10px; }
-        .faq-item.active .toggle-icon { transform: rotate(135deg); color: var(--secondary-green); }
+        .faq-item.active .toggle-icon { transform: rotate(135deg); color: var(--brand-green); }
 
         /* --- SIGNUP FORM --- */
         #signup { background-color: var(--card-bg); padding-bottom: 100px; border-radius: var(--radius); }
@@ -483,8 +467,8 @@
         }
         .form-input:focus {
             outline: none;
-            border-color: var(--secondary-green);
-            box-shadow: 0 0 0 3px rgba(0, 160, 130, 0.1);
+            border-color: var(--brand-green);
+            box-shadow: 0 0 0 3px rgba(0, 196, 140, 0.1);
         }
         .form-label {
             position: absolute;
@@ -501,7 +485,7 @@
         .form-input:not(:placeholder-shown) ~ .form-label {
             top: -12px;
             font-size: 0.9rem;
-            color: var(--secondary-green);
+            color: var(--brand-green);
             background-color: var(--bg); /* Match container bg */
         }
         #form-thank-you {
@@ -509,7 +493,7 @@
             opacity: 0;
             padding: 40px;
         }
-        #form-thank-you h3 { color: var(--secondary-green); font-size: 2rem; margin-bottom: 20px; }
+        #form-thank-you h3 { color: var(--brand-green); font-size: 2rem; margin-bottom: 20px; }
         .error-message {
             color: #e74c3c;
             font-size: 0.95rem;
@@ -524,8 +508,6 @@
             color: white;
             text-align: center;
             padding: 50px 20px;
-            border-top-left-radius: var(--radius);
-            border-top-right-radius: var(--radius);
             margin-top: 60px;
         }
         .footer .slogan { font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--primary-yellow); }
@@ -586,7 +568,7 @@
       <section id="offer" class="container-section fade-up-section">
             <div class="pioneer-offer">
                 <h2>انضم لقائمة المئة الأوائل!</h2>
-                <p class="pioneer-trust">✅ أكثر من 50 شخصاً سجلوا بالفعل ليحصلوا على المزايا الحصرية.</p>
+                <p>✅ أكثر من 50 شخصاً سجلوا بالفعل ليحصلوا على المزايا الحصرية.</p>
                 <ul class="pioneer-benefits">
                     <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
                     <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
@@ -666,33 +648,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-
-        // ===============================================
-        // === HERO SECTION ENHANCEMENTS START ===
-        // ===============================================
-        const heroLeft = document.querySelector('.hero-left');
-
-        // 1. Trigger Hero Text Entrance Animation
-        setTimeout(() => {
-            heroLeft.classList.add('is-visible');
-        }, 150);
-
-        // 2. Mobile Parallax Background Effect
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        if (isMobile) {
-            const heroSection = document.querySelector('.hero');
-            window.addEventListener('scroll', function() {
-                const heroRect = heroSection.getBoundingClientRect();
-                if (heroRect.bottom > 0 && heroRect.top < window.innerHeight) {
-                    const scrollPosition = window.pageYOffset;
-                    heroSection.style.backgroundPosition = `center ${scrollPosition * 0.3}px`;
-                }
-            });
-        }
-        // ===============================================
-        // === HERO SECTION ENHANCEMENTS END ===
-        // ===============================================
-
         // --- Fade-Up Sections on Scroll ---
         const sections = document.querySelectorAll('.fade-up-section');
         const observer = new IntersectionObserver((entries) => {
