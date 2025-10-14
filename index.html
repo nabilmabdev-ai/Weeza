@@ -36,7 +36,7 @@
     .container{max-width:var(--max-width);margin:0 auto;padding:24px}
 
     /* Top bar */
-    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+    .topbar{display:flex;justify-content:flex-end;align-items:center;padding:12px 0}
     .logo img{height:48px; display: block;}
     .nav-cta{display:flex;gap:12px;align-items:center}
 
@@ -219,10 +219,6 @@
       <div class="logo">
         <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437067/weeza_logo_transparent_jklxvx.png" alt="Weeza Logo">
       </div>
-      <nav class="nav-cta" aria-label="روابط سريعة">
-        <a class="btn btn-ghost" href="#how">كيف تعمل</a>
-        <a class="btn btn-primary" href="#signup">انضم الآن</a>
-      </nav>
     </header>
 
     <!-- MAIN CONTENT -->
@@ -235,13 +231,12 @@
           <p class="subtitle">انضم إلى أول منصة شراء تعاوني في المغرب. نطلب معًا، نتفاوض بشكل أفضل، والجميع يوفّر.</p>
           <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
             <a class="btn btn-primary" href="#signup" id="primary-cta">سجّل اهتمامك الآن 🚀</a>
-            <a class="btn btn-ghost" href="#how">أخبرني كيف يعمل</a>
           </div>
           <div class="trust-bar" aria-live="polite">✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</div>
         </div>
         <div class="hero-right">
           <div class="hero-img" role="img" aria-label="يدان تحملان كيس تسوق مليء بالخضروات الطازجة">
-            <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437378/produce_bag_with_hands_oja4ha.png" alt="يدان تحملان كيس تسوق قماشي مليء بالخضروات الطازجة">
+            <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760438307/produce_bag_with_hands_cxpxxy.png" alt="يدان تحملان كيس تسوق قماشي مليء بالخضروات الطازجة">
           </div>
         </div>
       </section>
@@ -552,19 +547,11 @@
         .footer-links a:hover { opacity: 1; }
 
         /* Responsive */
-        .sticky-cta { display: none; }
         @media (max-width: 960px) {
             .timeline { flex-direction: column; gap: 50px; padding-top: 0; }
             .timeline::before { display: none; }
             .pioneer-offer { padding: 50px 25px; }
             .pioneer-offer h2 { font-size: 2.5rem; }
-        }
-        @media (max-width: 768px) {
-             .sticky-cta {
-                display: block; position: fixed; bottom: 14px; left: 50%;
-                transform: translateX(-50%); z-index: 9999;
-                width: calc(100% - 40px); max-width:420px; text-align:center;
-            }
         }
         @media (max-width: 520px) {
             .cta-button { width: 100%; max-width: 340px; }
@@ -691,8 +678,6 @@
         </div>
     </footer>
 
-    <!-- MOBILE STICKY CTA -->
-    <a class="btn btn-primary sticky-cta" href="#signup" aria-label="انضم الآن">🚀 انضم </a>
   </div>
 
   <script>
