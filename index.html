@@ -15,9 +15,9 @@
   <style>
     :root{
       --primary-yellow:#FFC000;
-      --secondary-green:#00A082; /* This is an assumption, the logo green is closer to #00C48C */
-      --brand-green: #00C48C;
-      --accent-green-dark:#00796B;
+      --brand-green: #00C48C; /* New color */
+      --secondary-green: #00C48C; /* Also update this for consistency */
+      --accent-green-dark:#00A082; /* Keep this for darker gradients */
       --neutral-dark:#2C3E50;
       --paragraph:#515A63;
       --bg:#F8F9FA;
@@ -38,29 +38,32 @@
     .container{max-width:var(--max-width);margin:0 auto;padding:24px}
     
     /* =================================== */
-    /* === HERO SECTION V9 STYLES START === */
+    /* === HERO SECTION STYLES START === */
     /* =================================== */
-    .hero-logo-container {
+    
+    /* Top Bar with Logo */
+    .topbar {
+        padding: 20px 0;
         text-align: center;
-        padding: 40px 0 20px;
+        margin-bottom: 30px;
     }
-    .hero-logo-container img {
-        max-width: 550px;
-        width: 100%;
-        height: auto;
+    .topbar img {
+        height: 40px;
+        width: auto;
     }
 
+    /* Hero Section */
     .hero {
       display: flex;
       gap: 30px;
       align-items: center;
-      padding: 24px 0 60px;
+      padding: 0 0 60px;
       flex-wrap: wrap;
     }
     .hero-content {
-        flex: 1;
+        flex: 1.2; /* Give slightly more space to text */
         min-width: 320px;
-        padding-right: 5%; /* Add some padding for alignment */
+        text-align: right; /* Text aligned to the right */
     }
     .hero-image {
         flex: 1;
@@ -68,7 +71,7 @@
         text-align: center;
     }
     .hero-image img {
-        max-width: 400px;
+        max-width: 420px;
         width: 100%;
     }
 
@@ -104,7 +107,7 @@
       font-weight: 600;
     }
     
-    .hero-ctas { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+    .hero-ctas { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; } /* Aligned CTAs to the right */
     .btn {
         display:inline-flex; align-items:center; justify-content:center;
         gap:10px; padding:14px 32px;
@@ -126,6 +129,9 @@
         transition: color 0.2s;
     }
     .learn-more:hover { color: var(--brand-green); }
+    
+    /* Remove old JS animation styles */
+    .hero-left > * { display: none; }
 
     /* Mobile Styles */
     @media (max-width: 768px) {
@@ -134,7 +140,6 @@
         }
         .hero-content {
             text-align: center;
-            padding-right: 0;
         }
         h1 { font-size: 2.2rem; }
         .hero-ctas {
@@ -142,10 +147,9 @@
             width: 100%;
         }
         .btn-primary { width: 100%; max-width: 300px; }
-        .hero-logo-container img { max-width: 300px; }
     }
     /* =================================== */
-    /* === HERO SECTION V9 STYLES END === */
+    /* === HERO SECTION STYLES END === */
     /* =================================== */
 
     /* --- Announcement / Ticker --- */
@@ -195,20 +199,19 @@
         .dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; transition: background-color 0.3s, transform 0.3s; }
         .dot.active { background-color: var(--brand-green); transform: scale(1.2); }
     }
-    @media (max-width: 480px) { h2 { font-size: 2.2rem; } }
+    @media (max-width: 480px) { h1 { font-size: 2.2rem; } .subtitle { font-size: 1rem; } h2 { font-size: 2.2rem; } }
   </style>
 </head>
 <body>
   <div class="container">
-    
+    <!-- TOP BAR -->
+    <header class="topbar" role="banner" aria-label="رأس الصفحة">
+      <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437067/weeza_logo_transparent_jklxvx.png" alt="Weeza Logo">
+    </header>
+
     <!-- MAIN CONTENT -->
     <main>
-      <!-- HERO SECTION -- UPDATED -->
-      <section class="hero-logo-container">
-        <!-- Using a placeholder for the logo SVG -->
-        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760460391/weeza_logo_full_v2_lf1hf6.svg" alt="Weeza Logo">
-      </section>
-
+      <!-- HERO SECTION -->
       <section class="hero" aria-labelledby="hero-title">
           <div class="hero-content">
               <p class="tagline">معاً، نوفّر أكثر.</p>
@@ -251,7 +254,7 @@
               <h3>توفير حقيقي</h3>
               <p>أسعار جملة بفضل قوة الشراء الجماعي — توفير واضح في فاتورة التسوّق الأسبوعية.</p>
             </article>
-            <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/4/veggies.jpg');">
+            <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/04/veggies.jpg');">
               <h3>جودة استثنائية</h3>
               <p>منتجات طازجة ومباشرة من السوق والمزارع — نتحكّم في الاختيار والتعبئة.</p>
             </article>
@@ -648,6 +651,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+
         // --- Fade-Up Sections on Scroll ---
         const sections = document.querySelectorAll('.fade-up-section');
         const observer = new IntersectionObserver((entries) => {
