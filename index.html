@@ -45,7 +45,7 @@
       background: linear-gradient(135deg, var(--secondary-green), var(--accent-green-dark));
       color: #fff;
       border-radius: var(--radius);
-      margin: 16px auto 28px;
+      margin: 40px auto 28px; 
       box-shadow: var(--shadow-medium);
       overflow: hidden;
       position: relative;
@@ -98,8 +98,19 @@
     .btn-ghost{background:transparent;border:2px solid var(--border-light);color:var(--neutral-dark)}
 
     .hero-right{flex:1;display:flex;justify-content:center;min-width:300px}
-    .hero-img{max-width:500px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-medium)}
-    .hero-img img{display:block;width:100%;height:auto;transform:rotate(1deg)}
+    
+    /* MODIFICATION START: Removed framing styles */
+    .hero-img {
+      max-width: 500px;
+      /* Removed: border-radius, overflow, box-shadow */
+    }
+    .hero-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      /* Removed: transform: rotate(1deg) */
+    }
+    /* MODIFICATION END */
     
     .trust-bar{font-weight:800;color:var(--secondary-green);margin-top:16px;}
 
@@ -189,7 +200,7 @@
     }
 
     @media (max-width: 768px){
-      .hero{flex-direction:column-reverse}
+      .hero{flex-direction:column} 
       .nav-cta .btn-ghost{display:none;}
       h1 { font-size: 2.6rem; }
     }
@@ -206,32 +217,17 @@
     <!-- TOP BAR -->
     <header class="topbar" role="banner" aria-label="رأس الصفحة">
       <div class="logo">
-        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1759841106/weeza_logo_knvurw.svg" alt="Weeza Logo">
+        <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437067/weeza_logo_transparent_jklxvx.png" alt="Weeza Logo">
       </div>
       <nav class="nav-cta" aria-label="روابط سريعة">
         <a class="btn btn-ghost" href="#how">كيف تعمل</a>
-        <a class="btn btn-primary" href="#signup">انضم للرواد</a>
+        <a class="btn btn-primary" href="#signup">انضم الآن</a>
       </nav>
     </header>
 
-    <!-- ANNOUNCEMENT / TICKER -->
-    <div class="announcement" role="region" aria-label="إشعار الإطلاق">
-      <div class="ticker">
-        <div class="marquee-inner">
-          <!-- Content is duplicated to ensure a seamless loop -->
-          <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-          <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-          <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
-          <!-- Duplicate set -->
-          <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-          <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-          <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- HERO -->
+    <!-- MAIN CONTENT -->
     <main>
+      <!-- HERO SECTION -->
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-left">
           <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
@@ -244,11 +240,27 @@
           <div class="trust-bar" aria-live="polite">✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</div>
         </div>
         <div class="hero-right">
-          <div class="hero-img" role="img" aria-label="صندوق من الفواكه والخضروات الطازجة">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1280&q=80" alt="صندوق مليء بالخضروات والفواكه الطازجة">
+          <div class="hero-img" role="img" aria-label="يدان تحملان كيس تسوق مليء بالخضروات الطازجة">
+            <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437378/produce_bag_with_hands_oja4ha.png" alt="يدان تحملان كيس تسوق قماشي مليء بالخضروات الطازجة">
           </div>
         </div>
       </section>
+
+      <!-- ANNOUNCEMENT / TICKER (MOVED HERE) -->
+      <div class="announcement" role="region" aria-label="إشعار الإطلاق">
+        <div class="ticker">
+          <div class="marquee-inner">
+            <!-- Content is duplicated to ensure a seamless loop -->
+            <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+            <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+            <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
+            <!-- Duplicate set -->
+            <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+            <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+            <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
+          </div>
+        </div>
+      </div>
 
       <!-- WHY WEEZA? (Kinetic Mosaic Section) -->
       <section class="mosaic-section" aria-labelledby="why-weeza-title">
@@ -296,7 +308,7 @@
         }
 
         /* --- HOW IT WORKS --- */
-        #how { background-color: var(--card-bg); padding-top: 100px; padding-bottom: 100px; }
+#how { background-color: var(--card-bg); padding-top: 100px; padding-bottom: 100px; }
         .timeline {
             display: flex;
             justify-content: space-between;
@@ -597,14 +609,14 @@
       <section id="offer" class="container-section fade-up-section">
             <div class="pioneer-offer">
                <h2>كن من أوائل المئة مشترك</h2>
-                <p>سجل اهتمامك اليوم لتكون ضمن أول مئة عضو مؤسس عند انطلاق <span class="brand-name" style="color:#fff;">Weeza</span>. شارك في بناء التجربة واحصل على مزايا حصرية.</p>
+                <p>سجل اهتمامك اليوم لتكون ضمن أول مئة عضو عند انطلاق <span class="brand-name" style="color:#fff;">Weeza</span>. شارك في بناء التجربة واحصل على مزايا حصرية.</p>
                 <div class="pioneer-counter">🎯 انضم لقائمة المئة الأوائل!</div>
                 <ul class="pioneer-benefits">
                     <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
                     <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
                     <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
                 </ul>
-                <a href="#signup" class="cta-button">أريد أن أكون من الرواد!</a>
+                <a href="#signup" class="cta-button">أاشترك الآن</a>
             </div>
       </section>
 
@@ -680,7 +692,7 @@
     </footer>
 
     <!-- MOBILE STICKY CTA -->
-    <a class="btn btn-primary sticky-cta" href="#signup" aria-label="انضم للرواد">🚀 انضم لقائمة الرواد الآن</a>
+    <a class="btn btn-primary sticky-cta" href="#signup" aria-label="انضم الآن">🚀 انضم </a>
   </div>
 
   <script>
