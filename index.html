@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-t" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Weeza — انضم لقائمة الرواد</title>
   <meta name="description" content="وفّر حتى 30% على مشترياتك الأسبوعية — انضم إلى أول منصة شراء تعاوني في المغرب." />
@@ -13,6 +13,9 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Lottie Player (deferred for performance) -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
 </head>
 <body>
 
@@ -24,28 +27,42 @@
 
     <!-- MAIN CONTENT -->
     <main>
-      <!-- HERO SECTION -->
+      <!-- HERO SECTION (STATE-OF-THE-ART) -->
       <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-content">
-              <p class="tagline">معاً، نوفّر أكثر.</p>
-              <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
-              <h1 id="hero-title">اشتري جماعياً ووفّر حتى 30٪ على مشترياتك الأسبوعية</h1>
-              <p class="subtitle">🛒 كن من الأوائل! أكثر من 50 شخصاً بدأوا التوفير معنا.</p>
-              <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
-                  <a class="btn btn-primary" href="#signup">انضم الآن مجاناً</a>
-                  <a href="#how" class="learn-more">كيف يعمل الشراء الجماعي؟</a>
-              </div>
-          </div>
-          <div class="hero-image">
-              <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760438307/produce_bag_with_hands_cxpxxy.png" alt="حقيبة تسوق مليئة بالخضروات الطازجة">
-          </div>
+        <div class="hero-content">
+            <p class="tagline">معاً، نوفّر أكثر.</p>
+            <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
+            <h1 id="hero-title">اشتري جماعياً ووفّر حتى <span class="highlight">30٪</span> على مشترياتك الأسبوعية</h1>
+            <p class="subtitle">🛒 كن من الأوائل! أكثر من 50 شخصاً بدأوا التوفير معنا.</p>
+            <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
+                <button id="cta-primary" class="btn btn-primary">انضم الآن مجاناً</button>
+                <a href="#how" class="learn-more">كيف يعمل الشراء الجماعي؟</a>
+            </div>
+            <!-- ARIA live region for form status announcements -->
+            <div id="form-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+            <!-- Lottie Animation -->
+            <lottie-player
+              src="https://assets6.lottiefiles.com/packages/lf20_4xh2pn4n.json"
+              background="transparent"
+              speed="1"
+              style="width: 100%; max-width: 500px; margin: 0 auto;"
+              loop
+              autoplay
+              aria-label="رسم متحرك لسلة تسوق مليئة بالخضروات الطازجة">
+            </lottie-player>
+        </div>
       </section>
 
       <!-- ANNOUNCEMENT / TICKER -->
       <div class="announcement" role="region" aria-label="إشعار الإطلاق">
         <div class="ticker">
           <div class="marquee-inner">
-            <!-- Simplified: Only one set of messages -->
+            <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
+            <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
+            <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
+            <!-- Duplicated for smooth loop -->
             <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
             <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
             <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
@@ -76,7 +93,6 @@
               <p>كل عضو يقوّي قدرتنا على التفاوض — مصلحة المجتمع أولًا.</p>
             </article>
         </div>
-        <!-- Pagination dots container -->
         <div class="slider-pagination" id="slider-pagination"></div>
       </section>
       
@@ -136,7 +152,7 @@
             </div>
       </section>
 
-      <!-- SIGNUP FORM -->
+      <!-- SIGNUP FORM (Desktop Anchor) -->
       <section id="signup" class="container-section fade-up-section">
             <div class="form-container">
                 <div id="form-wrapper">
@@ -156,6 +172,9 @@
                     <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل.</p>
                     
                     <form id="pioneer-form" novalidate>
+                        <!-- Honeypot field for bot prevention -->
+                        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                        
                         <div class="form-group">
                             <input type="text" id="name" name="entry.1709270781" class="form-input" placeholder=" " autocomplete="name" required>
                             <label for="name" class="form-label">الاسم الكامل</label>
@@ -167,7 +186,7 @@
                             <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" name="entry.21162544" class="form-input" placeholder=" " autocomplete="tel" required>
+                            <input type="tel" id="phone" name="entry.21162544" class="form-input" placeholder=" " autocomplete="tel" required inputmode="tel">
                             <label for="phone" class="form-label">رقم الهاتف</label>
                             <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
                         </div>
@@ -190,6 +209,44 @@
             <a href="#">سياسة الخصوصية</a>
         </div>
     </footer>
+  </div>
+
+  <!-- MODAL SIGNUP FORM (for Mobile) -->
+  <div id="signup-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-action="close-modal"></div>
+    <div class="modal-panel" role="document">
+      <button class="modal-close" aria-label="إغلاق النموذج" data-action="close-modal">&times;</button>
+      <div id="modal-form-wrapper">
+        <h3 id="modal-title">🟢 انضم إلى الدائرة الأولى</h3>
+        <p>املأ النموذج لتنضم إلى قائمة المشتركين الأوائل وتحصل على مزايا حصرية.</p>
+
+        <form id="modal-pioneer-form" novalidate>
+            <!-- Honeypot field for bot prevention -->
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="form-group">
+                <input type="text" id="modal-name" name="entry.1709270781" class="form-input" placeholder=" " autocomplete="name" required>
+                <label for="modal-name" class="form-label">الاسم الكامل</label>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <input type="email" id="modal-email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>
+                <label for="modal-email" class="form-label">البريد الإلكتروني</label>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="modal-phone" name="entry.21162544" class="form-input" placeholder=" " autocomplete="tel" required inputmode="tel">
+                <label for="modal-phone" class="form-label">رقم الهاتف</label>
+                <div class="error-message"></div>
+            </div>
+            <button type="submit" class="cta-button" id="modal-submit-button">سجل اهتمامي الآن!</button>
+        </form>
+      </div>
+      <div id="modal-thank-you" style="display: none; text-align: center;">
+          <h3>✅ تهانينا! تم تسجيل اهتمامك.</h3>
+          <p>أنت الآن رسميًا في قائمة الرواد. سنتواصل معك قريبًا.</p>
+      </div>
+    </div>
   </div>
 
   <!-- JavaScript -->

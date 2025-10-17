@@ -1,185 +1,227 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     /**
-     * FADE-UP SECTIONS ON SCROLL
-     * Animates sections into view when they become visible in the viewport.
+     * ===================================
+     * === DUAL-ACTION SIGNUP LOGIC (MODAL + SCROLL) ===
+     * ===================================
      */
+    const primaryCtaButton = document.getElementById('cta-primary');
+    const signupModal = document.getElementById('signup-modal');
+    const desktopForm = document.getElementById('pioneer-form');
+    const modalForm = document.getElementById('modal-pioneer-form');
+    const formStatusAnnouncer = document.getElementById('form-status');
+
+    // Function to open the modal
+    function openModal() {
+        if (!signupModal) return;
+        signupModal.hidden = false;
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        // Focus on the first interactive element in the modal for accessibility
+        signupModal.querySelector('input, button').focus();
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        if (!signupModal) return;
+        signupModal.hidden = true;
+        document.body.style.overflow = ''; // Restore scrolling
+        // Return focus to the button that opened the modal
+        primaryCtaButton.focus();
+    }
+
+    // Main CTA button logic
+    if (primaryCtaButton) {
+        primaryCtaButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            // On smaller screens (mobile), open the modal
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                openModal();
+            } else {
+                // On larger screens (desktop), scroll to the form section
+                const signupSection = document.getElementById('signup');
+                if (signupSection) {
+                    signupSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+    }
+
+    // Add event listeners to close the modal
+    if (signupModal) {
+        signupModal.addEventListener('click', (e) => {
+            // Close if the backdrop or a specific close button is clicked
+            if (e.target.dataset.action === 'close-modal') {
+                closeModal();
+            }
+        });
+        // Close with the Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !signupModal.hidden) {
+                closeModal();
+            }
+        });
+    }
+
+
+    /**
+     * ===================================
+     * === UNIFIED FORM SUBMISSION LOGIC ===
+     * ===================================
+     */
+
+    // --- Validation Helper Functions ---
+    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).toLowerCase());
+
+    function showError(input, message) {
+        const formGroup = input.closest('.form-group');
+        const errorElement = formGroup.querySelector('.error-message');
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+    }
+
+    function hideAllErrors(form) {
+        form.querySelectorAll('.error-message').forEach(el => {
+            el.textContent = '';
+            el.style.display = 'none';
+        });
+    }
+
+    // --- Main Submission Handler ---
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        let isValid = true;
+
+        // 1. Check honeypot for bots
+        if (form.querySelector('.honeypot')?.value) {
+            console.warn('Bot submission detected and blocked.');
+            return; // Silently fail
+        }
+
+        // 2. Hide previous errors and validate fields
+        hideAllErrors(form);
+        const nameInput = form.querySelector('input[name*="entry."][type="text"]');
+        const emailInput = form.querySelector('input[type="email"]');
+        const phoneInput = form.querySelector('input[type="tel"]');
+
+        if (!nameInput.value.trim()) { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
+        if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
+        if (phoneInput.value.trim().length < 5) { showError(phoneInput, 'الرجاء إدخال رقم هاتف صالح.'); isValid = false; }
+        if (!isValid) return;
+
+        // 3. Update UI to loading state
+        submitButton.disabled = true;
+        submitButton.textContent = 'جاري الإرسال...';
+        formStatusAnnouncer.textContent = 'جاري إرسال النموذج...';
+
+        // 4. Submit the data
+        const formData = new FormData(form);
+        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfORVDofJgMwLiBp71S_z7G4hz7_K7mIJ1iH-6YVNCVDmRayw/formResponse';
+
+        try {
+            // Using fetch in 'no-cors' mode. We won't get a response, but the data will be sent.
+            await fetch(googleFormUrl, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            });
+
+            // 5. Handle success UI
+            const formWrapper = form.closest('#form-wrapper, #modal-form-wrapper');
+            const thankYouMessage = formWrapper.nextElementSibling; // Assumes thank you div is next sibling
+
+            formWrapper.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+            formStatusAnnouncer.textContent = 'تم تسجيل اهتمامك بنجاح. شكراً لك!';
+
+        } catch (error) {
+            // 6. Handle error UI
+            console.error('Form submission error:', error);
+            formStatusAnnouncer.textContent = 'حدث خطأ أثناء الإرسال. الرجاء المحاولة مرة أخرى.';
+            alert('حدث خطأ. الرجاء المحاولة مرة أخرى.'); // Simple fallback alert
+        
+        } finally {
+            // 7. Reset button state regardless of outcome (unless on success, where it's hidden)
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        }
+    }
+
+    // Attach the handler to both forms
+    desktopForm?.addEventListener('submit', handleFormSubmit);
+    modalForm?.addEventListener('submit', handleFormSubmit);
+
+
+    /**
+     * ===================================
+     * === PAGE ANIMATIONS & INTERACTIONS ===
+     * ===================================
+     */
+
+    // --- FADE-UP SECTIONS ON SCROLL ---
     const sections = document.querySelectorAll('.fade-up-section');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-                // Stop observing the element once it's visible
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1
-    }); // Trigger when 10% of the section is visible
+    }, { threshold: 0.1 });
     sections.forEach(section => observer.observe(section));
 
-
-    /**
-     * FAQ ACCORDION
-     * Toggles the active state for FAQ items to show/hide answers.
-     */
+    // --- FAQ ACCORDION ---
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
             const wasActive = item.classList.contains('active');
-
-            // Close all other FAQ items first
             faqItems.forEach(i => i.classList.remove('active'));
-
-            // If the clicked item was not already active, open it
             if (!wasActive) {
                 item.classList.add('active');
             }
         });
     });
 
-
-    /**
-     * PIONEER SIGNUP FORM LOGIC
-     * Handles client-side validation and submission feedback.
-     */
-    const form = document.getElementById('pioneer-form');
-    const formWrapper = document.getElementById('form-wrapper');
-    const thankYouMessage = document.getElementById('form-thank-you');
-
-    if (form) {
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-
-        // --- Validation Helper Functions ---
-        function validateEmail(email) {
-            // Simple regex for email validation
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).toLowerCase());
-        }
-
-        function showError(input, message) {
-            const errorElement = input.parentElement.querySelector('.error-message');
-            if (errorElement) {
-                errorElement.textContent = message;
-                errorElement.style.display = 'block';
-            }
-        }
-
-        function hideError(input) {
-            const errorElement = input.parentElement.querySelector('.error-message');
-            if (errorElement) {
-                errorElement.style.display = 'none';
-            }
-        }
-
-        // --- Form Submit Event Listener ---
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            let isValid = true;
-
-            // Hide previous errors
-            [nameInput, emailInput, phoneInput].forEach(hideError);
-
-            // Validate Name
-            if (nameInput.value.trim() === '') {
-                showError(nameInput, 'الرجاء إدخال اسمك.');
-                isValid = false;
-            }
-
-            // Validate Email
-            if (!validateEmail(emailInput.value)) {
-                showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.');
-                isValid = false;
-            }
-
-            // Validate Phone
-            if (phoneInput.value.trim() === '') {
-                showError(phoneInput, 'الرجاء إدخال رقم هاتفك.');
-                isValid = false;
-            }
-
-            // If form is not valid, stop here
-            if (!isValid) return;
-
-            // --- Handle Form Submission (Simulated) ---
-            const formData = new FormData(form);
-            const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfORVDofJgMwLiBp71S_z7G4hz7_K7mIJ1iH-6YVNCVDmRayw/formResponse';
-
-            // Post to Google Forms endpoint. 'no-cors' mode means we won't get a response,
-            // but the data will be submitted. We handle errors gracefully.
-            fetch(googleFormUrl, {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors'
-                })
-                .catch(error => console.error('Form submission error:', error.message));
-
-            // --- Show Thank You Message ---
-            formWrapper.style.transition = 'opacity 0.5s ease';
-            formWrapper.style.opacity = '0';
-
-            setTimeout(() => {
-                formWrapper.style.display = 'none';
-                thankYouMessage.style.display = 'block';
-                // Use a short delay to allow the display property to apply before changing opacity
-                setTimeout(() => {
-                    thankYouMessage.style.opacity = '1';
-                }, 20);
-            }, 500); // Match timeout to CSS transition duration
-        });
-    }
-
-
-    /**
-     * MOBILE MOSAIC SLIDER PAGINATION
-     * Creates and updates pagination dots for the horizontal slider on mobile.
-     */
+    // --- MOBILE MOSAIC SLIDER PAGINATION ---
     const slider = document.getElementById('card-slider');
     const pagination = document.getElementById('slider-pagination');
-
     if (slider && pagination) {
         const cards = slider.querySelectorAll('.tile');
-
-        // Only run this logic if there are cards to paginate
         if (cards.length > 0) {
-            // 1. Create dots for each card
             cards.forEach((_, index) => {
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
-                if (index === 0) dot.classList.add('active'); // First dot is active by default
+                if (index === 0) dot.classList.add('active');
                 pagination.appendChild(dot);
             });
 
-            // 2. Function to update which dot is active
             const updateDots = () => {
                 const dots = pagination.querySelectorAll('.dot');
                 const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
                 let closestCardIndex = 0;
                 let minDistance = Infinity;
 
-                // Find the card closest to the center of the viewport
                 cards.forEach((card, index) => {
                     const cardCenter = card.offsetLeft + card.clientWidth / 2;
                     const distance = Math.abs(sliderCenter - cardCenter);
-
                     if (distance < minDistance) {
                         minDistance = distance;
                         closestCardIndex = index;
                     }
                 });
 
-                // Update the 'active' class on the corresponding dot
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === closestCardIndex);
                 });
             };
 
-            // 3. Add scroll event listener and run once on load
-            slider.addEventListener('scroll', updateDots);
-            updateDots(); // Initial call to set the correct dot on page load
+            slider.addEventListener('scroll', updateDots, { passive: true });
+            updateDots();
         }
     }
-
 });
