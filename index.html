@@ -11,198 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@700;900&display=swap" rel="stylesheet">
 
-  <!-- Core styles -->
-  <style>
-    :root{
-      --primary-yellow:#FFC000;
-      --brand-green: #00C48C; /* New color */
-      --secondary-green: #00C48C; /* Also update this for consistency */
-      --accent-green-dark:#00A082; /* Keep this for darker gradients */
-      --neutral-dark:#2C3E50;
-      --paragraph:#515A63;
-      --bg:#F8F9FA;
-      --card-bg:#FFFFFF;
-      --border-light:#E6E9EE;
-      --radius:16px;
-      --shadow-light: 0 6px 18px rgba(16,24,40,0.06);
-      --shadow-medium: 0 12px 28px rgba(16,24,40,0.12);
-      --shadow-hover: 0 16px 36px rgba(16,24,40,0.18);
-      --max-width:1140px;
-      --brand-font: 'Cairo', sans-serif;
-      --brand-head: 'Poppins', 'Cairo', sans-serif;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior: smooth;}
-    body{margin:0;background:var(--bg);font-family:var(--brand-font);color:var(--neutral-dark);-webkit-font-smoothing:antialiased}
-    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
-    
-    /* =================================== */
-    /* === HERO SECTION STYLES START === */
-    /* =================================== */
-    
-    /* Top Bar with Logo */
-    .topbar {
-        padding: 20px 0;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    .topbar img {
-        height: 40px;
-        width: auto;
-    }
-
-    /* Hero Section */
-    .hero {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-      padding: 0 0 60px;
-      flex-wrap: wrap;
-    }
-    .hero-content {
-        flex: 1.2; /* Give slightly more space to text */
-        min-width: 320px;
-        text-align: right; /* Text aligned to the right */
-    }
-    .hero-image {
-        flex: 1;
-        min-width: 320px;
-        text-align: center;
-    }
-    .hero-image img {
-        max-width: 420px;
-        width: 100%;
-    }
-
-    .tagline {
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: var(--paragraph);
-        margin-bottom: 12px;
-    }
-    .kicker {
-        display: inline-block;
-        background: rgba(0, 196, 140, 0.1);
-        color: var(--brand-green);
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-weight: 700;
-        font-size: 0.85rem;
-        margin-bottom: 20px;
-    }
-    h1 {
-      font-family: var(--brand-head);
-      font-size: 2.8rem;
-      margin: 0 0 16px;
-      line-height: 1.3;
-      color: #1A2533;
-      font-weight: 900;
-    }
-    .subtitle {
-      color: var(--paragraph);
-      font-size: 1.1rem;
-      margin-bottom: 28px;
-      max-width: 520px;
-      font-weight: 600;
-    }
-    
-    .hero-ctas { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; } /* Aligned CTAs to the right */
-    .btn {
-        display:inline-flex; align-items:center; justify-content:center;
-        gap:10px; padding:14px 32px;
-        border-radius:999px; border:none;
-        font-weight:800; font-size: 1rem;
-        cursor:pointer;
-        box-shadow:var(--shadow-medium);
-        transition:transform 0.2s, box-shadow 0.2s;
-        text-decoration: none;
-    }
-    .btn:hover{ transform:translateY(-3px); box-shadow:var(--shadow-hover); }
-    .btn-primary{ background:var(--primary-yellow); color:var(--neutral-dark) }
-
-    .learn-more {
-        color: var(--neutral-dark);
-        text-decoration: none;
-        font-weight: 700;
-        font-size: 0.95rem;
-        transition: color 0.2s;
-    }
-    .learn-more:hover { color: var(--brand-green); }
-    
-    /* Remove old JS animation styles */
-    .hero-left > * { display: none; }
-
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-        .hero {
-            flex-direction: column-reverse; /* Stack image on top of content */
-        }
-        .hero-content {
-            text-align: center;
-        }
-        h1 { font-size: 2.2rem; }
-        .hero-ctas {
-            align-items: center;
-            width: 100%;
-        }
-        .btn-primary { width: 100%; max-width: 300px; }
-    }
-    /* =================================== */
-    /* === HERO SECTION STYLES END === */
-    /* =================================== */
-
-    /* --- Announcement / Ticker --- */
-    .announcement {
-        background: var(--brand-green);
-        color: #fff;
-        border-radius: var(--radius);
-        margin: 20px auto 28px;
-        box-shadow: var(--shadow-medium);
-        overflow: hidden;
-        position: relative;
-        height: 56px;
-        display: flex;
-        align-items: center;
-    }
-    .ticker { width:100%; overflow:hidden; position:relative; }
-    .marquee-inner { display: inline-flex; white-space: nowrap; gap: 48px; animation: scrollLTR 40s linear infinite; direction: ltr; will-change: transform; }
-    .marquee-inner span { display: inline-block; font-weight: 700; font-size: 1.05rem; padding: 0 24px; }
-    @keyframes scrollLTR { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-    .announcement:hover .marquee-inner { animation-play-state: paused; }
-
-    h2 { font-size: 2.8rem; text-align: center; margin-bottom: 40px; font-weight: 900; }
-    .brand-name { font-family: var(--brand-head); font-weight: 900; color: var(--brand-green); font-size: 1em; }
-    
-    /* 'WHY WEEZA' SECTION */
-    .mosaic-section { padding: 80px 0; }
-    .mosaic-container { max-width: 1120px; margin: 0 auto; padding: 0 24px;}
-    .mosaic { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; align-items: center; position: relative; }
-    .tile { background-size: cover; background-position: center; position: relative; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; text-align: center; min-height: 350px; padding: 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease; }
-    .tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.85) 100%); border-radius: inherit; }
-    .tile:hover { transform: translateY(-15px) scale(1.05) !important; box-shadow: 0 20px 45px rgba(0,0,0,0.25); z-index: 10 !important; }
-    .tile h3, .tile p { position: relative; z-index: 1; }
-    .tile h3 { color: #fff; font-weight: 900; font-size: 2rem; margin-bottom: 12px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); line-height: 1.3; }
-    .tile p { color: rgba(255, 255, 255, 0.95); font-size: 1rem; line-height: 1.7; text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7); max-width: 95%; margin: 0 auto; }
-    .mosaic > .tile:nth-of-type(1) { transform: translateY(-10px) rotate(-3deg); z-index: 1; }
-    .mosaic > .tile:nth-of-type(2) { transform: translateY(20px) rotate(2deg); margin-right: -70px; z-index: 2; }
-    .mosaic > .tile:nth-of-type(3) { transform: translateY(-20px) rotate(-2deg); margin-right: -70px; z-index: 3; }
-    .mosaic > .tile:nth-of-type(4) { transform: translateY(10px) rotate(3deg); margin-right: -70px; z-index: 2; }
-    .slider-pagination { display: none; }
-    @media (max-width: 960px) {
-        .mosaic-container { padding: 0; }
-        .mosaic { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 10%; padding: 20px 10%; gap: 16px; -ms-overflow-style: none; scrollbar-width: none; }
-        .mosaic::-webkit-scrollbar { display: none; }
-        .mosaic > .tile { flex: 0 0 80%; scroll-snap-align: center; transform: none !important; margin-right: 0 !important; z-index: 1 !important; }
-        .tile:hover { transform: translateY(-10px) scale(1.03) !important; }
-        .slider-pagination { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; transition: background-color 0.3s, transform 0.3s; }
-        .dot.active { background-color: var(--brand-green); transform: scale(1.2); }
-    }
-    @media (max-width: 480px) { h1 { font-size: 2.2rem; } .subtitle { font-size: 1rem; } h2 { font-size: 2.2rem; } }
-  </style>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container">
     <!-- TOP BAR -->
     <header class="topbar" role="banner" aria-label="رأس الصفحة">
@@ -232,11 +45,7 @@
       <div class="announcement" role="region" aria-label="إشعار الإطلاق">
         <div class="ticker">
           <div class="marquee-inner">
-            <!-- Content is duplicated to ensure a seamless loop -->
-            <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-            <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-            <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
-            <!-- Duplicate set -->
+            <!-- Simplified: Only one set of messages -->
             <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
             <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
             <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
@@ -270,272 +79,7 @@
         <!-- Pagination dots container -->
         <div class="slider-pagination" id="slider-pagination"></div>
       </section>
-<!-- STYLES for Block 2 -->
-      <style>
-        /* General styles needed for these sections */
-        .fade-up-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-up-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Using a class for section containers to avoid style conflicts */
-        .container-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        /* --- HOW IT WORKS --- */
-        #how { background-color: var(--card-bg); padding-top: 100px; padding-bottom: 100px; border-radius: var(--radius); }
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            flex-wrap: wrap;
-            padding-top: 20px;
-            margin-top: 40px;
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 50px;
-            right: 5%;
-            left: 5%;
-            height: 3px;
-            background-color: var(--border-light);
-            z-index: 1;
-        }
-        .timeline-step {
-            flex-basis: 23%;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            padding: 0 15px;
-        }
-        .step-icon {
-            width: 90px;
-            height: 90px;
-            line-height: 90px;
-            border-radius: 50%;
-            background-color: var(--card-bg);
-            color: var(--brand-green);
-            font-size: 3rem;
-            margin: 0 auto 25px;
-            border: 5px solid var(--brand-green);
-            box-shadow: var(--shadow-light);
-        }
-        .timeline-step h3 { font-size: 1.7rem; margin-bottom: 10px; font-weight: 900;}
-        .timeline-step p { font-size: 1rem; line-height: 1.6; }
-        .vision-section {
-            text-align: center;
-            margin-top: 80px;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: rgba(0, 196, 140, 0.05);
-            padding: 40px;
-            border-radius: var(--radius);
-        }
-        .vision-section h3 { font-size: 2rem; margin-bottom: 20px; color: var(--brand-green); font-weight: 900;}
-        .vision-section p { font-size: 1.1rem; line-height: 1.7; }
-
-
-        /* --- PIONEER OFFER --- */
-        #offer { padding-top: 80px; padding-bottom: 80px; }
-        .pioneer-offer {
-            background: linear-gradient(135deg, var(--brand-green), var(--accent-green-dark));
-            color: white;
-            text-align: center;
-            border-radius: var(--radius);
-            padding: 70px 30px;
-            box-shadow: var(--shadow-medium);
-        }
-        .pioneer-offer h2 {
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 25px;
-        }
-        .pioneer-offer p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-        .pioneer-benefits {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 50px;
-            display: inline-block;
-            text-align: right;
-        }
-        .pioneer-benefits li {
-            margin-bottom: 15px;
-            font-size: 1.15rem;
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.95);
-        }
-        .pioneer-benefits li::before {
-            content: '✓';
-            color: var(--primary-yellow);
-            margin-left: 15px;
-            font-weight: 900;
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-yellow);
-            color: var(--neutral-dark);
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.15rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow-medium);
-        }
-        .cta-button:hover {
-            transform: scale(1.04) translateY(-4px);
-            box-shadow: var(--shadow-hover, 0 12px 28px rgba(0,0,0,0.15));
-        }
-
-        /* --- FAQ --- */
-        #faq { background-color: var(--bg); }
-        .faq-accordion { max-width: 850px; margin: 0 auto; }
-        .faq-item {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            margin-bottom: 18px;
-            box-shadow: var(--shadow-light);
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 22px 30px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 1.15rem;
-        }
-        .faq-question .toggle-icon {
-            font-size: 1.8rem;
-            color: var(--primary-yellow);
-            transition: transform 0.3s ease;
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
-            padding: 0 30px;
-        }
-        .faq-answer p { margin: 0; padding-bottom: 25px; line-height: 1.7; font-size: 1rem; }
-        .faq-item.active .faq-answer { max-height: 500px; padding-top: 10px; }
-        .faq-item.active .toggle-icon { transform: rotate(135deg); color: var(--brand-green); }
-
-        /* --- SIGNUP FORM --- */
-        #signup { background-color: var(--card-bg); padding-bottom: 100px; border-radius: var(--radius); }
-        .form-container {
-            max-width: 650px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 50px;
-            background: var(--bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-light);
-        }
-        .form-container h2 { margin-bottom: 25px; }
-        .form-container p { margin-bottom: 40px; font-size: 1.1rem; }
-        .form-group { position: relative; margin-bottom: 35px; text-align: right; }
-        .form-input {
-            width: 100%;
-            padding: 16px 18px;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius);
-            font-size: 1.05rem;
-            font-family: var(--brand-font);
-            background: var(--card-bg);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--brand-green);
-            box-shadow: 0 0 0 3px rgba(0, 196, 140, 0.1);
-        }
-        .form-label {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            color: #999;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            background-color: var(--card-bg); /* Match input bg */
-            padding: 0 7px;
-            font-size: 1.05rem;
-        }
-        .form-input:focus ~ .form-label,
-        .form-input:not(:placeholder-shown) ~ .form-label {
-            top: -12px;
-            font-size: 0.9rem;
-            color: var(--brand-green);
-            background-color: var(--bg); /* Match container bg */
-        }
-        #form-thank-you {
-            display: none;
-            opacity: 0;
-            padding: 40px;
-        }
-        #form-thank-you h3 { color: var(--brand-green); font-size: 2rem; margin-bottom: 20px; }
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.95rem;
-            text-align: right;
-            margin-top: 8px;
-            display: none;
-        }
-
-        /* --- FOOTER --- */
-        .footer {
-            background-color: var(--neutral-dark);
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-            margin-top: 60px;
-        }
-        .footer .slogan { font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: var(--primary-yellow); }
-        .footer-links a {
-            color: white;
-            margin: 0 18px;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.2s ease;
-        }
-        .footer-links a:hover { opacity: 1; }
-
-        /* Responsive */
-        @media (max-width: 960px) {
-            .timeline { flex-direction: column; gap: 50px; padding-top: 0; }
-            .timeline::before { display: none; }
-            .pioneer-offer { padding: 50px 25px; }
-            .pioneer-offer h2 { font-size: 2.5rem; }
-        }
-        @media (max-width: 520px) {
-            .cta-button { width: 100%; max-width: 340px; }
-            .pioneer-offer h2 { font-size: 2rem; }
-        }
-      </style>
-
+      
       <!-- HOW IT WORKS -->
       <section id="how" class="container-section fade-up-section">
           <h2>كيف ستعمل التجربة عند الانطلاق</h2>
@@ -567,20 +111,6 @@
           </div>
       </section>
 
-      <!-- PIONEER OFFER -->
-      <section id="offer" class="container-section fade-up-section">
-            <div class="pioneer-offer">
-                <h2>انضم لقائمة المئة الأوائل!</h2>
-                <p>✅ أكثر من 50 شخصاً سجلوا بالفعل ليحصلوا على المزايا الحصرية.</p>
-                <ul class="pioneer-benefits">
-                    <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
-                    <li>أولوية في الوصول للمنتجات والخدمات عند الإطلاق.</li>
-                    <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
-                </ul>
-                <a href="#signup" class="cta-button">أريد أن أكون من الأوائل</a>
-            </div>
-      </section>
-
       <!-- FAQ SECTION -->
       <section id="faq" class="container-section fade-up-section">
             <h2>أسئلة شائعة</h2>
@@ -610,8 +140,21 @@
       <section id="signup" class="container-section fade-up-section">
             <div class="form-container">
                 <div id="form-wrapper">
-                    <h2>هل أنت مستعد لتكون من الأوائل؟</h2>
-                    <p>املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل. سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
+                    <h2>🟢 انضم إلى الدائرة الأولى — قبل الجميع.</h2>
+                    <p>سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
+
+                    <div class="form-benefits">
+                        <h4>✨ مزايا الانضمام إلى الدائرة الأولى:</h4>
+                        <ul>
+                            <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
+                            <li>أولوية في الوصول إلى المنتجات والخدمات عند الإطلاق.</li>
+                            <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
+                        </ul>
+                    </div>
+
+                    <p class="form-privacy-note">🔒 بياناتك آمنة ولن تُستخدم إلا لإشعارك بالإطلاق الرسمي.</p>
+                    <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل.</p>
+                    
                     <form id="pioneer-form" novalidate>
                         <div class="form-group">
                             <input type="text" id="name" name="entry.1709270781" class="form-input" placeholder=" " autocomplete="name" required>
@@ -649,110 +192,8 @@
     </footer>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        // --- Fade-Up Sections on Scroll ---
-        const sections = document.querySelectorAll('.fade-up-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        sections.forEach(section => observer.observe(section));
-
-        // --- FAQ Accordion ---
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.querySelector('.faq-question').addEventListener('click', () => {
-                const wasActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // --- Form Submission Logic ---
-        const form = document.getElementById('pioneer-form');
-        const formWrapper = document.getElementById('form-wrapper');
-        const thankYouMessage = document.getElementById('form-thank-you');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-
-        function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email).toLowerCase()); }
-        function showError(input, message) {
-            const error = input.parentElement.querySelector('.error-message');
-            error.textContent = message;
-            error.style.display = 'block';
-        }
-        function hideError(input) { input.parentElement.querySelector('.error-message').style.display = 'none'; }
-        
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            let isValid = true;
-            [nameInput, emailInput, phoneInput].forEach(hideError);
-
-            if (nameInput.value.trim() === '') { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
-            if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
-            if (phoneInput.value.trim() === '') { showError(phoneInput, 'الرجاء إدخال رقم هاتفك.'); isValid = false; }
-
-            if (!isValid) return;
-
-            const formData = new FormData(form);
-            const url = 'https://docs.google.com/forms/d/e/1FAIpQLSfORVDofJgMwLiBp71S_z7G4hz7_K7mIJ1iH-6YVNCVDmRayw/formResponse';
-
-            fetch(url, { method: 'POST', body: formData, mode: 'no-cors' })
-            .catch(error => console.error('Error!', error.message));
-
-            formWrapper.style.transition = 'opacity 0.5s ease';
-            formWrapper.style.opacity = '0';
-            
-            setTimeout(() => {
-                formWrapper.style.display = 'none';
-                thankYouMessage.style.display = 'block';
-                setTimeout(() => { thankYouMessage.style.opacity = '1'; }, 20); 
-            }, 500);
-        });
-
-        // --- Mobile Slider Pagination ---
-        const slider = document.getElementById('card-slider');
-        const pagination = document.getElementById('slider-pagination');
-        const cards = slider.querySelectorAll('.tile');
-
-        if (cards.length > 0 && pagination) {
-            cards.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
-                pagination.appendChild(dot);
-            });
-
-            const updateDots = () => {
-                const dots = pagination.querySelectorAll('.dot');
-                let closestCardIndex = 0;
-                let minDistance = Infinity;
-                const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
-                cards.forEach((card, index) => {
-                    const cardCenter = card.offsetLeft + card.clientWidth / 2;
-                    const distance = Math.abs(sliderCenter - cardCenter);
-                    if (distance < minDistance) {
-                        minDistance = distance;
-                        closestCardIndex = index;
-                    }
-                });
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === closestCardIndex);
-                });
-            };
-            slider.addEventListener('scroll', updateDots);
-            updateDots();
-        }
-    });
-  </script>
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 
 </body>
 </html>
