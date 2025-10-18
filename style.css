@@ -643,7 +643,7 @@ h2 {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png');
     background-size: cover;
     background-position: center;
-    padding: 60px 20px;
+    padding: 40px 20px; /* MODIFIED: Reduced top/bottom padding from 60px */
     text-align: center;
     border-radius: var(--radius);
     overflow: hidden;
@@ -689,5 +689,18 @@ h2 {
     justify-content: center;
     flex-direction: column;
     gap: 15px;
+  }
+
+  /* MODIFIED: Reduce vertical spacing for better mobile layout */
+  .mosaic-section,
+  .container-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  #how,
+  #signup {
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 }
