@@ -30,7 +30,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: radial-gradient(circle at 90% 10%, rgba(0, 196, 140, 0.05), transparent 40%), var(--bg);
   font-family: var(--brand-font);
   color: var(--neutral-dark);
   -webkit-font-smoothing: antialiased;
@@ -52,6 +52,14 @@ h1, h2, h3 {
   font-family: var(--brand-head);
   font-weight: 900;
   color: #1A2533;
+}
+
+h1 {
+  /* slightly tighter clamp prevents huge jumps between breakpoints */
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin: 0 0 18px;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
 h2 {
@@ -110,7 +118,9 @@ h2 {
   gap: 40px;
   align-items: center;
   padding: 40px 0 80px;
-  background: radial-gradient(circle at 90% 10%, rgba(0, 196, 140, 0.05), transparent 40%);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-content {
@@ -125,6 +135,15 @@ h2 {
 
 .hero-media {
   animation: fadeInUp 0.8s ease-out forwards;
+  text-align: center; /* Center the image */
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  max-width: 520px;
+  border-radius: var(--radius);
+  object-fit: cover; /* Ensures the image covers the area nicely */
 }
 
 @keyframes fadeInUp {
@@ -148,14 +167,6 @@ h2 {
   font-weight: 700;
   font-size: 0.9rem;
   margin-bottom: 24px;
-}
-
-h1 {
-  /* Fluid typography for responsiveness */
-  font-size: clamp(2.4rem, 5vw, 3.2rem);
-  margin: 0 0 18px;
-  line-height: 1.3;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
 .highlight {
@@ -452,7 +463,7 @@ h1 {
 .vision-section h3 { font-size: 2rem; margin-bottom: 20px; color: var(--brand-green); font-weight: 900; }
 .vision-section p { font-size: 1.1rem; line-height: 1.7; }
 
-#faq { background-color: var(--bg); }
+#faq { background-color: transparent; }
 .faq-accordion { max-width: 850px; margin: 0 auto; }
 .faq-item {
   background: var(--card-bg);
@@ -607,33 +618,80 @@ h1 {
   .timeline::before { display: none; }
 }
 
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .hero-content {
-    text-align: center;
-  }
-  .hero-ctas {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 2.0rem; }
-  .subtitle { font-size: 1rem; }
-  .form-container { padding: 30px 20px; }
-  .form-container h2 { font-size: 1.8rem; }
-  .cta-button { width: 100%; max-width: 340px; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ======================================================= */
+/* === MOBILE HERO SECTION REFINED (MATCHING IMAGE REFERENCE) === */
+/* ======================================================= */
+
+@media (max-width: 768px) {
+  .hero {
+    display: block; /* Switch from grid to block */
+    /* REMOVE the line below */
+    /* background: none; */ 
+    
+    /* ADD these lines below */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/weeza_bag_squeezed.png');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px; /* Adjusted padding for better visual */
+    text-align: center;
+    border-radius: var(--radius); /* Optional: to match other sections */
+    overflow: hidden; /* Ensures background stays within rounded corners */
+  }
+
+  .hero-media {
+    display: none !important; /* This is correct, as we are using a background-image now */
+  }
+
+  .hero-content {
+    text-align: center; /* Center all text content */
+    max-width: 100%;
+    margin: 0 auto;
+    animation: none; /* Disable fade-in animation on mobile */
+  }
+
+  .hero h1 {
+    color: #FFFFFF; /* CHANGED from var(--neutral-dark) for readability */
+    font-size: 2.2rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Added for better legibility */
+  }
+
+  .hero .subtitle {
+    color: #F8F9FA; /* CHANGED from var(--paragraph) for readability */
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+  
+  /* Make sure all text elements use the correct light colors */
+  .hero .tagline, .hero .kicker, .hero .learn-more {
+      color: #F8F9FA;
+  }
+  
+  .hero .kicker {
+      background: rgba(255, 255, 255, 0.15); /* Lightened for contrast */
+      color: #FFFFFF;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .hero .learn-more {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFFFFF; /* CHANGED for readability */
+      text-decoration: underline;
   }
 }

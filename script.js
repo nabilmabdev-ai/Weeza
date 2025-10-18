@@ -225,3 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+// === HERO BACKGROUND PARALLAX EFFECT (Mobile Only) ===
+const hero = document.querySelector('.hero');
+
+if (window.matchMedia('(max-width: 768px)').matches && hero) {
+  window.addEventListener('scroll', () => {
+    const offset = window.scrollY * 0.3;
+    hero.style.backgroundPositionY = `${offset}px`;
+  });
+}
