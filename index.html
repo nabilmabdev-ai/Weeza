@@ -26,12 +26,22 @@
     <!-- MAIN CONTENT -->
     <main>
      <!-- HERO SECTION (STATE-OF-THE-ART) -->
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-title-desktop">
         <div class="hero-content">
-            <p class="tagline">معاً، نوفّر أكثر.</p>
-            <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
-            <h1 id="hero-title">اشتري جماعياً ووفّر حتى <span class="highlight">30٪</span> على مشترياتك الأسبوعية</h1>
-            <p class="subtitle">🛒 كن من الأوائل! أكثر من 50 شخصاً بدأوا التوفير معنا.</p>
+            <!-- Desktop-only Text -->
+            <div class="desktop-only">
+                <p class="tagline">معاً، نوفّر أكثر.</p>
+                <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
+                <h1 id="hero-title-desktop">اشتري جماعياً ووفّر حتى <span class="highlight">30٪</span> على مشترياتك الأسبوعية</h1>
+                <p class="subtitle">🛒 كن من الأوائل! أكثر من 50 شخصاً بدأوا التوفير معنا.</p>
+            </div>
+
+            <!-- Mobile-only Text -->
+            <div class="mobile-only">
+                <h1 id="hero-title-mobile">وفّر حتى <span class="highlight">30٪</span> عبر الشراء الجماعي</h1>
+                <p class="subtitle">انضم إلى عشرات المشتركين الذين يستفيدون من الأسعار المخفّضة دون أي اشتراك أو التزام.</p>
+            </div>
+
             <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
                 <button id="cta-primary" class="btn btn-primary">انضم الآن مجاناً</button>
                 <a href="#how" class="learn-more">كيف يعمل الشراء الجماعي؟</a>
@@ -41,7 +51,7 @@
         </div>
         <div class="hero-media">
             <!-- Hero Image -->
-           <img src="images/weeza_bag_squeezed.png" alt="حقيبة تسوق Weeza مليئة بالخضروات الطازجة" class="hero-image">
+           <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png" alt="حقيبة تسوق Weeza مليئة بالخضروات الطازجة" class="hero-image">
         </div>
       </section>
 
@@ -183,7 +193,7 @@
                         <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
                     </form>
                 </div>
-                <div id="form-thank-you" style="display: none;">
+                <div id="form-thank-you">
                     <h3>✅ تهانينا! تم تسجيل اهتمامك بنجاح.</h3>
                     <p>أنت الآن رسميًا في قائمة <span class="brand-name">Weeza</span> للمشتركين الأوائل. سنتواصل معك قريبًا قبل الإطلاق الرسمي.</p>
                 </div>

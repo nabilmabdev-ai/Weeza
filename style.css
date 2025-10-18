@@ -129,6 +129,11 @@ h2 {
   animation: fadeInRight 0.8s ease-out forwards;
 }
 
+/* Hide mobile-only text on desktop by default */
+.mobile-only {
+    display: none;
+}
+
 @keyframes fadeInRight {
   from { opacity: 0; transform: translateX(20px); }
   to { opacity: 1; transform: translateX(0); }
@@ -544,7 +549,7 @@ h2 {
 }
 .cta-button:hover:not(:disabled) { transform: scale(1.04) translateY(-4px); box-shadow: var(--shadow-hover); }
 .cta-button:disabled { opacity: 0.7; cursor: progress; }
-#form-thank-you { display: none; opacity: 0; padding: 40px; transition: opacity 0.5s ease-in-out; }
+#form-thank-you { display: none; padding: 40px; }
 #form-thank-you h3 { color: var(--brand-green); font-size: 2rem; margin-bottom: 20px; }
 .error-message {
   color: #e74c3c; font-size: 0.95rem; text-align: right; margin-top: 8px; display: none;
@@ -629,97 +634,60 @@ h2 {
 }
 
 /* ======================================================= */
-/* === MOBILE FULL-WIDTH & HERO SECTION REFINED === */
+/* === MOBILE HERO SECTION REFINED === */
 /* ======================================================= */
 
 @media (max-width: 768px) {
-  /* ======== FULL-WIDTH MOBILE RESET ======== */
-  .container {
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .container-section {
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    border-radius: 0;
-  }
-  
-  .announcement {
-    margin-left: 0;
-    margin-right: 0;
-    border-radius: 0;
-  }
-  
-  /* Make all sections with backgrounds full-bleed */
-  #how, #signup {
-    border-radius: 0;
-  }
-
-  /* Make footer full-bleed */
-  .footer {
-    margin-top: 0;
-  }
-
-  /* ======== HERO SECTION AS BACKGROUND IMAGE ======== */
   .hero {
-    display: block; /* Switch from grid to block */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/weeza_bag_squeezed.png');
+    display: block;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png');
     background-size: cover;
     background-position: center;
-    padding: 60px 24px; /* Adjusted padding for content */
+    padding: 60px 20px;
     text-align: center;
-    border-radius: 0; /* Remove radius for full-width */
-    overflow: hidden; 
+    border-radius: var(--radius);
+    overflow: hidden;
   }
 
   .hero-media {
-    display: none !important; /* Hide the <img> tag on mobile */
+    display: none !important;
+  }
+
+  /* Show mobile text and hide desktop text */
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
   }
 
   .hero-content {
-    text-align: center; /* Center all text content */
+    text-align: center;
     max-width: 100%;
     margin: 0 auto;
-    animation: none; /* Disable fade-in animation on mobile */
+    animation: none;
   }
 
   .hero h1 {
-    color: #FFFFFF; /* Make text readable on background */
+    color: #FFFFFF;
     font-size: 2.2rem;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Add shadow for legibility */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
   }
 
   .hero .subtitle {
-    color: #F8F9FA; /* Make text readable on background */
+    color: #F8F9FA;
     font-size: 1.1rem;
     margin-bottom: 25px;
   }
   
-  .hero .tagline, .hero .kicker, .hero .learn-more {
-      color: #F8F9FA;
-  }
-  
-  .hero .kicker {
-      background: rgba(255, 255, 255, 0.15); /* Lighten for contrast */
+  .hero .learn-more {
       color: #FFFFFF;
-      margin-left: auto;
-      margin-right: auto;
+      text-decoration: underline;
   }
 
   .hero-ctas {
     justify-content: center;
     flex-direction: column;
     gap: 15px;
-  }
-  
-  .hero .learn-more {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #FFFFFF; /* Make text readable on background */
-      text-decoration: underline;
   }
 }
