@@ -34,6 +34,7 @@ body {
   font-family: var(--brand-font);
   color: var(--neutral-dark);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Add a clear focus state for accessibility */
@@ -628,27 +629,55 @@ h2 {
 }
 
 /* ======================================================= */
-/* === MOBILE HERO SECTION REFINED (MATCHING IMAGE REFERENCE) === */
+/* === MOBILE FULL-WIDTH & HERO SECTION REFINED === */
 /* ======================================================= */
 
 @media (max-width: 768px) {
+  /* ======== FULL-WIDTH MOBILE RESET ======== */
+  .container {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .container-section {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 0;
+  }
+  
+  .announcement {
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+  }
+  
+  /* Make all sections with backgrounds full-bleed */
+  #how, #signup {
+    border-radius: 0;
+  }
+
+  /* Make footer full-bleed */
+  .footer {
+    margin-top: 0;
+  }
+
+  /* ======== HERO SECTION AS BACKGROUND IMAGE ======== */
   .hero {
     display: block; /* Switch from grid to block */
-    /* REMOVE the line below */
-    /* background: none; */ 
-    
-    /* ADD these lines below */
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/weeza_bag_squeezed.png');
     background-size: cover;
     background-position: center;
-    padding: 60px 20px; /* Adjusted padding for better visual */
+    padding: 60px 24px; /* Adjusted padding for content */
     text-align: center;
-    border-radius: var(--radius); /* Optional: to match other sections */
-    overflow: hidden; /* Ensures background stays within rounded corners */
+    border-radius: 0; /* Remove radius for full-width */
+    overflow: hidden; 
   }
 
   .hero-media {
-    display: none !important; /* This is correct, as we are using a background-image now */
+    display: none !important; /* Hide the <img> tag on mobile */
   }
 
   .hero-content {
@@ -659,24 +688,23 @@ h2 {
   }
 
   .hero h1 {
-    color: #FFFFFF; /* CHANGED from var(--neutral-dark) for readability */
+    color: #FFFFFF; /* Make text readable on background */
     font-size: 2.2rem;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Added for better legibility */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Add shadow for legibility */
   }
 
   .hero .subtitle {
-    color: #F8F9FA; /* CHANGED from var(--paragraph) for readability */
+    color: #F8F9FA; /* Make text readable on background */
     font-size: 1.1rem;
     margin-bottom: 25px;
   }
   
-  /* Make sure all text elements use the correct light colors */
   .hero .tagline, .hero .kicker, .hero .learn-more {
       color: #F8F9FA;
   }
   
   .hero .kicker {
-      background: rgba(255, 255, 255, 0.15); /* Lightened for contrast */
+      background: rgba(255, 255, 255, 0.15); /* Lighten for contrast */
       color: #FFFFFF;
       margin-left: auto;
       margin-right: auto;
@@ -691,7 +719,7 @@ h2 {
   .hero .learn-more {
       font-size: 1rem;
       font-weight: 700;
-      color: #FFFFFF; /* CHANGED for readability */
+      color: #FFFFFF; /* Make text readable on background */
       text-decoration: underline;
   }
 }
