@@ -162,11 +162,12 @@
                         <ul>
                             <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
                            <li>أولوية في الوصول إلى المنتجات والخدمات عند الإطلاق.</li>
+                            <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
                         </ul>
                     </div>
 
                     <p class="form-privacy-note">🔒 بياناتك آمنة ولن تُستخدم إلا لإشعارك بالإطلاق الرسمي.</p>
-                    <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين .</p>
+                    <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل.</p>
                     
                     <form id="pioneer-form" novalidate>
                         <!-- Honeypot field for bot prevention -->
@@ -178,15 +179,19 @@
                             <div class="error-message">الرجاء إدخال اسمك.</div>
                         </div>
 
-                        <!-- START: New Fields -->
+                        <!-- START: Corrected Fields -->
                         <div class="form-group">
-                            <input type="text" id="address" name="entry.184203332" class="form-input" placeholder=" " autocomplete="address-level2" required>
-                            <label for="address" class="form-label">المدينة والحي</label>
-                            <div class="error-message">الرجاء إدخال مدينتك وحيك.</div>
+                            <div class="address-compound-field">
+                                <span class="city-prefix">الجديدة،</span>
+                                <input type="text" id="neighborhood" class="form-input-compound" placeholder=" " autocomplete="address-level2" required>
+                                <label for="neighborhood" class="form-label-compound">الحي</label>
+                            </div>
+                            <input type="hidden" id="full_address" name="entry.209488151">
+                            <div class="error-message">الرجاء إدخال حيك.</div>
                         </div>
 
                         <div class="form-group">
-                            <select id="household" name="entry.83942844" class="form-input" required>
+                            <select id="household" name="entry.1216814996" class="form-input" required>
                                 <option value="" disabled selected hidden> </option>
                                 <option value="فرد واحد">فرد واحد</option>
                                 <option value="فردين">فردين</option>
@@ -196,7 +201,7 @@
                             <label for="household" class="form-label">حجم الأسرة</label>
                             <div class="error-message">الرجاء اختيار حجم أسرتك.</div>
                         </div>
-                        <!-- END: New Fields -->
+                        <!-- END: Corrected Fields -->
 
                         <div class="form-group">
                             <input type="email" id="email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>
@@ -248,14 +253,19 @@
                 <div class="error-message"></div>
             </div>
 
-            <!-- START: New Modal Fields -->
+            <!-- START: Corrected Modal Fields -->
             <div class="form-group">
-                <input type="text" id="modal-address" name="entry.184203332" class="form-input" placeholder=" " autocomplete="address-level2" required>
-                <label for="modal-address" class="form-label">المدينة والحي</label>
+                <div class="address-compound-field">
+                    <span class="city-prefix">الجديدة،</span>
+                    <input type="text" id="modal-neighborhood" class="form-input-compound" placeholder=" " autocomplete="address-level2" required>
+                    <label for="modal-neighborhood" class="form-label-compound">الحي</label>
+                </div>
+                <input type="hidden" id="modal-full_address" name="entry.209488151">
                 <div class="error-message"></div>
             </div>
+
             <div class="form-group">
-                <select id="modal-household" name="entry.83942844" class="form-input" required>
+                <select id="modal-household" name="entry.1216814996" class="form-input" required>
                     <option value="" disabled selected hidden> </option>
                     <option value="فرد واحد">فرد واحد</option>
                     <option value="فردين">فردين</option>
@@ -265,7 +275,7 @@
                 <label for="modal-household" class="form-label">حجم الأسرة</label>
                 <div class="error-message"></div>
             </div>
-            <!-- END: New Modal Fields -->
+            <!-- END: Corrected Modal Fields -->
 
             <div class="form-group">
                 <input type="email" id="modal-email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>

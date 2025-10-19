@@ -114,8 +114,10 @@
         if (errorElement) {
             errorElement.textContent = message;
             errorElement.style.display = 'block';
-            input.setAttribute('aria-invalid', 'true');
-            input.setAttribute('aria-describedby', errorElement.id || (errorElement.id = `error-${input.id}`));
+            // For compound fields, the visual element is the parent div
+            const visualElement = input.closest('.address-compound-field') || input;
+            visualElement.setAttribute('aria-invalid', 'true');
+            visualElement.setAttribute('aria-describedby', errorElement.id || (errorElement.id = `error-${input.id}`));
         }
     }
 
@@ -144,16 +146,25 @@
 
         hideAllErrors(form);
         
-        // Select all form fields, including the new ones
+        // Select all form fields, noting the new structure for address
         const nameInput = form.querySelector('input[autocomplete="name"]');
-        const addressInput = form.querySelector('input[autocomplete="address-level2"]');
-        const householdInput = form.querySelector('select[name*="household"]');
+        const neighborhoodInput = form.querySelector('input[autocomplete="address-level2"]'); // This is the visible input for the neighborhood
+        const fullAddressInput = form.querySelector('input[type="hidden"]'); // This is the hidden input we will populate
+        const householdInput = form.querySelector('select');
         const emailInput = form.querySelector('input[autocomplete="email"]');
         const phoneInput = form.querySelector('input[autocomplete="tel"]');
 
+        // ** NEW LOGIC: Combine city and neighborhood before validation **
+        const neighborhoodValue = neighborhoodInput.value.trim();
+        if (neighborhoodValue) {
+            fullAddressInput.value = `الجديدة، ${neighborhoodValue}`;
+        } else {
+            fullAddressInput.value = ''; // Ensure it's empty if user entered nothing
+        }
+
         // Validation logic for all fields
         if (!nameInput.value.trim()) { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
-        if (!addressInput.value.trim()) { showError(addressInput, 'الرجاء إدخال مدينتك وحيك.'); isValid = false; }
+        if (!neighborhoodValue) { showError(neighborhoodInput, 'الرجاء إدخال حيك.'); isValid = false; } // Validate the visible neighborhood input
         if (!householdInput.value) { showError(householdInput, 'الرجاء اختيار حجم أسرتك.'); isValid = false; }
         if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
         if (phoneInput.value.trim().length < 5) { showError(phoneInput, 'الرجاء إدخال رقم هاتف صالح.'); isValid = false; }

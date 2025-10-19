@@ -382,6 +382,70 @@ h2 {
 #form-thank-you h3 { color: var(--brand-green); font-size: 2rem; margin-bottom: 20px; }
 .error-message { color: #e74c3c; font-size: 0.95rem; text-align: right; margin-top: 8px; display: none; }
 
+/* --- New styles for the compound address field --- */
+.address-compound-field {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 18px; /* Match horizontal padding of .form-input */
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* This is crucial for positioning the label */
+}
+
+.address-compound-field:focus-within {
+    outline: none;
+    border-color: var(--brand-green);
+    box-shadow: 0 0 0 3px rgba(0, 196, 140, 0.1);
+}
+
+.city-prefix {
+    font-size: 1.05rem;
+    color: var(--neutral-dark);
+    font-weight: 600;
+    padding-left: 8px; /* Space between prefix and input */
+}
+
+/* This input is inside the compound field, so we remove its default styling */
+.form-input-compound {
+    flex: 1; /* Take up remaining space */
+    border: none;
+    background: transparent;
+    padding: 16px 8px 16px 0; /* Match vertical padding of .form-input */
+    font-size: 1.05rem;
+    font-family: var(--brand-font);
+    width: 100%; /* Ensure it fills the flex container */
+}
+
+.form-input-compound:focus {
+    outline: none; /* The parent div provides the focus outline */
+}
+
+.form-label-compound {
+    position: absolute;
+    top: 18px;
+    right: 70px; /* Position it next to the city prefix */
+    color: #999;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background-color: var(--card-bg); /* Match the input background */
+    padding: 0 7px;
+    font-size: 1.05rem;
+}
+
+/* This new rule targets the compound input to float the new label */
+.form-input-compound:focus ~ .form-label-compound,
+.form-input-compound:not(:placeholder-shown) ~ .form-label-compound {
+    top: -12px;
+    font-size: 0.9rem;
+    color: var(--brand-green);
+    background-color: var(--bg); /* Match the container background */
+}
+/* ----------------------------------------------- */
+
+
 /* Modal styles */
 .modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
 .modal[hidden] { display: none; }
@@ -455,7 +519,7 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  .hero { display: block; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png'); background-size: cover; background-position: center; padding: 60px 20px; text-align: center; border-radius: var(--radius); }
+  .hero { display: block; background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://res-console.cloudinary.com/ddrvpufix/thumbnails/v1/image/upload/v1760441314/aGVyb19zZWN0aW9uX21vYmlsZV93ZXZ4enY=/grid'); background-size: cover; background-position: center; padding: 60px 20px; text-align: center; border-radius: var(--radius); }
   .hero-media { display: none !important; }
   .desktop-only { display: none; }
   .mobile-only { display: block; }
