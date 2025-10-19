@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vertical Ticker Test</title>
+  <link rel="stylesheet" href="test_style.css">
+</head>
+<body>
+
+  <h1>Corrected Announcement Bar (Vertical Ticker)</h1>
+  <p>This version displays each announcement sentence individually, one after the other, in a vertical loop.</p>
+
+  <!-- ANNOUNCEMENT / TICKER -->
+  <div class="announcement" role="region" aria-label="إشعار الإطلاق">
+    <div class="ticker-wrap">
+        <ul class="ticker-list">
+            <li class="ticker-item">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</li>
+            <li class="ticker-item">تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</li>
+            <li class="ticker-item">✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</li>
+            <!-- Duplicate the first item at the end for a seamless loop -->
+            <li class="ticker-item" aria-hidden="true">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</li>
+        </ul>
+    </div>
+  </div>
+
+</body>
+</html>

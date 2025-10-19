@@ -57,16 +57,14 @@
 
       <!-- ANNOUNCEMENT / TICKER -->
       <div class="announcement" role="region" aria-label="إشعار الإطلاق">
-        <div class="ticker">
-          <div class="marquee-inner">
-            <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-            <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-            <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
-            <!-- Duplicated for smooth loop -->
-            <span>🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</span>
-            <span>تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</span>
-            <span>✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</span>
-          </div>
+        <div class="ticker-wrap">
+            <ul class="ticker-list">
+                <li class="ticker-item">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</li>
+                <li class="ticker-item">تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</li>
+                <li class="ticker-item">✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</li>
+                <!-- Duplicate the first item at the end for a seamless loop -->
+                <li class="ticker-item" aria-hidden="true">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</li>
+            </ul>
         </div>
       </div>
 
@@ -88,7 +86,7 @@
               <h3>تجربة توصيل سهلة وسريعة</h3>
               <p>اطلب عبر الهاتف أو الويب وتتبع طلبك حتى باب المنزل — توصيل يومي بعد التجميع.</p>
             </article>
-            <article class="tile" tabindex="0" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjuGmlB20g0OFqIzQXlC6teuomLqDAQryFSA&s');">
+            <article class="tile" tabindex="0" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANdd9GcRjuGmlB20g0OFqIzQXlC6teuomLqDAQryFSA&s');">
               <h3>مجتمع قوي، صفقات أفضل</h3>
               <p>كل عضو يقوّي قدرتنا على التفاوض — مصلحة المجتمع أولًا.</p>
             </article>
@@ -163,13 +161,12 @@
                         <h4>✨ مزايا الانضمام إلى الدائرة الأولى:</h4>
                         <ul>
                             <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
-                            <li>أولوية في الوصول إلى المنتجات والخدمات عند الإطلاق.</li>
-                            <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
+                           <li>أولوية في الوصول إلى المنتجات والخدمات عند الإطلاق.</li>
                         </ul>
                     </div>
 
                     <p class="form-privacy-note">🔒 بياناتك آمنة ولن تُستخدم إلا لإشعارك بالإطلاق الرسمي.</p>
-                    <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل.</p>
+                    <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين .</p>
                     
                     <form id="pioneer-form" novalidate>
                         <!-- Honeypot field for bot prevention -->
@@ -180,6 +177,27 @@
                             <label for="name" class="form-label">الاسم الكامل</label>
                             <div class="error-message">الرجاء إدخال اسمك.</div>
                         </div>
+
+                        <!-- START: New Fields -->
+                        <div class="form-group">
+                            <input type="text" id="address" name="entry.184203332" class="form-input" placeholder=" " autocomplete="address-level2" required>
+                            <label for="address" class="form-label">المدينة والحي</label>
+                            <div class="error-message">الرجاء إدخال مدينتك وحيك.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <select id="household" name="entry.83942844" class="form-input" required>
+                                <option value="" disabled selected hidden> </option>
+                                <option value="فرد واحد">فرد واحد</option>
+                                <option value="فردين">فردين</option>
+                                <option value="3-4 أفراد">3-4 أفراد</option>
+                                <option value="5 أفراد أو أكثر">5 أفراد أو أكثر</option>
+                            </select>
+                            <label for="household" class="form-label">حجم الأسرة</label>
+                            <div class="error-message">الرجاء اختيار حجم أسرتك.</div>
+                        </div>
+                        <!-- END: New Fields -->
+
                         <div class="form-group">
                             <input type="email" id="email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>
                             <label for="email" class="form-label">البريد الإلكتروني</label>
@@ -229,6 +247,26 @@
                 <label for="modal-name" class="form-label">الاسم الكامل</label>
                 <div class="error-message"></div>
             </div>
+
+            <!-- START: New Modal Fields -->
+            <div class="form-group">
+                <input type="text" id="modal-address" name="entry.184203332" class="form-input" placeholder=" " autocomplete="address-level2" required>
+                <label for="modal-address" class="form-label">المدينة والحي</label>
+                <div class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <select id="modal-household" name="entry.83942844" class="form-input" required>
+                    <option value="" disabled selected hidden> </option>
+                    <option value="فرد واحد">فرد واحد</option>
+                    <option value="فردين">فردين</option>
+                    <option value="3-4 أفراد">3-4 أفراد</option>
+                    <option value="5 أفراد أو أكثر">5 أفراد أو أكثر</option>
+                </select>
+                <label for="modal-household" class="form-label">حجم الأسرة</label>
+                <div class="error-message"></div>
+            </div>
+            <!-- END: New Modal Fields -->
+
             <div class="form-group">
                 <input type="email" id="modal-email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>
                 <label for="modal-email" class="form-label">البريد الإلكتروني</label>

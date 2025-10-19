@@ -85,7 +85,7 @@
     function handleModalFocus(e) {
         if (signupModal.hidden || e.key !== 'Tab') return;
 
-        const focusableElements = signupModal.querySelectorAll('button, input');
+        const focusableElements = signupModal.querySelectorAll('button, input, select');
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -143,13 +143,21 @@
         }
 
         hideAllErrors(form);
-        const nameInput = form.querySelector('input[type="text"]');
-        const emailInput = form.querySelector('input[type="email"]');
-        const phoneInput = form.querySelector('input[type="tel"]');
+        
+        // Select all form fields, including the new ones
+        const nameInput = form.querySelector('input[autocomplete="name"]');
+        const addressInput = form.querySelector('input[autocomplete="address-level2"]');
+        const householdInput = form.querySelector('select[name*="household"]');
+        const emailInput = form.querySelector('input[autocomplete="email"]');
+        const phoneInput = form.querySelector('input[autocomplete="tel"]');
 
+        // Validation logic for all fields
         if (!nameInput.value.trim()) { showError(nameInput, 'الرجاء إدخال اسمك.'); isValid = false; }
+        if (!addressInput.value.trim()) { showError(addressInput, 'الرجاء إدخال مدينتك وحيك.'); isValid = false; }
+        if (!householdInput.value) { showError(householdInput, 'الرجاء اختيار حجم أسرتك.'); isValid = false; }
         if (!validateEmail(emailInput.value)) { showError(emailInput, 'الرجاء إدخال بريد إلكتروني صالح.'); isValid = false; }
         if (phoneInput.value.trim().length < 5) { showError(phoneInput, 'الرجاء إدخال رقم هاتف صالح.'); isValid = false; }
+        
         if (!isValid) return;
 
         submitButton.disabled = true;

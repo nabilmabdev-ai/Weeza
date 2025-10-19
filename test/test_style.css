@@ -1,0 +1,100 @@
+/* =================================== */
+/* === GLOBAL STYLES & VARIABLES === */
+/* =================================== */
+:root {
+  --brand-green: #00C48C;
+  --radius: 16px;
+  --shadow-medium: 0 12px 28px rgba(16, 24, 40, 0.12);
+  --max-width: 1140px;
+  
+  /* --- Ticker Settings --- */
+  --bar-height: 56px; /* The height of the announcement bar */
+  --num-items: 3;     /* The number of unique sentences */
+  --animation-duration: calc(var(--num-items) * 3s); /* Total animation time (3s per sentence) */
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f8f9fa;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+/* =================================== */
+/* === VERTICAL TICKER (NEW CSS) === */
+/* =================================== */
+
+.announcement {
+  background: var(--brand-green);
+  color: #fff;
+  border-radius: var(--radius);
+  margin: 20px auto 28px;
+  box-shadow: var(--shadow-medium);
+  height: var(--bar-height);
+  width: 100%;
+  max-width: var(--max-width);
+  /* This container hides the parts of the list that are not visible */
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-wrap {
+  height: 100%;
+}
+
+.ticker-list {
+  /* Remove default list styles */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* Animate the vertical position of the list */
+  animation: vertical-ticker var(--animation-duration) infinite;
+  /* Use a step timing function to make the items "jump" into place */
+  animation-timing-function: steps(var(--num-items));
+  will-change: transform; /* Performance hint */
+}
+
+/* Pause the animation on hover */
+.announcement:hover .ticker-list {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  /* Each item should fill the height of the bar */
+  height: var(--bar-height);
+  /* Center the text vertically and horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0 24px;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+
+@keyframes vertical-ticker {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    /*
+     * The list moves up by the height of one item multiplied by the number of unique items.
+     * e.g., for 3 items, it moves up by 3 * 56px = 168px.
+     * This brings the duplicated first item into the initial position, creating a
+     * seamless loop when the animation restarts.
+    */
+    transform: translateY(calc(-1 * var(--bar-height) * var(--num-items)));
+  }
+}
+
+/* Responsive adjustment for mobile to prevent text overflow */
+@media (max-width: 600px) {
+  .ticker-item {
+    font-size: 0.9rem;
+  }
+}
