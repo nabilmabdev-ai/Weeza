@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Weeza — انضم لقائمة الرواد</title>
-  <meta name="description" content="وفّر حتى 30% على مشترياتك الأسبوعية — انضم إلى أول منصة شراء تعاوني في المغرب." />
+  <title>Weeza — انضم لقائمة المشتركين</title>
+  <meta name="description" content="وفّر أكثر… وسجّل طلبك كل يوم أربعاء — الشراء الجماعي للخضر والفواكه بأسعار لا تُنافس." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,215 +13,238 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
 </head>
+
 <body>
 
   <div class="container">
+
     <!-- TOP BAR -->
-    <header class="topbar" role="banner" aria-label="رأس الصفحة">
+    <header class="topbar">
       <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760437067/weeza_logo_transparent_jklxvx.png" alt="Weeza Logo">
     </header>
 
     <!-- MAIN CONTENT -->
     <main>
-     <!-- HERO SECTION (STATE-OF-THE-ART) -->
+
+      <!-- HERO SECTION -->
       <section class="hero" aria-labelledby="hero-title-desktop">
         <div class="hero-content">
+
             <!-- Desktop-only Text -->
             <div class="desktop-only">
                 <p class="tagline">معاً، نوفّر أكثر.</p>
-                <div class="kicker">وفّر أكثر مع الشراء الجماعي</div>
-                <h1 id="hero-title-desktop">اشتري جماعياً ووفّر حتى <span class="highlight">30٪</span> على مشترياتك الأسبوعية</h1>
-                <p class="subtitle">🛒 كن من الأوائل! أكثر من 50 شخصاً بدأوا التوفير معنا.</p>
+                <div class="kicker">Weeza — أول منصة للشراء الجماعي في المغرب</div>
+                <h1 id="hero-title-desktop">وفّر أكثر… وسجّل طلبك كل يوم <span class="highlight">أربعاء</span></h1>
+                <p class="subtitle">
+                  نبدأ بخدمة الشراء الجماعي للخضر والفواكه، بجودة عالية وأسعار لا تُنافس بفضل جمع الطلبات في طلب موحّد.  
+                  قدّم طلب التسجيل وسنتواصل معك لتأكيده.
+                </p>
             </div>
 
             <!-- Mobile-only Text -->
             <div class="mobile-only">
-                <h1 id="hero-title-mobile">وفّر حتى <span class="highlight">30٪</span> عبر الشراء الجماعي</h1>
-                <p class="subtitle">انضم إلى عشرات المشتركين الذين يستفيدون من الأسعار المخفّضة دون أي اشتراك أو التزام.</p>
+                <h1 id="hero-title-mobile">وفّر أكثر… وسجّل طلبك كل يوم <span class="highlight">أربعاء</span></h1>
+                <p class="subtitle">
+                  خضر وفواكه طازجة بجودة عالية وسعر جماعي لا يُقارن.
+                </p>
             </div>
 
-            <div class="hero-ctas" role="group" aria-label="دعوة للإجراء">
-                <button id="cta-primary" class="btn btn-primary">انضم الآن مجاناً</button>
+            <div class="hero-ctas">
+                <button id="cta-primary" class="btn btn-primary">قدّم طلب التسجيل</button>
                 <a href="#how" class="learn-more">كيف يعمل الشراء الجماعي؟</a>
             </div>
-            <!-- ARIA live region for form status announcements -->
-            <div id="form-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
         </div>
+
+        <!-- HERO IMAGE -->
         <div class="hero-media">
-            <!-- Hero Image -->
-           <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png" alt="حقيبة تسوق Weeza مليئة بالخضروات الطازجة" class="hero-image">
+           <img src="https://res.cloudinary.com/ddrvpufix/image/upload/v1760441314/hero_section_mobile_wevxzv.png"
+                alt="سلة خضر وفواكه من Weeza"
+                class="hero-image">
         </div>
       </section>
 
-      <!-- ANNOUNCEMENT / TICKER -->
-      <div class="announcement" role="region" aria-label="إشعار الإطلاق">
+      <!-- TICKER -->
+      <div class="announcement">
         <div class="ticker-wrap">
             <ul class="ticker-list">
-                <li class="ticker-item">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</li>
-                <li class="ticker-item">تفتح الطلبات يوم الأربعاء 29 أكتوبر 2025</li>
-                <li class="ticker-item">✅ انضم إلينا — أكثر من 50 شخصًا سجلوا بالفعل</li>
-                <!-- Duplicate the first item at the end for a seamless loop -->
-                <li class="ticker-item" aria-hidden="true">🚀 أول توصيل يوم الخميس 30 أكتوبر 2025</li>
+                <li class="ticker-item">تسليم أسبوعي كل يوم خميس — خضر وفواكه طازجة بأسعار جملة</li>
+                <li class="ticker-item">سجّل طلبك كل يوم أربعاء</li>
+                <li class="ticker-item">انضم الآن — المجتمع يكبر يومًا بعد يوم</li>
+                <li class="ticker-item" aria-hidden="true">تسليم أسبوعي كل يوم خميس — خضر وفواكه طازجة بأسعار جملة</li>
             </ul>
         </div>
       </div>
 
-      <!-- WHY WEEZA? (Kinetic Mosaic Section) -->
-      <section class="mosaic-section" aria-labelledby="why-weeza-title">
+      <!-- WHY WEEZA (unchanged) -->
+      <section class="mosaic-section">
         <div class="mosaic-container">
           <h2 id="why-weeza-title">لماذا ستُحب <span class="brand-name">Weeza</span>؟</h2>
         </div>
+
         <div class="mosaic" id="card-slider">
+            <!-- KEEP ALL ORIGINAL TILES UNCHANGED -->
             <article class="tile" tabindex="0" style="background-image: url('https://www.lodj.ma/photo/art/grande/62044827-45087906.jpg?v=1643807061');">
               <h3>توفير حقيقي</h3>
               <p>أسعار جملة بفضل قوة الشراء الجماعي — توفير واضح في فاتورة التسوّق الأسبوعية.</p>
             </article>
+
             <article class="tile" tabindex="0" style="background-image: url('https://northernvirginiamag.com/wp-content/uploads/2021/04/veggies.jpg');">
               <h3>جودة استثنائية</h3>
               <p>منتجات طازجة ومباشرة من السوق والمزارع — نتحكّم في الاختيار والتعبئة.</p>
             </article>
-            <article class="tile" tabindex="0" style="background-image: url('https://media.istockphoto.com/id/1401406310/photo/close-up-of-happy-young-woman-accepting-box-with-groceries-from-delivery-man-at-home.jpg?s=612x612&w=0&k=20&c=Eop8LW-LoOqJl_KDMygODi1ALQTtYDWcbeCtQ8LaElY=');">
+
+            <article class="tile" tabindex="0" style="background-image: url('https://media.istockphoto.com/id/1401406310/photo/close-up-of-happy-young-woman-accepting-box-with-groceries-from-delivery-man-at-home.jpg?s=612x612');">
               <h3>تجربة توصيل سهلة وسريعة</h3>
-              <p>اطلب عبر الهاتف أو الويب وتتبع طلبك حتى باب المنزل — توصيل يومي بعد التجميع.</p>
+              <p>اطلب وتتبع طلبك حتى باب المنزل — توصيل كل يوم خميس.</p>
             </article>
+
             <article class="tile" tabindex="0" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANdd9GcRjuGmlB20g0OFqIzQXlC6teuomLqDAQryFSA&s');">
               <h3>مجتمع قوي، صفقات أفضل</h3>
               <p>كل عضو يقوّي قدرتنا على التفاوض — مصلحة المجتمع أولًا.</p>
             </article>
         </div>
+
         <div class="slider-pagination" id="slider-pagination"></div>
       </section>
-      
+
       <!-- HOW IT WORKS -->
       <section id="how" class="container-section fade-up-section">
-          <h2>كيف ستعمل التجربة عند الانطلاق</h2>
+          <h2>كيف تعمل Weeza؟</h2>
+
           <div class="timeline">
+
+              <div class="timeline-step">
+                  <div class="step-icon">📝</div>
+                  <h3>1. سجّل اهتمامك</h3>
+                  <p>قدّم طلب التسجيل وسنعود إليك لتأكيده.</p>
+              </div>
+
               <div class="timeline-step">
                   <div class="step-icon">🛒</div>
-                  <h3>اطلب احتياجاتك</h3>
-                  <p>تتُفتح الطلبات أسبوعيًا كل يوم أربعاء — اطلب واختَر ما تحتاجه.</p>
+                  <h3>2. سجّل طلبك كل يوم أربعاء</h3>
+                  <p>تفتح الطلبات أسبوعيًا للخضر والفواكه المتاحة.</p>
               </div>
+
               <div class="timeline-step">
-                  <div class="step-icon">👥</div>
-                  <h3>نجمع الطلبات</h3>
-                  <p>نجمع طلبات الجميع في المجموعة في طلب واحد كبير لتحقيق أفضل الصفقات.</p>
+                  <div class="step-icon">🤝</div>
+                  <h3>3. نجمّع الطلبات ونشتري بالجملة</h3>
+                  <p>نتعامل مع موردين موثوقين لضمان أفضل جودة وسعر.</p>
               </div>
+
               <div class="timeline-step">
                   <div class="step-icon">🚚</div>
-                  <h3>نشتري بالجملة</h3>
-                  <p>نتفاوض مع أفضل الموردين وتجار الجملة لنضمن لكم جودة عالية وأسعار لا تقبل المنافسة.</p>
+                  <h3>4. استلم يوم الخميس</h3>
+                  <p>طلبك يصل إلى باب منزلك طازجًا وجودته مضمونة.</p>
               </div>
-              <div class="timeline-step">
-                  <div class="step-icon">🏠</div>
-                  <h3>المنتجات تصل طازجة إلى بابك</h3>
-                  <p>طلبك يصل بعد 24 ساعة يوم الخميس، جاهز للاستممتاع به.</p>
-              </div>
+
           </div>
+
+          <!-- EXPANSION / NEXT PHASE -->
           <div class="vision-section">
-              <h3>رحلة تبدأ معكم</h3>
-              <p>نبدأ رحلتنا معكم بتوفير أجود الفواكه والخضروات الطازجة، ومع توسع مجتمعنا، سنضيف تدريجيًا تشكيلات متنوعة تشمل الأسماك الطازجة، الدواجن والبيض، التوابل، ومنتجات موسمية رائعة. هدفنا الأسمى هو التعامل المباشر مع المزارعين والمنتجين المحليين.</p>
+              <h3>قريبًا… منتجات مختارة تمنح قيمة أعلى</h3>
+              <p>
+                ننطلق بالخضر والفواكه لضمان أفضل جودة وتنظيم فعّال.  
+                ومع تطوّر الخدمة، سنضيف تدريجيًا منتجات طازجة مختارة بعناية من مجالات نعرف أننا نستطيع فيها تقديم:
+              </p>
+
+              <ul>
+                <li>جودة أعلى</li>
+                <li>سعر أفضل</li>
+                <li>مصدر أوثق</li>
+                <li>قيمة حقيقية للمجتمع</li>
+              </ul>
+
+              <p>
+                هدفنا ليس تغطية كل فئات المنتجات،  
+                بل التركيز على المجالات التي يمكن أن نقدّم فيها أسعارًا لا تُنافس وجودة محسّنة بفضل قوة الشراء الجماعي.
+              </p>
           </div>
       </section>
 
       <!-- FAQ SECTION -->
       <section id="faq" class="container-section fade-up-section">
-            <h2>أسئلة شائعة</h2>
-            <div class="faq-accordion">
-                <div class="faq-item">
-                    <div class="faq-question">ماذا يعني "الشراء التعاوني"؟<span class="toggle-icon">+</span></div>
-                    <div class="faq-answer">
-                        <p>يعني أننا نجمع قوتنا الشرائية معًا. بدلاً من أن يشتري كل شخص بمفرده، نجمع مئات الطلبات للشراء بالجملة مباشرة من المنتجين. هذا يمنحنا قوة تفاوضية هائلة للحصول على أفضل الأسعار والجودة.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">هل ستكون هناك رسوم عضوية؟<span class="toggle-icon">+</span></div>
-                    <div class="faq-answer">
-                        <p>الانضمام سيكون مجانيًا تمامًا للرواد المؤسسين الـ 100 الأوائل الذين يسجلون قبل الإطلاق، مع مزايا حصرية. أي نماذج تسعير مستقبلية ستكون شفافة ومصممة لمصلحة المجتمع أولاً.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">من أين ستأتي المنتجات؟<span class="toggle-icon">+</span></div>
-                    <div class="faq-answer">
-                        <p>سنبدأ بتوفير الفواكه والخضروات الطازجة من خلال التعامل مع أفضل تجار الجملة الموثوقين. رؤيتنا المستقبلية هي بناء علاقات مباشرة مع المزارعين والمنتجين المحليين مع نمو مجتمعنا.</p>
-                    </div>
-                </div>
+        <h2>أسئلة شائعة</h2>
+
+        <div class="faq-accordion">
+
+            <div class="faq-item">
+              <div class="faq-question">هل التسجيل مجاني؟<span class="toggle-icon">+</span></div>
+              <div class="faq-answer">
+                <p>نعم، التسجيل مجاني، وسنؤكد تفعيل حسابك قبل الانطلاق.</p>
+              </div>
             </div>
+
+            <div class="faq-item">
+              <div class="faq-question">متى يصل الطلب؟<span class="toggle-icon">+</span></div>
+              <div class="faq-answer">
+                <p>وصول الطلب يكون كل يوم خميس.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">كيف تحصلون على هذه الأسعار؟<span class="toggle-icon">+</span></div>
+              <div class="faq-answer">
+                <p>نجمّع طلبات المجتمع، نشتري بالجملة، ونقلّل الوسطاء لنقدّم سعرًا أفضل.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question">هل ستضيفون منتجات جديدة؟<span class="toggle-icon">+</span></div>
+              <div class="faq-answer">
+                <p>
+                  نعم، لكن بشكل انتقائي.  
+                  نضيف فقط المنتجات التي نستطيع فيها تقديم جودة أعلى وسعر لا يُنافس.
+                </p>
+              </div>
+            </div>
+
+        </div>
       </section>
 
-      <!-- SIGNUP FORM (Desktop Anchor) -->
+      <!-- SIGNUP FORM -->
       <section id="signup" class="container-section fade-up-section">
-            <div class="form-container">
-                <div id="form-wrapper">
-                    <h2>🟢 انضم إلى الدائرة الأولى — قبل الجميع.</h2>
-                    <p>سنعلمك قبل الجميع بموعد الإطلاق الرسمي وستحصل على مزايا حصرية.</p>
+        <div class="form-container">
 
-                    <div class="form-benefits">
-                        <h4>✨ مزايا الانضمام إلى الدائرة الأولى:</h4>
-                        <ul>
-                            <li>مكان مميز ضمن الدائرة الأولى للمشتركين.</li>
-                           <li>أولوية في الوصول إلى المنتجات والخدمات عند الإطلاق.</li>
-                            <li>فرصة للمشاركة في تطوير المنصة واقتراح أفكار جديدة.</li>
-                        </ul>
+            <div id="form-wrapper">
+                <h2>سجّل اهتمامك بـWeeza</h2>
+                <p>أدخل بياناتك، وسنتواصل معك لاحقًا لتأكيد التسجيل وإعلامك بموعد الانطلاق.</p>
+
+                <form id="pioneer-form" novalidate>
+
+                    <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" />
+
+                    <div class="form-group">
+                        <input type="text" id="name" class="form-input" placeholder=" " required>
+                        <label for="name" class="form-label">الاسم الكامل</label>
+                        <div class="error-message">الرجاء إدخال اسمك.</div>
                     </div>
 
-                    <p class="form-privacy-note">🔒 بياناتك آمنة ولن تُستخدم إلا لإشعارك بالإطلاق الرسمي.</p>
-                    <p class="form-cta-lead">📝 املأ النموذج أدناه لتنضم إلى قائمة المشتركين الأوائل.</p>
-                    
-                    <form id="pioneer-form" novalidate>
-                        <!-- Honeypot field for bot prevention -->
-                        <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-                        
-                        <div class="form-group">
-                            <input type="text" id="name" name="entry.1709270781" class="form-input" placeholder=" " autocomplete="name" required>
-                            <label for="name" class="form-label">الاسم الكامل</label>
-                            <div class="error-message">الرجاء إدخال اسمك.</div>
-                        </div>
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-input" placeholder=" " required>
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
+                    </div>
 
-                        <!-- START: Corrected Fields -->
-                        <div class="form-group">
-                            <div class="address-compound-field">
-                                <span class="city-prefix">الجديدة،</span>
-                                <input type="text" id="neighborhood" class="form-input-compound" placeholder=" " autocomplete="address-level2" required>
-                                <label for="neighborhood" class="form-label-compound">الحي</label>
-                            </div>
-                            <input type="hidden" id="full_address" name="entry.209488151">
-                            <div class="error-message">الرجاء إدخال حيك.</div>
-                        </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" class="form-input" placeholder=" " required>
+                        <label for="phone" class="form-label">رقم الهاتف</label>
+                        <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
+                    </div>
 
-                        <div class="form-group">
-                            <select id="household" name="entry.1216814996" class="form-input" required>
-                                <option value="" disabled selected hidden> </option>
-                                <option value="فرد واحد">فرد واحد</option>
-                                <option value="فردين">فردين</option>
-                                <option value="3-4 أفراد">3-4 أفراد</option>
-                                <option value="5 أفراد أو أكثر">5 أفراد أو أكثر</option>
-                            </select>
-                            <label for="household" class="form-label">حجم الأسرة</label>
-                            <div class="error-message">الرجاء اختيار حجم أسرتك.</div>
-                        </div>
-                        <!-- END: Corrected Fields -->
-
-                        <div class="form-group">
-                            <input type="email" id="email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>
-                            <label for="email" class="form-label">البريد الإلكتروني</label>
-                            <div class="error-message">الرجاء إدخال بريد إلكتروني صالح.</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="entry.21162544" class="form-input" placeholder=" " autocomplete="tel" required inputmode="tel">
-                            <label for="phone" class="form-label">رقم الهاتف</label>
-                            <div class="error-message">الرجاء إدخال رقم هاتفك.</div>
-                        </div>
-                        <button type="submit" class="cta-button">سجل اهتمامي الآن!</button>
-                    </form>
-                </div>
-                <div id="form-thank-you">
-                    <h3>✅ تهانينا! تم تسجيل اهتمامك بنجاح.</h3>
-                    <p>أنت الآن رسميًا في قائمة <span class="brand-name">Weeza</span> للمشتركين الأوائل. سنتواصل معك قريبًا قبل الإطلاق الرسمي.</p>
-                </div>
+                    <button type="submit" class="cta-button">إرسال</button>
+                </form>
             </div>
+
+            <div id="form-thank-you">
+              <h3>تم استلام طلبك بنجاح!</h3>
+              <p>سنتواصل معك قريبًا لتأكيد التسجيل.</p>
+            </div>
+
+        </div>
       </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -232,69 +255,7 @@
             <a href="#">سياسة الخصوصية</a>
         </div>
     </footer>
-  </div>
 
-  <!-- MODAL SIGNUP FORM (for Mobile) -->
-  <div id="signup-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
-    <div class="modal-backdrop" data-action="close-modal"></div>
-    <div class="modal-panel" role="document">
-      <button class="modal-close" aria-label="إغلاق النموذج" data-action="close-modal">&times;</button>
-      <div id="modal-form-wrapper">
-        <h3 id="modal-title">🟢 انضم إلى الدائرة الأولى</h3>
-        <p>املأ النموذج لتنضم إلى قائمة المشتركين الأوائل وتحصل على مزايا حصرية.</p>
-
-        <form id="modal-pioneer-form" novalidate>
-            <!-- Honeypot field for bot prevention -->
-            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-            <div class="form-group">
-                <input type="text" id="modal-name" name="entry.1709270781" class="form-input" placeholder=" " autocomplete="name" required>
-                <label for="modal-name" class="form-label">الاسم الكامل</label>
-                <div class="error-message"></div>
-            </div>
-
-            <!-- START: Corrected Modal Fields -->
-            <div class="form-group">
-                <div class="address-compound-field">
-                    <span class="city-prefix">الجديدة،</span>
-                    <input type="text" id="modal-neighborhood" class="form-input-compound" placeholder=" " autocomplete="address-level2" required>
-                    <label for="modal-neighborhood" class="form-label-compound">الحي</label>
-                </div>
-                <input type="hidden" id="modal-full_address" name="entry.209488151">
-                <div class="error-message"></div>
-            </div>
-
-            <div class="form-group">
-                <select id="modal-household" name="entry.1216814996" class="form-input" required>
-                    <option value="" disabled selected hidden> </option>
-                    <option value="فرد واحد">فرد واحد</option>
-                    <option value="فردين">فردين</option>
-                    <option value="3-4 أفراد">3-4 أفراد</option>
-                    <option value="5 أفراد أو أكثر">5 أفراد أو أكثر</option>
-                </select>
-                <label for="modal-household" class="form-label">حجم الأسرة</label>
-                <div class="error-message"></div>
-            </div>
-            <!-- END: Corrected Modal Fields -->
-
-            <div class="form-group">
-                <input type="email" id="modal-email" name="entry.1716595899" class="form-input" placeholder=" " autocomplete="email" required>
-                <label for="modal-email" class="form-label">البريد الإلكتروني</label>
-                <div class="error-message"></div>
-            </div>
-            <div class="form-group">
-                <input type="tel" id="modal-phone" name="entry.21162544" class="form-input" placeholder=" " autocomplete="tel" required inputmode="tel">
-                <label for="modal-phone" class="form-label">رقم الهاتف</label>
-                <div class="error-message"></div>
-            </div>
-            <button type="submit" class="cta-button" id="modal-submit-button">سجل اهتمامي الآن!</button>
-        </form>
-      </div>
-      <div id="modal-thank-you" style="display: none; text-align: center;">
-          <h3>✅ تهانينا! تم تسجيل اهتمامك.</h3>
-          <p>أنت الآن رسميًا في قائمة الرواد. سنتواصل معك قريبًا.</p>
-      </div>
-    </div>
   </div>
 
   <!-- JavaScript -->
